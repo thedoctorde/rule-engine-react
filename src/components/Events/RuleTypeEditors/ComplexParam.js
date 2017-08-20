@@ -20,8 +20,10 @@ const ComplexParam = ({
           )
         }
       </SelectField>
-      {subrules.map(item =>
-        <Subrule name={paramName} subrule={item} key={item.id}/>)
+      {subrules
+        ? subrules.map(item =>
+          <Subrule name={paramName} subrule={item} key={item.id}/>)
+        : false
       }
     </div>
   )

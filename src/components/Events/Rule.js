@@ -8,36 +8,75 @@ import Param from "./RuleTypeEditors/Param";
 import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import Mapping from "./RuleTypeEditors/Mapping";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
+import {updateRule} from "../../actions/eventActions";
 
 export class Rule extends React.Component {
   constructor(props, context) {
     super(props, context);
-
     this.state = {
-      ruleType: props.rule.type,
-      from: props.rule.min,
-      to: props.rule.max,
-      momentName: "",
-      operator: "",
+      rule: Object.assign({}, props.rule)
     };
   }
 
-  handleRuleTypeChange = (event, index, value) => this.setState({ruleType: value});
-  handleChangeFrom = (event, index, value) => this.setState({from: value});
-  handleChangeTo = (event, index, value) => this.setState({to: value});
-  handleChangeMomentName = (event, index, value) => this.setState({name: value});
-  handleChangeOperator = (event, index, value) => this.setState({operator: value});
-  handleChangeValueType = (event, index, value) => this.setState({valueType: value});
-  handleChangeParamName = (event, index, value) => this.setState({paramName: value});
-  handleChangeMappingName = (event, index, value) => this.setState({mappingName: value});
+  componentWillReceiveProps(nextProps) {
+    //debugger;
+    if (nextProps.rule) {
+      if (this.state.rule !== nextProps.rule) {
+        this.setState({rule: Object.assign({}, this.state.rule, nextProps.rule)})
+      }
+    }
+  }
 
-  section(ruleType) {
-    switch (ruleType) {
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   debugger;
+  //   if (nextProps.rule) {
+  //     if (this.state.rule.type !== nextState.type) {
+  //       return true
+  //     }
+  //   }
+  //   return false
+  // }
+
+  handleRuleTypeChange = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {type: value});
+    this.props.updateRule(rule)
+  };
+  handleChangeFrom = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {min: value});
+    this.props.updateRule(rule)
+  };
+  handleChangeTo = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {max: value});
+    this.props.updateRule(rule)
+  }
+  handleChangeMomentName = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {momentName: value});
+    this.props.updateRule(rule)
+  }
+  handleChangeOperator = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {operator: value});
+    this.props.updateRule(rule)
+  }
+  handleChangeValueType = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {valueType: value});
+    this.props.updateRule(rule)
+  }
+  handleChangeParamName = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {paramName: value});
+    this.props.updateRule(rule)
+  }
+  handleChangeMappingName = (event, index, value) => {
+    let rule = Object.assign({}, this.state.rule, {mappingName: value});
+    this.props.updateRule(rule)
+  }
+
+  section(type) {
+    switch (type) {
       case "hour_between":
         return (
           <HourBetween
-            valueFrom={this.state.from}
-            valueTo={this.state.to}
+            valueFrom={this.state.rule.min}
+            valueTo={this.state.rule.max}
             handleChangeFrom={this.handleChangeFrom}
             handleChangeTo={this.handleChangeTo}
           />
@@ -45,9 +84,9 @@ export class Rule extends React.Component {
       case "last_moments":
         return (
           <LastMoments
-            momentName={this.state.momentName}
+            momentName={this.state.rule.momentName}
             momentNames={this.props.momentNames}
-            operator={this.state.operator}
+            operator={this.state.rule.operator}
             operators={this.props.operators}
             handleChangeMomentName={this.handleChangeMomentName}
             handleChangeOperator={this.handleChangeOperator}
@@ -56,13 +95,13 @@ export class Rule extends React.Component {
       case "param" :
         return (
           <Param
-            paramName={this.state.paramName}
+            paramName={this.state.rule.paramName}
             paramNames={this.props.paramNames}
             handleChangeParamName={this.handleChangeParamName}
-            operator={this.state.operator}
+            operator={this.state.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
-            valueType={this.state.valueType}
+            valueType={this.state.rule.valueType}
             valueTypes={this.props.valueTypes}
             handleChangeValueType={this.handleChangeValueType}
           />
@@ -70,10 +109,10 @@ export class Rule extends React.Component {
       case "old_vs_new":
         return (
           <OldVsNew
-            paramName={this.state.paramName}
+            paramName={this.state.rule.paramName}
             paramNames={this.props.paramNames}
             handleChangeParamName={this.handleChangeParamName}
-            operator={this.state.operator}
+            operator={this.state.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
           />
@@ -81,24 +120,24 @@ export class Rule extends React.Component {
       case "mapping":
         return (
           <Mapping
-            paramName={this.state.paramName}
+            paramName={this.state.rule.paramName}
             paramNames={this.props.paramNames}
             handleChangeParamName={this.handleChangeParamName}
-            operator={this.state.operator}
+            operator={this.state.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
-            mappingName={this.state.mappingName}
+            mappingName={this.state.rule.mappingName}
             mappingNames={this.props.mappingNames}
             handleChangeMappingName={this.handleChangeMappingName}
-            mappingValues={this.state.mappingValues}
+            mappingValues={this.state.rule.mappingValues}
             mappingPossibleValues={this.props.mappingPossibleValues}
           />
         );
       case "complex_param":
         return (
           <ComplexParam
-            subrules={this.props.rule.rules}
-            paramName={this.state.paramName}
+            subrules={this.state.rule.rules}
+            paramName={this.state.rule.paramName}
             paramNames={this.props.paramNames}
             handleChangeParamName={this.handleChangeParamName}
           />
@@ -113,7 +152,7 @@ export class Rule extends React.Component {
       <div>
         <SelectField
           floatingLabelText="Rule Type"
-          value={this.props.rule.type}
+          value={this.state.rule.type}
           onChange={this.handleRuleTypeChange}>
           {
             this.props.ruleTypes.map(ruleType => {
@@ -121,7 +160,7 @@ export class Rule extends React.Component {
             })
           }
         </SelectField>
-        {this.section(this.state.ruleType)}
+        {this.section(this.state.rule.type)}
       </div>
     );
   }
@@ -140,4 +179,12 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Rule);
+function mapDispatchToProps(dispatch) {
+  return {
+    updateRule : (rule) => {
+      dispatch(updateRule(rule))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rule);

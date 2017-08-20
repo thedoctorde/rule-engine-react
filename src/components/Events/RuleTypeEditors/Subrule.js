@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import SelectField from 'material-ui/SelectField';
-import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
 
 export class Subrule extends React.Component {

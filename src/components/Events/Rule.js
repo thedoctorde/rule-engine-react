@@ -27,16 +27,6 @@ export class Rule extends React.Component {
     }
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   debugger;
-  //   if (nextProps.rule) {
-  //     if (this.state.rule.type !== nextState.type) {
-  //       return true
-  //     }
-  //   }
-  //   return false
-  // }
-
   handleRuleTypeChange = (event, index, value) => {
     let rule = Object.assign({}, this.state.rule, {type: value});
     this.props.updateRule(rule)
@@ -96,7 +86,7 @@ export class Rule extends React.Component {
         return (
           <Param
             paramName={this.state.rule.paramName}
-            paramNames={this.props.paramNames}
+            paramNames={getSimpleParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeParamName}
             operator={this.state.rule.operator}
             operators={this.props.operators}
@@ -110,7 +100,7 @@ export class Rule extends React.Component {
         return (
           <OldVsNew
             paramName={this.state.rule.paramName}
-            paramNames={this.props.paramNames}
+            paramNames={getSimpleParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeParamName}
             operator={this.state.rule.operator}
             operators={this.props.operators}
@@ -138,7 +128,7 @@ export class Rule extends React.Component {
           <ComplexParam
             subrules={this.state.rule.rules}
             paramName={this.state.rule.paramName}
-            paramNames={this.props.paramNames}
+            paramNames={getComplexParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeParamName}
           />
         )
@@ -164,6 +154,14 @@ export class Rule extends React.Component {
       </div>
     );
   }
+}
+
+function getSimpleParams(params) {
+  return params.filter(item => item.type === "simple")
+}
+
+function getComplexParams(params) {
+  return params.filter(item => item.type === "complex")
 }
 
 function mapStateToProps(state) {

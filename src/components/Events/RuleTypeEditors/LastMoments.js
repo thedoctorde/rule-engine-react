@@ -11,7 +11,7 @@ const LastMoments = ({momentName, momentNames, operator, operators, handleChange
         onChange={handleChangeMomentName}>
         {
           momentNames.map(item => {
-              return <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
+              return <MenuItem value={item.value} primaryText={item.value + "(" + item.id +")"} key={item.id}/>
             }
           )
         }

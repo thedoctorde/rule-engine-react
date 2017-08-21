@@ -28,7 +28,7 @@ const Mapping = ({
         value={operator}
         onChange={handleChangeOperator}>
         {
-          operators.map(operator =>
+          getOperatorsForMapping(operators).map(operator =>
             <MenuItem value={operator.value} primaryText={operator.value} key={operator.id}/>
           )
         }
@@ -49,5 +49,9 @@ const Mapping = ({
     </div>
   )
 };
+
+function getOperatorsForMapping(operators) {
+  return operators.filter(item => (item.value === "in" || item.value === "not in"))
+}
 
 export default Mapping

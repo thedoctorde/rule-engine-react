@@ -15,7 +15,7 @@ class EventForm extends Component {
         name: {event.name}
 
         <h1>Rules</h1>
-        <EventRuleset ruleset={ruleset}/>
+        <EventRuleset ruleset={ruleset} eventId={event.id}/>
         <RaisedButton label="Add new rule"
                       onClick={() => createRule(event.id) }/>
         <RaisedButton label="Save" style={style}/>

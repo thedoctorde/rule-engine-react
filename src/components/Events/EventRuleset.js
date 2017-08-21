@@ -1,10 +1,10 @@
 import React from 'react';
 import Rule from "./Rule";
 
-const EventRuleset = ({ruleset}) => {
+const EventRuleset = ({ruleset, eventId}) => {
   return (
     <div>
-      {ruleset.map(item => <Rule rule={item} key={item.id}/>)}
+      {ruleset.map(item => <Rule rule={item} eventId={eventId} key={item.id}/>)}
     </div>
   )
 };

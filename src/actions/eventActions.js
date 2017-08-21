@@ -28,6 +28,14 @@ export function updateRuleSuccess(rule) {
   return {type: types.UPDATE_RULE_SUCCESS, rule};
 }
 
+export function deleteRuleSuccess(id) {
+  return {type: types.DELETE_RULE_SUCCESS, id};
+}
+
+export function deleteRuleFromEventRulesetSuccess(id, eventId) {
+  return {type: types.DELETE_RULE_FROM_EVENT_RULESET_SUCCESS, id, eventId};
+}
+
 export function updateEventRulesetSuccess(eventId, ruleId) {
   return {
     type: types.UPDATE_EVENT_RULESET_SUCCESS,
@@ -56,6 +64,17 @@ export function updateRule(rule) {
   return function (dispatch) {
     return eventsApi.saveRule(rule).then(rule => {
       dispatch(updateRuleSuccess(rule))
+    }).catch(error => {
+      throw(error)
+    });
+  }
+}
+
+export function deleteRule(id, eventId) {
+  return function (dispatch) {
+    return eventsApi.deleteRule(id, eventId).then(() => {
+      dispatch(deleteRuleSuccess(id));
+      dispatch(deleteRuleFromEventRulesetSuccess(id, eventId))
     }).catch(error => {
       throw(error)
     });

@@ -8,12 +8,20 @@ import Param from "./RuleTypeEditors/Param";
 import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import Mapping from "./RuleTypeEditors/Mapping";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
-import {updateRule} from "../../actions/eventActions";
+import {updateRule, deleteRule} from "../../actions/eventActions";
 import {getFilteredMappingValues} from "../../utils/selctors";
+import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-  display: "flex"
-}
+  display: "flex",
+  alignItems: "start",
+
+};
+
+const deleteButtonStyle = {
+  marginLeft: 12,
+  marginRight: 12,
+};
 
 export class Rule extends React.Component {
   constructor(props, context) {
@@ -153,8 +161,17 @@ export class Rule extends React.Component {
 
 
   render() {
+    const {rule, eventId} = this.props;
     return (
       <div style={style}>
+        <RaisedButton
+          label="Delete"
+          secondary={true}
+          style={deleteButtonStyle}
+          onClick={() => {
+            this.props.deleteRule(rule.id, eventId)
+          }
+          }/>
         <SelectField
           floatingLabelText="Rule Type"
           value={this.state.rule.type}
@@ -180,7 +197,6 @@ function getComplexParams(params) {
 }
 
 
-
 function mapStateToProps(state) {
   return {
     ruleTypes: state.ruleTypes.map(item => item),
@@ -198,7 +214,11 @@ function mapDispatchToProps(dispatch) {
   return {
     updateRule: (rule) => {
       dispatch(updateRule(rule))
+    },
+    deleteRule: (id, eventId) => {
+      dispatch(deleteRule(id, eventId))
     }
+
   }
 }
 

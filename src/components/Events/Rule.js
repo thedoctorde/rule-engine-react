@@ -9,17 +9,22 @@ import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import Mapping from "./RuleTypeEditors/Mapping";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
 import {updateRule} from "../../actions/eventActions";
+import {getFilteredMappingValues} from "../../utils/selctors";
+
+const style = {
+  display: "flex"
+}
 
 export class Rule extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      rule: Object.assign({}, props.rule)
+      rule: Object.assign({}, props.rule),
+      mappingPossibleValues: getFilteredMappingValues(props.mappingPossibleValues, props.rule.mappingName)
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    //debugger;
     if (nextProps.rule) {
       if (this.state.rule !== nextProps.rule) {
         this.setState({rule: Object.assign({}, this.state.rule, nextProps.rule)})
@@ -56,7 +61,13 @@ export class Rule extends React.Component {
     this.props.updateRule(rule)
   }
   handleChangeMappingName = (event, index, value) => {
-    let rule = Object.assign({}, this.state.rule, {mappingName: value});
+    let rule = Object.assign({},
+      this.state.rule,
+      {
+        mappingName: value,
+        mappingPossibleValues: getFilteredMappingValues(this.state.mappingPossibleValues, value),
+      }
+    );
     this.props.updateRule(rule)
   }
 
@@ -108,10 +119,13 @@ export class Rule extends React.Component {
           />
         );
       case "mapping":
+        console.log('state: ', this.state)
+        console.log('this:', this)
+        console.log('this.state.rule:', this.state.rule)
         return (
           <Mapping
             paramName={this.state.rule.paramName}
-            paramNames={this.props.paramNames}
+            paramNames={getSimpleParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeParamName}
             operator={this.state.rule.operator}
             operators={this.props.operators}
@@ -137,9 +151,10 @@ export class Rule extends React.Component {
     }
   }
 
+
   render() {
     return (
-      <div>
+      <div style={style}>
         <SelectField
           floatingLabelText="Rule Type"
           value={this.state.rule.type}
@@ -164,6 +179,8 @@ function getComplexParams(params) {
   return params.filter(item => item.type === "complex")
 }
 
+
+
 function mapStateToProps(state) {
   return {
     ruleTypes: state.ruleTypes.map(item => item),
@@ -179,7 +196,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateRule : (rule) => {
+    updateRule: (rule) => {
       dispatch(updateRule(rule))
     }
   }

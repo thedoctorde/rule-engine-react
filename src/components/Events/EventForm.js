@@ -13,6 +13,8 @@ class EventForm extends Component {
       <div>
         id: {event.id}
         name: {event.name}
+
+        <h1>Rules</h1>
         <EventRuleset ruleset={ruleset}/>
         <RaisedButton label="Add new rule"
                       onClick={() => createRule(event.id) }/>

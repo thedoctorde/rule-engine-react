@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import MultiSelectField from "../../common/MultiSelectField";
+import {getFilteredMappingValues} from "../../../utils/selctors";
 
 
 const Mapping = ({
@@ -18,7 +19,7 @@ const Mapping = ({
         onChange={handleChangeParamName}>
         {
           paramNames.map(item =>
-            <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
+            <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
           )
         }
       </SelectField>
@@ -44,7 +45,7 @@ const Mapping = ({
       </SelectField>
       <MultiSelectField
         values={mappingValues}
-        possibleValues={mappingPossibleValues}/>
+        possibleValues={getFilteredMappingValues(mappingPossibleValues, mappingName)}/>
     </div>
   )
 };

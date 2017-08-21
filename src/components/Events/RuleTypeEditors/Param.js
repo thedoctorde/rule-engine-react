@@ -16,7 +16,7 @@ const Param = ({
         onChange={handleChangeParamName}>
         {
           paramNames.map(item =>
-            <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
+            <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
           )
         }
       </SelectField>

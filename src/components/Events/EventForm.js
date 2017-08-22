@@ -20,7 +20,7 @@ class EventForm extends Component {
                       onClick={() => createRule(event.id)}/>
         <RaisedButton label="Save" style={style}
                       onClick={() => {
-                        uploadEvents(store)
+                        uploadEvents(event.id, store)
                       }}/>
       </div>
 

@@ -75,8 +75,8 @@ function mapDispatchToProps(dispatch) {
     createRule : (eventId) => {
       dispatch(createRule(eventId))
     },
-    uploadEvents: (events) => {
-      dispatch(uploadEvents(events))
+    uploadEvents: (eventId, store) => {
+      dispatch(uploadEvents(eventId, store))
     }
   }
 }

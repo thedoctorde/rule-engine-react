@@ -92,9 +92,9 @@ export function createRule(eventId) {
   }
 }
 
-export function uploadEvents(events) {
+export function uploadEvents(event, store) {
   return function (dispatch) {
-    return eventsApi.sendEventsToServer(events)
+    return eventsApi.sendEventToServer(event, store)
       .then(res => res.json())
       .then(
         data => {

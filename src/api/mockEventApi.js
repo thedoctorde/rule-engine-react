@@ -16,7 +16,7 @@ const event = new schema.Entity('events', {
   ruleset: [rule]
 });
 
-
+const eventSchema = event;
 const eventsSchema = [event];
 
 const eventsData =
@@ -157,17 +157,16 @@ class EventsApi {
     );
   }
 
-  static sendEventsToServer(state) {
+  static sendEventToServer(eventId, state) {
     let entities = Object.assign({}, {events: state.events}, {rules: state.rules}, {subrules: state.subrules});
-
-    //
     const denormalizedData = denormalize(Object.keys(state.events), eventsSchema, entities);
+    let updated = denormalizedData.filter(x => x.id == eventId)[0];
     return fetch(url+'/events', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(denormalizedData)
+      body: JSON.stringify(updated)
     })
   }
 }

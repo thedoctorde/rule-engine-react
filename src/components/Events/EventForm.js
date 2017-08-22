@@ -8,7 +8,7 @@ const style = {
 
 class EventForm extends Component {
   render() {
-    const {event, ruleset, createRule} = this.props;
+    const {event, ruleset, createRule, uploadEvents, store} = this.props;
     return (
       <div>
         id: {event.id}
@@ -17,8 +17,11 @@ class EventForm extends Component {
         <h1>Rules</h1>
         <EventRuleset ruleset={ruleset} eventId={event.id}/>
         <RaisedButton label="Add new rule"
-                      onClick={() => createRule(event.id) }/>
-        <RaisedButton label="Save" style={style}/>
+                      onClick={() => createRule(event.id)}/>
+        <RaisedButton label="Save" style={style}
+                      onClick={() => {
+                        uploadEvents(store)
+                      }}/>
       </div>
 
     );

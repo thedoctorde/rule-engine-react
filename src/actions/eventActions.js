@@ -2,18 +2,19 @@ import * as types from './actionTypes';
 import eventsApi from '../api/mockEventApi';
 
 export function loadEventsSuccess(events) {
-  return { type: types.LOAD_EVENTS_SUCCESS, events};
+  return {type: types.LOAD_EVENTS_SUCCESS, events};
 }
 
 export function loadRulesSuccess(rules) {
-  return { type: types.LOAD_RULES_SUCCESS, rules};
+  return {type: types.LOAD_RULES_SUCCESS, rules};
 }
 
 export function loadSubrulesSuccess(subrules) {
-  return { type: types.LOAD_SUBRULES_SUCCESS, subrules};
+  return {type: types.LOAD_SUBRULES_SUCCESS, subrules};
 }
+
 export function loadRulesetsSuccess(rulesets) {
-  return { type: types.LOAD_RULESETS_SUCCESS, rulesets};
+  return {type: types.LOAD_RULESETS_SUCCESS, rulesets};
 }
 
 export function createEventSuccess(course) {
@@ -45,9 +46,8 @@ export function updateEventRulesetSuccess(eventId, ruleId) {
 }
 
 
-
 export function loadEvents() {
-  return function(dispatch) {
+  return function (dispatch) {
     //dispatch(beginAjaxCall());
     return eventsApi.getAllEvents().then(response => {
       dispatch(loadEventsSuccess(response.entities.events));
@@ -89,6 +89,23 @@ export function createRule(eventId) {
     }).catch(error => {
       throw(error)
     });
+  }
+}
+
+export function uploadEvents(events) {
+  return function (dispatch) {
+    return eventsApi.sendEventsToServer(events)
+      .then(res => res.json())
+      .then(
+        data => {
+          console.log("suc: ", data)
+          //dispatch({ type: 'LOAD_DATA_SUCCESS', data })
+        },
+        err => {
+          console.log("err: ", err)
+          //dispatch({type: 'LOAD_DATA_FAILURE', err})
+        }
+      )
   }
 }
 

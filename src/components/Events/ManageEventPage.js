@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import EventForm from "./EventForm";
 import toArray from "../../utils/helpers"
-import {createRule} from "../../actions/eventActions"
+import {createRule, uploadEvents} from "../../actions/eventActions"
 
 class ManageEventPage extends Component {
 
@@ -30,6 +30,8 @@ class ManageEventPage extends Component {
         ruleset={this.props.ruleset}
         rules={this.props.rules}
         createRule={this.props.createRule}
+        store={this.props.store}
+        uploadEvents={this.props.uploadEvents}
       />
     );
   }
@@ -62,6 +64,7 @@ function mapStateToProps(state, ownProps) {
   }
 
   return {
+    store: state,
     event: event,
     ruleset: ruleset,
   };
@@ -71,6 +74,9 @@ function mapDispatchToProps(dispatch) {
   return {
     createRule : (eventId) => {
       dispatch(createRule(eventId))
+    },
+    uploadEvents: (events) => {
+      dispatch(uploadEvents(events))
     }
   }
 }

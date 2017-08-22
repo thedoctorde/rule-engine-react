@@ -119,14 +119,9 @@ class EventsApi {
           return event;
         });
         let normalizedData = normalize(newdata, eventsSchema);
-        debugger;
         return normalizedData;
       })
 
-    // return new Promise((resolve, reject) => {
-    //   let data  = normalize(eventsData, eventsSchema);
-    //   resolve();
-    // });
   }
 
   static saveRule(rule) {
@@ -167,7 +162,6 @@ class EventsApi {
 
     //
     const denormalizedData = denormalize(Object.keys(state.events), eventsSchema, entities);
-    debugger;
     return fetch(url+'/events', {
       method: 'POST',
       headers: {

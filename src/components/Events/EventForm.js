@@ -13,6 +13,7 @@ class EventForm extends Component {
       ruleset,
       createRule,
       updateRule,
+      deleteRule,
       uploadEvents,
       store,
       ruleTypes,
@@ -35,6 +36,7 @@ class EventForm extends Component {
             key={item.id}
             rule={item}
             updateRule={updateRule}
+            deleteRule={deleteRule}
             eventId={event.id}
             ruleTypes={ruleTypes}
             nameToFields={nameToFields}

@@ -59,14 +59,6 @@ export class Rule extends React.Component {
     );
     this.props.updateRule(newState)
   };
-  handleChangeOld = (event, index, value) => {
-    let newState = Object.assign(
-      {},
-      this.props.rule,
-      {old: value}
-    );
-    this.props.updateRule(newState)
-  };
   handleChangeOperator = (event, index, value) => {
     let newState = Object.assign(
       {},
@@ -271,8 +263,7 @@ export class Rule extends React.Component {
 
 
   render() {
-    const {rule} = this.state;
-    const {eventId} = this.props;
+    const {eventId, deleteRule} = this.props;
     return (
       <div style={style}>
         <RaisedButton
@@ -280,7 +271,7 @@ export class Rule extends React.Component {
           secondary={true}
           style={deleteButtonStyle}
           onClick={() => {
-            this.props.deleteRule(rule.id, eventId)
+            deleteRule(this.props.rule.id, eventId)
           }
           }/>
         <SelectField
@@ -305,19 +296,6 @@ function getSimpleParams(params) {
 
 function getComplexParams(params) {
   return params.filter(item => item.type === "complex")
-}
-
-
-function mapDispatchToProps(dispatch) {
-  return {
-    updateRule: (rule) => {
-      dispatch(updateRule(rule))
-    },
-    deleteRule: (id, eventId) => {
-      dispatch(deleteRule(id, eventId))
-    }
-
-  }
 }
 
 export default Rule;

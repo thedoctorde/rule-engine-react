@@ -1,8 +1,6 @@
 import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
-import TextField from 'material-ui/TextField';
-
 
 const MomentTiming = ({
                  name, moments, handleChangeName,

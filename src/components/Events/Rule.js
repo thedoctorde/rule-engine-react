@@ -4,12 +4,15 @@ import SelectField from 'material-ui/SelectField';
 import HourBetween from "./RuleTypeEditors/HourBetween"
 import LastMoments from "./RuleTypeEditors/LastMoments";
 import Param from "./RuleTypeEditors/Param";
+import Old from "./RuleTypeEditors/Old";
 import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import Mapping from "./RuleTypeEditors/Mapping";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
 import {updateRule, deleteRule} from "../../actions/eventActions";
 import {getFilteredMappingValues} from "../../utils/selctors";
 import RaisedButton from 'material-ui/RaisedButton';
+import MomentTiming from "./RuleTypeEditors/MomentTiming";
+import CompareParams from "./RuleTypeEditors/CompareParams";
 
 const style = {
   display: "flex",
@@ -56,11 +59,11 @@ export class Rule extends React.Component {
     );
     this.props.updateRule(newState)
   };
-  handleChangeMomentName = (event, index, value) => {
+  handleChangeOld = (event, index, value) => {
     let newState = Object.assign(
       {},
       this.props.rule,
-      {momentName: value}
+      {old: value}
     );
     this.props.updateRule(newState)
   };
@@ -80,11 +83,19 @@ export class Rule extends React.Component {
     );
     this.props.updateRule(newState)
   };
-  handleChangeParamName = (event, index, value) => {
+  handleChangeName = (event, index, value) => {
     let newState = Object.assign(
       {},
       this.props.rule,
       {name: value}
+    );
+    this.props.updateRule(newState)
+  };
+  handleChangeAfter = (event, index, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.rule,
+      {after: value}
     );
     this.props.updateRule(newState)
   };
@@ -124,6 +135,23 @@ export class Rule extends React.Component {
     this.props.updateRule(newState);
     //console.log("key: ", key, ", payload: ", payload)
   };
+  handleChangeParam1 = (event, index, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.rule,
+      {param1: value}
+    );
+    this.props.updateRule(newState)
+  };
+  handleChangeParam2 = (event, index, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.rule,
+      {param2: value}
+    );
+    this.props.updateRule(newState)
+  };
+
 
   section(type) {
     switch (type) {
@@ -139,11 +167,11 @@ export class Rule extends React.Component {
       case "last_moments":
         return (
           <LastMoments
-            momentName={this.props.rule.momentName}
+            name={this.props.rule.name}
             momentNames={this.props.momentNames}
+            handleChangeName={this.handleChangeName}
             operator={this.props.rule.operator}
             operators={this.props.operators}
-            handleChangeMomentName={this.handleChangeMomentName}
             handleChangeOperator={this.handleChangeOperator}
           />
         );
@@ -152,7 +180,7 @@ export class Rule extends React.Component {
           <Param
             paramName={this.props.rule.name}
             paramNames={getSimpleParams(this.props.paramNames)}
-            handleChangeParamName={this.handleChangeParamName}
+            handleChangeParamName={this.handleChangeName}
             operator={this.props.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
@@ -163,12 +191,25 @@ export class Rule extends React.Component {
             handleChangeValue={this.handleChangeValue}
           />
         );
+      case "old" :
+        return (
+          <Old
+            paramName={this.props.rule.name}
+            paramNames={getSimpleParams(this.props.paramNames)}
+            handleChangeParamName={this.handleChangeName}
+            operator={this.props.rule.operator}
+            operators={this.props.operators}
+            handleChangeOperator={this.handleChangeOperator}
+            value={this.props.rule.value}
+            handleChangeValue={this.handleChangeValue}
+          />
+        );
       case "old_vs_new":
         return (
           <OldVsNew
             paramName={this.props.rule.name}
             paramNames={getSimpleParams(this.props.paramNames)}
-            handleChangeParamName={this.handleChangeParamName}
+            handleChangeParamName={this.handleChangeName}
             operator={this.props.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
@@ -179,7 +220,7 @@ export class Rule extends React.Component {
           <Mapping
             paramName={this.props.rule.name}
             paramNames={getSimpleParams(this.props.paramNames)}
-            handleChangeParamName={this.handleChangeParamName}
+            handleChangeParamName={this.handleChangeName}
             operator={this.props.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
@@ -197,7 +238,30 @@ export class Rule extends React.Component {
             subrules={this.props.rule.rules}
             paramName={this.props.rule.name}
             paramNames={getComplexParams(this.props.paramNames)}
-            handleChangeParamName={this.handleChangeParamName}
+            handleChangeParamName={this.handleChangeName}
+          />
+        )
+      case "moment_timing":
+        return(
+          <MomentTiming
+            name={this.props.rule.name}
+            moments={this.props.momentNames}
+            handleChangeName={this.handleChangeName}
+            after={this.props.rule.after}
+            handleChangeAfter={this.handleChangeAfter}
+          />
+        )
+      case "compare_params":
+        return(
+          <CompareParams
+            param1={this.props.rule.param1}
+            param2={this.props.rule.param2}
+            paramNames={this.props.paramNames}
+            handleChangeParam1={this.handleChangeParam1}
+            handleChangeParam2={this.handleChangeParam2}
+            operator={this.props.rule.operator}
+            operators={this.props.operators}
+            handleChangeOperator={this.handleChangeOperator}
           />
         )
       default:

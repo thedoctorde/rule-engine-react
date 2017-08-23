@@ -10,6 +10,9 @@ export default {
     {id: 4, value:"param"},
     {id: 5, value:"old_vs_new"},
     {id: 6, value:"mapping"},
+    {id: 7, value:"moment_timing"},
+    {id: 8, value:"compare_params"},
+    {id: 9, value:"old"},
     ],
   momentNames:[
     {id: "uahm", value: "Arriving home"},
@@ -38,13 +41,13 @@ export default {
     {id:"uwrk", value:"User in his Work place"},
     {id:"uwte", value:"Ordering food"},
     {id:"uwup", value:"Waking Up"},
-    {id: 1, value:"uwup",},
   ],
   operators:[
     {id: 1, value:"="},
     {id: 2, value:"!="},
     {id: 3, value:"in"},
     {id: 4, value:"not in"},
+    {id: 5, value:"intersects"},
   ],
   valueTypes:[
     {id:1, value:"string"},

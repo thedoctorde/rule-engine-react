@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import EventRuleset from "./EventRuleset";
 import RaisedButton from 'material-ui/RaisedButton';
+import Rule from "./Rule";
 
 const style = {
   marginLeft: 12,
@@ -8,14 +8,44 @@ const style = {
 
 class EventForm extends Component {
   render() {
-    const {event, ruleset, createRule, uploadEvents, store} = this.props;
+    const {
+      event,
+      ruleset,
+      createRule,
+      updateRule,
+      uploadEvents,
+      store,
+      ruleTypes,
+      nameToFields,
+      operators,
+      momentNames,
+      mappingNames,
+      paramNames,
+      valueTypes,
+      mappingPossibleValues
+    } = this.props;
     return (
       <div>
         id: {event.id}
         name: {event.name}
 
         <h1>Rules</h1>
-        <EventRuleset ruleset={ruleset} eventId={event.id}/>
+        {ruleset.map(item =>
+          <Rule
+            key={item.id}
+            rule={item}
+            updateRule={updateRule}
+            eventId={event.id}
+            ruleTypes={ruleTypes}
+            nameToFields={nameToFields}
+            operators={operators}
+            momentNames={momentNames}
+            mappingNames={mappingNames}
+            paramNames={paramNames}
+            valueTypes={valueTypes}
+            mappingPossibleValues={mappingPossibleValues}
+          />)
+        }
         <RaisedButton label="Add new rule"
                       onClick={() => createRule(event.id)}/>
         <RaisedButton label="Save" style={style}

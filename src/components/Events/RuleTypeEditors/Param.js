@@ -7,7 +7,10 @@ import TextField from 'material-ui/TextField';
 const Param = ({
                  paramName, paramNames, handleChangeParamName,
                  operator, operators, handleChangeOperator,
-                 valueType, valueTypes, handleChangeValueType}) => {
+                 valueType, valueTypes, handleChangeValueType,
+                 value, handleChangeValue
+
+               }) => {
   return (
     <div>
       <SelectField
@@ -42,6 +45,8 @@ const Param = ({
       </SelectField>
       <TextField
         floatingLabelText="Value"
+        value={value}
+        onChange={handleChangeValue}
       />
     </div>
   )

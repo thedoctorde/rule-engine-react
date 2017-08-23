@@ -1,19 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-export default class MultiSelectField extends Component {
-  state = {
-    values: this.props.values,
-  };
-
-  handleChange = (event, index, values) => {
-    return this.setState({values});
-  };
-
-  menuItems(values) {
-    if (this.props.possibleValues) {
-      return this.props.possibleValues.map((item) => (
+const MultiSelectField = ({values, possibleValues, handleChange}) => {
+  function menuItems() {
+    if (possibleValues) {
+      return possibleValues.map((item) => (
         <MenuItem
           key={item.id}
           insetChildren={true}
@@ -25,17 +17,16 @@ export default class MultiSelectField extends Component {
     }
   }
 
-  render() {
-    const {values} = this.state;
-    return (
-      <SelectField
-        multiple={true}
-        hintText="Select"
-        value={values}
-        onChange={this.handleChange}
-      >
-        {this.menuItems(values)}
-      </SelectField>
-    );
-  }
+  return(
+    <SelectField
+      multiple={true}
+      hintText="Select"
+      value={values}
+      onChange={handleChange}
+    >
+      {menuItems(values)}
+    </SelectField>
+  )
 }
+
+export default MultiSelectField

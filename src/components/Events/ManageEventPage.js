@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import EventForm from "./EventForm";
 import toArray from "../../utils/helpers"
-import {createRule, uploadEvents} from "../../actions/eventActions"
+import {createRule, uploadEvents, updateRule} from "../../actions/eventActions"
 
 class ManageEventPage extends Component {
 
@@ -10,7 +10,6 @@ class ManageEventPage extends Component {
     super(props, context);
 
     this.state = {
-      //event: Object.assign({}, props.event),
       errors: {}
     };
   }
@@ -30,8 +29,17 @@ class ManageEventPage extends Component {
         ruleset={this.props.ruleset}
         rules={this.props.rules}
         createRule={this.props.createRule}
+        updateRule={this.props.updateRule}
         store={this.props.store}
         uploadEvents={this.props.uploadEvents}
+        ruleTypes={this.props.ruleTypes}
+        nameToFields={this.props.nameToFields}
+        operators={this.props.operators}
+        momentNames={this.props.momentNames}
+        mappingNames={this.props.mappingNames}
+        paramNames={this.props.paramNames}
+        valueTypes={this.props.valueTypes}
+        mappingPossibleValues={this.props.mappingPossibleValues}
       />
     );
   }
@@ -67,6 +75,14 @@ function mapStateToProps(state, ownProps) {
     store: state,
     event: event,
     ruleset: ruleset,
+    ruleTypes: state.ruleTypes.map(item => item),
+    nameToFields: state.nameToFields.map(item => item),
+    operators: state.operators.map(item => item),
+    momentNames: state.momentNames.map(item => item),
+    mappingNames: state.mappingNames.map(item => item),
+    paramNames: state.paramNames.map(item => item),
+    valueTypes: state.valueTypes.map(item => item),
+    mappingPossibleValues: state.mappingPossibleValues.map(item => item)
   };
 }
 
@@ -74,6 +90,9 @@ function mapDispatchToProps(dispatch) {
   return {
     createRule : (eventId) => {
       dispatch(createRule(eventId))
+    },
+    updateRule: (rule) => {
+      dispatch(updateRule(rule))
     },
     uploadEvents: (eventId, store) => {
       dispatch(uploadEvents(eventId, store))

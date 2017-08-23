@@ -9,7 +9,7 @@ const Mapping = ({
                    paramName, paramNames, handleChangeParamName,
                    operator, operators, handleChangeOperator,
                    mappingName, mappingNames, handleChangeMappingName,
-                   mappingValues, mappingPossibleValues
+                   mappingValues, mappingPossibleValues, handleChangeMappingValues
                  }) => {
   return (
     <div>
@@ -45,7 +45,9 @@ const Mapping = ({
       </SelectField>
       <MultiSelectField
         values={mappingValues}
-        possibleValues={getFilteredMappingValues(mappingPossibleValues, mappingName)}/>
+        possibleValues={getFilteredMappingValues(mappingPossibleValues, mappingName)}
+        handleChange={handleChangeMappingValues}
+      />
     </div>
   )
 };

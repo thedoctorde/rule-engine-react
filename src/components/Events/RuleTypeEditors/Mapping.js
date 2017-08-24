@@ -5,6 +5,11 @@ import MultiSelectField from "../../common/MultiSelectField";
 import {getFilteredMappingValues} from "../../../utils/selctors";
 
 
+const wrapperStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+};
+
 const Mapping = ({
                    paramName, paramNames, handleChangeParamName,
                    operator, operators, handleChangeOperator,
@@ -12,7 +17,7 @@ const Mapping = ({
                    mappingValues, mappingPossibleValues, handleChangeMappingValues
                  }) => {
   return (
-    <div>
+    <div style={wrapperStyle}>
       <SelectField
         floatingLabelText="Param name"
         value={paramName}

@@ -2,12 +2,16 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 
+const wrapperStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+};
 const LastMoments = ({
                        name, momentNames, handleChangeName,
                        operator, operators, handleChangeOperator
                      }) => {
   return (
-    <div>
+    <div style={wrapperStyle}>
       <SelectField
         floatingLabelText="Name"
         value={name}

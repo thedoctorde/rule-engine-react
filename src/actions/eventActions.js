@@ -17,8 +17,8 @@ export function loadRulesetsSuccess(rulesets) {
   return {type: types.LOAD_RULESETS_SUCCESS, rulesets};
 }
 
-export function createEventSuccess(course) {
-  return {type: types.CREATE_EVENT_SUCCESS, course};
+export function createEventSuccess(event) {
+  return {type: types.CREATE_EVENT_SUCCESS, event};
 }
 
 export function updateEventSuccess(course) {
@@ -86,6 +86,16 @@ export function createRule(eventId) {
     return eventsApi.createRule(eventId).then(({rule, event}) => {
       dispatch(updateEventRulesetSuccess(event.id, rule.id));
       dispatch(updateRuleSuccess(rule))
+    }).catch(error => {
+      throw(error)
+    });
+  }
+}
+
+export function createEvent() {
+  return function (dispatch) {
+    return eventsApi.createEvent().then(({event}) => {
+      dispatch(createEventSuccess(event));
     }).catch(error => {
       throw(error)
     });

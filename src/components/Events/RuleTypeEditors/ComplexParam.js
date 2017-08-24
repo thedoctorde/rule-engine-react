@@ -4,12 +4,17 @@ import SelectField from 'material-ui/SelectField';
 import Subrule from "./Subrule";
 
 
+const wrapperStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+};
 const ComplexParam = ({
                         paramName, paramNames, handleChangeParamName,
                         subrules,
                       }) => {
+  debugger;
   return (
-    <div>
+    <div style={wrapperStyle}>
       <SelectField
         floatingLabelText="Name"
         value={paramName}
@@ -28,5 +33,7 @@ const ComplexParam = ({
     </div>
   )
 };
+
+
 
 export default ComplexParam

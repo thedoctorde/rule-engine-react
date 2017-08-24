@@ -5,6 +5,10 @@ import Rule from "./Rule";
 const style = {
   marginLeft: 12,
 };
+const wrapperStyle = {
+  paddingLeft: 15,
+  paddingRight: 15,
+};
 
 class EventForm extends Component {
   render() {
@@ -16,6 +20,7 @@ class EventForm extends Component {
       deleteRule,
       uploadEvents,
       store,
+      subrules,
       ruleTypes,
       nameToFields,
       operators,
@@ -26,7 +31,7 @@ class EventForm extends Component {
       mappingPossibleValues
     } = this.props;
     return (
-      <div>
+      <div style={wrapperStyle}>
         id: {event.id}
         name: {event.name}
 
@@ -39,6 +44,7 @@ class EventForm extends Component {
             deleteRule={deleteRule}
             eventId={event.id}
             ruleTypes={ruleTypes}
+            subrules={subrules}
             nameToFields={nameToFields}
             operators={operators}
             momentNames={momentNames}

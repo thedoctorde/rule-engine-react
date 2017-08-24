@@ -169,6 +169,17 @@ class EventsApi {
       body: JSON.stringify(updated)
     })
   }
+
+  static createEvent() {
+    return new Promise((resolve, reject) => {
+        let event = {
+          id: generateId()
+        };
+
+        resolve({event});
+      }
+    );
+  }
 }
 
 export default EventsApi;

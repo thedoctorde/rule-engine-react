@@ -48,6 +48,7 @@ export default {
     {id: 3, value:"in"},
     {id: 4, value:"not in"},
     {id: 5, value:"intersects"},
+    {id: 6, value:"not intersects"},
   ],
   valueTypes:[
     {id:1, value:"string"},

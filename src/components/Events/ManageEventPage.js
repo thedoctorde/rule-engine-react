@@ -28,11 +28,11 @@ class ManageEventPage extends Component {
         event={this.props.event}
         ruleset={this.props.ruleset}
         rules={this.props.rules}
+        subrules={this.props.subrules}
+        store={this.props.store}
         createRule={this.props.createRule}
         updateRule={this.props.updateRule}
         deleteRule={this.props.deleteRule}
-
-        store={this.props.store}
         uploadEvents={this.props.uploadEvents}
         ruleTypes={this.props.ruleTypes}
         nameToFields={this.props.nameToFields}

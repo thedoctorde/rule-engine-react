@@ -3,6 +3,10 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 
+const wrapperStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+};
 
 const Old = ({
                  paramName, paramNames, handleChangeParamName,
@@ -11,7 +15,7 @@ const Old = ({
 
                }) => {
   return (
-    <div>
+    <div style={wrapperStyle}>
       <SelectField
         floatingLabelText="Name"
         value={paramName}

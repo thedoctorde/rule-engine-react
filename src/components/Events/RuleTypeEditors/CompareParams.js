@@ -2,6 +2,10 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 
+const wrapperStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+};
 
 const CompareParams = ({
                  param1, paramNames, handleChangeParam1,
@@ -9,7 +13,7 @@ const CompareParams = ({
                  operator, operators, handleChangeOperator,
                }) => {
   return (
-    <div>
+    <div style={wrapperStyle}>
       <SelectField
         floatingLabelText="Param1"
         value={param1}

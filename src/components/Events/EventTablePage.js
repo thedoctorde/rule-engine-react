@@ -7,6 +7,8 @@ import {
 } from 'material-ui/Table';
 import EventTableRow from './EventTableRow'
 import RulesTableHeaderRow from "./EventTableHeaderRow";
+import {createEvent} from "../../actions/eventActions"
+import RaisedButton from 'material-ui/RaisedButton';
 
 class EventsTablePage extends Component {
   constructor(props, context) {
@@ -21,6 +23,9 @@ class EventsTablePage extends Component {
   render() {
     const {events} = this.props;
     return (
+      <div>
+      <RaisedButton label="Add new event"
+                    onClick={() => this.props.createEvent()}/>
       <Table
         selectable={true}>
         <TableHeader
@@ -33,6 +38,8 @@ class EventsTablePage extends Component {
             <EventTableRow event={item} key={item.id}/>)}
         </TableBody>
       </Table>
+      </div>
+
     );
   }
 }
@@ -44,4 +51,13 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(EventsTablePage);
+function mapDispatchToProps(dispatch) {
+  return {
+    createEvent: (eventId) => {
+      dispatch(createEvent(eventId))
+    },
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventsTablePage);

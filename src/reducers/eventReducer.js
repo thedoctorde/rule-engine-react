@@ -7,10 +7,10 @@ export default function eventReducer(state = initialState.events, action) {
       return action.events;
 
     case types.CREATE_EVENT_SUCCESS:
-      return [
+      return {
         ...state,
-        Object.assign({}, action.event)
-      ];
+        [action.event.id]: action.event
+      };
 
     case types.UPDATE_EVENT_SUCCESS:
       return [

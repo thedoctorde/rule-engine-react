@@ -2,9 +2,13 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 
+const wrapperStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+};
 const HourBetween = ({valueFrom, valueTo, handleChangeFrom, handleChangeTo}) => {
   return(
-    <div>
+    <div style={wrapperStyle}>
       <SelectField
         floatingLabelText="From"
         value={valueFrom}

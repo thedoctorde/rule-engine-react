@@ -8,7 +8,6 @@ import Old from "./RuleTypeEditors/Old";
 import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import Mapping from "./RuleTypeEditors/Mapping";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
-import {updateRule, deleteRule} from "../../actions/eventActions";
 import {getFilteredMappingValues} from "../../utils/selctors";
 import RaisedButton from 'material-ui/RaisedButton';
 import MomentTiming from "./RuleTypeEditors/MomentTiming";
@@ -17,12 +16,15 @@ import CompareParams from "./RuleTypeEditors/CompareParams";
 const style = {
   display: "flex",
   alignItems: "start",
+  alignContent: "center",
 
 };
 
 const deleteButtonStyle = {
   marginLeft: 12,
   marginRight: 12,
+  display: "flex",
+  alignSelf: "center",
 };
 
 export class Rule extends React.Component {
@@ -211,7 +213,7 @@ export class Rule extends React.Component {
         return (
           <Mapping
             paramName={this.props.rule.name}
-            paramNames={getSimpleParams(this.props.paramNames)}
+            paramNames={getMappingParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeName}
             operator={this.props.rule.operator}
             operators={this.props.operators}
@@ -232,7 +234,7 @@ export class Rule extends React.Component {
             paramNames={getComplexParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeName}
           />
-        )
+        );
       case "moment_timing":
         return(
           <MomentTiming
@@ -242,7 +244,7 @@ export class Rule extends React.Component {
             after={this.props.rule.after}
             handleChangeAfter={this.handleChangeAfter}
           />
-        )
+        );
       case "compare_params":
         return(
           <CompareParams
@@ -255,7 +257,7 @@ export class Rule extends React.Component {
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
           />
-        )
+        );
       default:
         return false
     }
@@ -294,9 +296,12 @@ function getSimpleParams(params) {
   return params.filter(item => item.type === "simple")
 }
 
+function getMappingParams(params) {
+  return params.filter(item => (item.id === "foreapp") || (item.id=== "acap"))
+}
+
 function getComplexParams(params) {
   return params.filter(item => item.type === "complex")
 }
 
 export default Rule;
-//export default connect(mapStateToProps, mapDispatchToProps)(Rule);

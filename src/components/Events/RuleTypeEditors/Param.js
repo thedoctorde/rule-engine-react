@@ -4,6 +4,14 @@ import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 
 
+const style={
+  marginTop: "0",
+};
+const wrapperStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+};
+
 const Param = ({
                  paramName, paramNames, handleChangeParamName,
                  operator, operators, handleChangeOperator,
@@ -12,7 +20,8 @@ const Param = ({
 
                }) => {
   return (
-    <div>
+    <div style={wrapperStyle}>
+
       <SelectField
         floatingLabelText="Name"
         value={paramName}

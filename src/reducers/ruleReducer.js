@@ -12,12 +12,27 @@ export default function ruleReducer(state = initialState.rules, action) {
         [action.rule.id]: action.rule
       };
 
-      // let m = {}
-      // m[action.rule.id] = action.rule;
-      // return Object.assign({}, state, m);
+    case types.UPDATE_SUBRULES_SUCCESS:
+      let e = Object.assign({}, state[action.ruleId]);
+      e.rules = [
+        ...e.rules,
+        action.subruleId];
+      let m = Object.assign({}, state);
+      m[e.id] = e;
+      return Object.assign({}, m);
+
+
     case types.DELETE_RULE_SUCCESS:
       let  {[action.id]: deleted, ...newState} = state;
       return newState;
+
+
+    case types.DELETE_SUBRULE_FROM_RULE_SUCCESS:
+      let ev = Object.assign({}, state[action.ruleId]);
+      ev.rules = ev.rules.filter(item => item !== action.id);
+      let m1 = Object.assign({}, state);
+      m1[ev.id] = ev;
+      return Object.assign({}, m1);
     default:
       return state;
   }

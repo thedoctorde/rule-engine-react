@@ -13,7 +13,7 @@ import valueTypes from './valueTypeReducer';
 import paramNames from './paramNameReducer';
 import mappingNames from './mappingNameReducer';
 import mappingPossibleValues from './mappingPossibleValuesReducer';
-import nameToFields from './nameToFieldsReducer';
+import {fieldsReducer as fields, boolParamsReducer as boolParams} from './fieldsReducer';
 
 
 const rootReducer = combineReducers({
@@ -28,7 +28,8 @@ const rootReducer = combineReducers({
   paramNames,
   mappingNames,
   mappingPossibleValues,
-  nameToFields,
+  fields,
+  boolParams,
 });
 
 export default rootReducer;

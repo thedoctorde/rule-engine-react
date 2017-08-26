@@ -3,80 +3,20 @@ import 'whatwg-fetch';
 import {url} from '../config'
 
 
-const subrule = new schema.Entity('subrules', {
+const subruleScheme = new schema.Entity('subrules', {
   idAttribute: 'id'
 });
 
-const rule = new schema.Entity('rules', {
-  rules: [subrule]
+const ruleScheme = new schema.Entity('rules', {
+  rules: [subruleScheme]
 });
 
-const event = new schema.Entity('events', {
+const eventScheme = new schema.Entity('events', {
   idAttribute: 'id',
-  ruleset: [rule]
+  ruleset: [ruleScheme]
 });
 
-const eventSchema = event;
-const eventsSchema = [event];
-
-const eventsData =
-  [
-    {
-      id: "1",
-      name: "a",
-      ruleset: [
-        {//rule
-          id: "1a",
-          type: "hour_between",
-          min: 9,
-          max: 13
-        },
-        {//rule
-          id: "2a",
-          type: "hour_between",
-          min: 9,
-          max: 13
-        },
-      ]
-
-    },
-
-    {
-      id: "2",
-      name: "bbb",
-      ruleset: [
-        {
-          id: "3a",
-          type: "complex_param",
-          name: "wfcn",
-          subrules: [
-            {
-              id: "1",
-              field: "connected",
-              operator: "=",
-              value: true,
-              value_type: "boolean"
-            },
-            {
-              id: "2",
-              field: "name",
-              operator: "=",
-              value: "wfho",
-              value_type: "field"
-            }]
-        }
-      ]
-    },
-    {
-      id: "2",
-      name: "b"
-    },
-    {
-      id: "3",
-      name: "c"
-    }
-  ]
-;
+const eventsSchema = [eventScheme];
 
 
 const generateId = () => {
@@ -88,13 +28,6 @@ const generateId = () => {
   });
 };
 
-function onSuccess(response) {
-  return response.json();
-}
-
-function onError(error) {
-  console.log(error)
-}
 
 
 class EventsApi {
@@ -124,8 +57,8 @@ class EventsApi {
 
   }
 
-  static saveRule(rule) {
-    rule = Object.assign({}, rule); // to avoid manipulating object passed in.
+  static saveRule(obj) {
+    var rule = Object.assign({}, obj); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
       if (rule) {
       } else {
@@ -160,7 +93,7 @@ class EventsApi {
   static sendEventToServer(eventId, state) {
     let entities = Object.assign({}, {events: state.events}, {rules: state.rules}, {subrules: state.subrules});
     const denormalizedData = denormalize(Object.keys(state.events), eventsSchema, entities);
-    let updated = denormalizedData.filter(x => x.id == eventId)[0];
+    let updated = denormalizedData.filter(x => x.id === eventId)[0];
     return fetch(url+'/events', {
       method: 'POST',
       headers: {
@@ -179,6 +112,39 @@ class EventsApi {
         resolve({event});
       }
     );
+  }
+
+  static createSubrule(ruleId) {
+    return new Promise((resolve, reject) => {
+        let subrule = {
+          id: generateId()
+        };
+        let rule = {
+          id: ruleId
+        };
+
+        resolve({subrule, rule});
+      }
+    );
+  }
+
+  static deleteSubrule(id, ruleId) {
+    return new Promise((resolve) => {
+      resolve({id, ruleId})
+    });
+  }
+
+  static saveSubrule(obj) {
+    var subrule = Object.assign({}, obj); // to avoid manipulating object passed in.
+    return new Promise((resolve, reject) => {
+      if (subrule) {
+      } else {
+        subrule = {
+          id: generateId()
+        };
+      }
+      resolve(subrule);
+    });
   }
 }
 

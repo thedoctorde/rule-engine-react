@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import EventForm from "./EventForm";
 import toArray from "../../utils/helpers"
 import {createRule, uploadEvents, updateRule, deleteRule} from "../../actions/eventActions"
+import * as subruleActions from "../../actions/subruleActions"
 
 class ManageEventPage extends Component {
 
@@ -33,6 +34,8 @@ class ManageEventPage extends Component {
         createRule={this.props.createRule}
         updateRule={this.props.updateRule}
         deleteRule={this.props.deleteRule}
+        createSubrule={this.props.createSubrule}
+        deleteSubrule={this.props.deleteSubrule}
         uploadEvents={this.props.uploadEvents}
         ruleTypes={this.props.ruleTypes}
         nameToFields={this.props.nameToFields}
@@ -77,8 +80,8 @@ function mapStateToProps(state, ownProps) {
     store: state,
     event: event,
     ruleset: ruleset,
+    subrules: Object.assign({}, state.subrules),
     ruleTypes: state.ruleTypes.map(item => item),
-    nameToFields: state.nameToFields.map(item => item),
     operators: state.operators.map(item => item),
     momentNames: state.momentNames.map(item => item),
     mappingNames: state.mappingNames.map(item => item),
@@ -102,6 +105,13 @@ function mapDispatchToProps(dispatch) {
     deleteRule: (id, eventId) => {
       dispatch(deleteRule(id, eventId))
     },
+    createSubrule: (ruleId) => {
+      dispatch(subruleActions.createSubrule(ruleId))
+    },
+    deleteSubrule: (id, ruleId) => {
+      dispatch(subruleActions.deleteSubrule(id, ruleId))
+    },
+
   }
 }
 

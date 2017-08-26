@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import Subrule from "./Subrule";
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 const wrapperStyle = {
@@ -10,9 +11,11 @@ const wrapperStyle = {
 };
 const ComplexParam = ({
                         paramName, paramNames, handleChangeParamName,
-                        subrules,
+                        subrules, allSubrules, ruleId,
+                        createSubrule,
+                        deleteSubrule,
+
                       }) => {
-  debugger;
   return (
     <div style={wrapperStyle}>
       <SelectField
@@ -25,15 +28,21 @@ const ComplexParam = ({
           )
         }
       </SelectField>
+      <RaisedButton label="Add new rule"
+                    onClick={() => createSubrule(ruleId)}/>
       {subrules
-        ? subrules.map(item =>
-          <Subrule name={paramName} subrule={item} key={item.id}/>)
+        ? subrules.map(id =>
+          <Subrule
+            ruleId={ruleId}
+            subrule={allSubrules[id]}
+            deleteSubrule = {deleteSubrule}
+            key={id}
+          />)
         : false
       }
     </div>
   )
 };
-
 
 
 export default ComplexParam

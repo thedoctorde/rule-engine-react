@@ -19,6 +19,8 @@ class EventForm extends Component {
       updateRule,
       deleteRule,
       uploadEvents,
+      createSubrule,
+      deleteSubrule,
       store,
       subrules,
       ruleTypes,
@@ -42,6 +44,8 @@ class EventForm extends Component {
             rule={item}
             updateRule={updateRule}
             deleteRule={deleteRule}
+            createSubrule={createSubrule}
+            deleteSubrule={deleteSubrule}
             eventId={event.id}
             ruleTypes={ruleTypes}
             subrules={subrules}

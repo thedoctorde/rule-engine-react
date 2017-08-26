@@ -15,8 +15,8 @@ export default {
     {id: 9, value:"old"},
     ],
   momentNames:[
-    {id: "uahm", value: "Arriving home"},
-    {id: "uawk", value: "Arriving work"},
+    {id:"uahm", value: "Arriving home"},
+    {id:"uawk", value: "Arriving work"},
     {id:"ubft", value:"Breakfast time"},
     {id:"ubrd", value:"User is abroad"},
     {id:"udlp", value:"Experiencing slow performance"},
@@ -52,10 +52,10 @@ export default {
   ],
   valueTypes:[
     {id:1, value:"string"},
-    {id:2, value:"bool"},
-    {id:3, value:"number"}
+    {id:2, value:"boolean"},
+    {id:3, value:"number"},
+    {id:4, value:"field"},
   ],
-
   paramNames:[
     {id:"inapc", valueType:"Instapcat", type:"complex"},
     {id:"reap", valueType:"Resactap", type:"complex"},
@@ -107,12 +107,10 @@ export default {
     {id:"scror", valueType:"StringParam", type:"simple"},
     {id:"tzone", valueType:"StringParam", type:"simple"},
   ],
-
   mappingNames:[
     {id:"appToActions", value:"appToActions"},
     {id:"appToCategory", value:"appToCategory"},
   ],
-
   mappingPossibleValues:[
     {id:10001, value: "Books & Reference", type:"appToCategory"},
     {id:10002 , value:"Game Puzzle", type:"appToCategory"},
@@ -203,8 +201,13 @@ export default {
     {id:"sawmo", value:"Watch a Movie", type:"appToActions"},
     {id:"spag", value:"Play a game", type:"appToActions"},
   ],
-  nameToFields:[
-    {id: 1, name: "wfcn", field:"connected"},
-    {id: 2, name: "wfcn", field:"name"},
+  fields:[
+    {id: 1, name: "wfcn", value:"connected"},
+    {id: 2, name: "wfcn", value:"name"},
+  ],
+  boolParams:[
+    {id:"true", value: true},
+    {id:"false", value: false}
   ]
+
 };

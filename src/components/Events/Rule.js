@@ -229,10 +229,14 @@ export class Rule extends React.Component {
       case "complex_param":
         return (
           <ComplexParam
+            ruleId={this.props.rule.id}
             subrules={this.props.rule.rules}
+            allSubrules={this.props.subrules}
             paramName={this.props.rule.name}
             paramNames={getComplexParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeName}
+            createSubrule={this.props.createSubrule}
+            deleteSubrule={this.props.deleteSubrule}
           />
         );
       case "moment_timing":

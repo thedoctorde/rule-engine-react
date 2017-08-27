@@ -52,6 +52,7 @@ const Mapping = ({
         values={mappingValues}
         possibleValues={getFilteredMappingValues(mappingPossibleValues, mappingName)}
         handleChange={handleChangeMappingValues}
+        floatingLabelText="Values"
       />
     </div>
   )

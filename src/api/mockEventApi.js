@@ -69,6 +69,19 @@ class EventsApi {
 
   }
 
+  static saveEvent(obj) {
+    var event = Object.assign({}, obj); // to avoid manipulating object passed in.
+    return new Promise((resolve, reject) => {
+      if (event) {
+      } else {
+        event = {
+          id: generateId()
+        };
+      }
+      resolve(event);
+    });
+  }
+
   static saveRule(obj) {
     var rule = Object.assign({}, obj); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
@@ -118,9 +131,10 @@ class EventsApi {
   static createEvent() {
     return new Promise((resolve, reject) => {
         let event = {
-          id: generateId()
+          id: generateId(),
+          ruleset: [],
+          actions: [],
         };
-
         resolve({event});
       }
     );

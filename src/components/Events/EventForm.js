@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Rule from "./Rule";
 import Action from "./Action";
+import MultiSelectField from "../common/MultiSelectField";
 
 const style = {
   marginLeft: 12,
@@ -12,6 +13,22 @@ const wrapperStyle = {
 };
 
 class EventForm extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.handleChangeRunOn = this.handleChangeRunOn.bind(this)
+  }
+  handleChangeRunOn = (event, key, payload) => {
+    let newState = Object.assign(
+      {},
+      this.props.event,
+      {
+        run_on: payload
+      }
+    );
+
+    this.props.updateEvent(newState);
+  };
+
   render() {
     const {
       event,
@@ -41,8 +58,17 @@ class EventForm extends Component {
       deleteAction,
     } = this.props;
     return (
+
       <div style={wrapperStyle}>
-        <h1>Rules</h1>
+        <h2>Run on</h2>
+        <div>
+          <MultiSelectField
+            values={event.run_on}
+            possibleValues={paramNames}
+            handleChange={this.handleChangeRunOn}
+          />
+        </div>
+        <h2>Rules</h2>
         <div >
           <RaisedButton label="Add new rule"
                         onClick={() => createRule(event.id)}/>
@@ -73,7 +99,7 @@ class EventForm extends Component {
         }
 
 
-        <h1>Actions</h1>
+        <h2>Actions</h2>
         <div >
           <RaisedButton label="Add new action"
                         onClick={() => createAction(event.id)}/>

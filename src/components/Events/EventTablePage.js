@@ -18,30 +18,51 @@ class EventsTablePage extends Component {
       events: Object.assign({}, props.events),
       errors: {}
     };
+
+    this.createEvent = this.createEvent.bind(this);
+  }
+
+  createEvent(event) {
+    this.props.createEvent()
+      // .then((eventId) => {
+      //     this.redirect(eventId)
+      //   }
+      // )
+      // .catch(error => {
+      //   }
+      // )
+  }
+
+  redirect(eventId) {
+    this.context.router.push('/event/' + eventId);
   }
 
   render() {
     const {events} = this.props;
     return (
       <div>
-      <RaisedButton label="Add new event"
-                    onClick={() => this.props.createEvent()}/>
-      <Table
-        selectable={true}>
-        <TableHeader
-          enableSelectAll={false}>
-          <RulesTableHeaderRow/>
-        </TableHeader>
-        <TableBody>
-          {
-            Object.keys(events).map(key => events[key]).map(item =>
-            <EventTableRow event={item} key={item.id}/>)}
-        </TableBody>
-      </Table>
+        <RaisedButton label="Add new event"
+                      onClick={this.createEvent}/>
+        <Table
+          selectable={true}>
+          <TableHeader
+            enableSelectAll={false}>
+            <RulesTableHeaderRow/>
+          </TableHeader>
+          <TableBody>
+            {
+              Object.keys(events).map(key => events[key]).map(item =>
+                <EventTableRow event={item} key={item.id}/>)}
+          </TableBody>
+        </Table>
       </div>
 
     );
   }
+}
+
+EventsTablePage.contextTypes = {
+  router: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state, ownProps) {
@@ -53,8 +74,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createEvent: (eventId) => {
-      dispatch(createEvent(eventId))
+    createEvent: () => {
+      dispatch(createEvent())
     },
   }
 }

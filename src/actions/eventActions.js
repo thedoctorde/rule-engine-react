@@ -13,6 +13,9 @@ export function loadRulesSuccess(rules) {
 export function loadSubrulesSuccess(subrules) {
   return {type: types.LOAD_SUBRULES_SUCCESS, subrules};
 }
+export function updateEventSuccess(event) {
+  return {type: types.UPDATE_EVENT_SUCCESS, event};
+}
 
 export function createEventSuccess(event) {
   return {type: types.CREATE_EVENT_SUCCESS, event};
@@ -51,6 +54,17 @@ export function loadEvents() {
       throw(error);
     });
   };
+}
+
+
+export function updateEvent(event) {
+  return function (dispatch) {
+    return eventsApi.saveEvent(event).then(event => {
+      dispatch(updateEventSuccess(event))
+    }).catch(error => {
+      throw(error)
+    });
+  }
 }
 
 export function updateRule(rule) {
@@ -94,6 +108,7 @@ export function createEvent() {
     });
   }
 }
+
 
 export function uploadEvents(event, store) {
   return function (dispatch) {

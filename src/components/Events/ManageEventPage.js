@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import EventForm from "./EventForm";
 import toArray from "../../utils/helpers"
-import {createRule, uploadEvents, updateRule, deleteRule} from "../../actions/eventActions"
+import {uploadEvents, updateEvent, createRule, updateRule, deleteRule} from "../../actions/eventActions"
 import {createAction, updateAction, deleteAction} from "../../actions/actionActions"
 import * as subruleActions from "../../actions/subruleActions"
 
@@ -51,6 +51,8 @@ class ManageEventPage extends Component {
         updateAction={this.props.updateAction}
         createAction={this.props.createAction}
         deleteAction={this.props.deleteAction}
+
+        updateEvent={this.props.updateEvent}
       />
     );
   }
@@ -114,6 +116,11 @@ function mapDispatchToProps(dispatch) {
     uploadEvents: (eventId, store) => {
       dispatch(uploadEvents(eventId, store))
     },
+
+    updateEvent: (event) => {
+      dispatch(updateEvent(event))
+    },
+
     createRule : (eventId) => {
       dispatch(createRule(eventId))
     },

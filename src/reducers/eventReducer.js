@@ -13,10 +13,10 @@ export default function eventReducer(state = initialState.events, action) {
       };
 
     case types.UPDATE_EVENT_SUCCESS:
-      return [
-        ...state.filter(event => event.id !== action.event.id),
-        Object.assign({}, action.event)
-      ];
+      return {
+        ...state,
+        [action.event.id]: action.event
+      };
 
     case types.UPDATE_EVENT_RULESET_SUCCESS:
       var e = Object.assign({}, state[action.eventId]);

@@ -118,12 +118,16 @@ class EventsApi {
     let entities = Object.assign({}, {events: state.events}, {rules: state.rules}, {subrules: state.subrules}, {actions: state.actions});
     const denormalizedData = denormalize(Object.keys(state.events), eventsSchema, entities);
     let updated = denormalizedData.filter(x => x.id === eventId)[0];
+    let result = {
+      event: updated
+    }
+    console.log(JSON.stringify(result));
     return fetch(url+'/event', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(updated)
+      body: JSON.stringify(result)
     })
   }
 

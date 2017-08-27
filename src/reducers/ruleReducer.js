@@ -13,11 +13,14 @@ export default function ruleReducer(state = initialState.rules, action) {
       };
 
     case types.UPDATE_SUBRULES_SUCCESS:
-      let e = Object.assign({}, state[action.ruleId]);
-      e.rules = [
-        ...e.rules,
-        action.subruleId];
-      let m = Object.assign({}, state);
+      var e = Object.assign({}, state[action.ruleId]);
+      if (e.rules) {
+        e.rules = [...e.rules, action.subruleId];
+      } else {
+        e.rules = [action.subruleId]
+      }
+
+      var m = Object.assign({}, state);
       m[e.id] = e;
       return Object.assign({}, m);
 

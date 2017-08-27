@@ -6,19 +6,40 @@ import MultiSelectField from "../common/MultiSelectField";
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
+import { withRouter } from 'react-router-dom'
 
 const addButtonStyle = {
   marginBottom: 15,
 };
+const saveButtonStyle = {
+  marginTop: 15,
+}
+const backButtonStyle = {
+  marginRight: 12,
+  display: "flex",
+  alignSelf: "center",
+}
 const wrapperStyle = {
-  paddingLeft: 15,
-  paddingRight: 15,
+  padding: "20px",
 };
-
 const topRowStyle = {
   display: "flex",
   flexWrap: "wrap",
 }
+const idStyle = {
+  margin: "0px",
+  alignSelf: "center",
+  lineHeight: "36px",
+}
+
+const BackButton = withRouter(({history}) => (
+  <RaisedButton
+    label="Back"
+    style={backButtonStyle}
+    onClick={()=>{
+      history.push('/')}}
+  />
+))
 
 class EventForm extends Component {
   constructor(props, context) {
@@ -90,42 +111,47 @@ class EventForm extends Component {
     return (
 
       <div style={wrapperStyle}>
-        <RaisedButton
-          label="Save"
-          primary={true}
-          onClick={() => {
-            uploadEvents(event.id, store)
-          }}/>
-        {this.props.event ?
-          <div style={topRowStyle}>
-            <div>
-              <MultiSelectField
-                floatingLabelText="Run on"
-                values={event.run_on}
-                possibleValues={paramNames}
-                handleChange={this.handleChangeRunOn}
-              />
 
+        {this.props.event ?
+          <div>
+            <div style={topRowStyle}>
+
+              <BackButton/>
+
+              <h3 style={idStyle}>
+                ID: {this.props.event.id}
+              </h3>
             </div>
-            <div>
-              <SelectField
-                floatingLabelText="Active"
-                value={event.active}
-                onChange={this.handleChangeActive}
-              >
-                {
-                  this.props.boolParams.map(item =>
-                    <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
-                  )
-                }
-              </SelectField>
-            </div>
-            <div>
-              <TextField
-                floatingLabelText="priority"
-                value={this.props.event.priority}
-                onChange={this.handleChangePriority}
-              />
+            <div style={topRowStyle}>
+              <div>
+                <MultiSelectField
+                  floatingLabelText="Run on"
+                  values={event.run_on}
+                  possibleValues={paramNames}
+                  handleChange={this.handleChangeRunOn}
+                />
+
+              </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Active"
+                  value={event.active}
+                  onChange={this.handleChangeActive}
+                >
+                  {
+                    this.props.boolParams.map(item =>
+                      <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
+                    )
+                  }
+                </SelectField>
+              </div>
+              <div>
+                <TextField
+                  floatingLabelText="priority"
+                  value={this.props.event.priority}
+                  onChange={this.handleChangePriority}
+                />
+              </div>
             </div>
           </div>
           : false
@@ -183,7 +209,13 @@ class EventForm extends Component {
           />
         })}
 
-
+        <RaisedButton
+          label="Save"
+          primary={true}
+          style={saveButtonStyle}
+          onClick={() => {
+            uploadEvents(event.id, store)
+          }}/>
       </div>
 
     );

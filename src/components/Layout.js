@@ -11,13 +11,13 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/events">Events</Link></li>
-        </ul>
-        <hr/>
-        <Route exact path="/" component={HomePage}/>
-        <Route path="/events" component={RulesTablePage}/>
+        {/*<ul>*/}
+          {/*<li><Link to="/">Home</Link></li>*/}
+          {/*/!*<li><Link to="/events">Events</Link></li>*!/*/}
+        {/*</ul>*/}
+        {/*<hr/>*/}
+        {/*<Route exact path="/" component={HomePage}/>*/}
+        <Route exact path="/" component={RulesTablePage}/>
         <Route path="/event/:id" component={ManageEventPage}/>
       </div>
     );

@@ -10,6 +10,10 @@ import RulesTableHeaderRow from "./EventTableHeaderRow";
 import {createEvent} from "../../actions/eventActions"
 import RaisedButton from 'material-ui/RaisedButton';
 
+const wrapperStyle = {
+  padding: "20px"
+}
+
 class EventsTablePage extends Component {
   constructor(props, context) {
     super(props, context);
@@ -40,7 +44,7 @@ class EventsTablePage extends Component {
   render() {
     const {events} = this.props;
     return (
-      <div>
+      <div style={wrapperStyle}>
         <RaisedButton label="Add new event"
                       onClick={this.createEvent}/>
         <Table

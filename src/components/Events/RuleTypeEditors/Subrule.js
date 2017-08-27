@@ -6,10 +6,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import * as actions from "../../../actions/subruleActions"
 
 const deleteButtonStyle = {
-  marginLeft: 12,
-  marginRight: 12,
+  marginLeft: "auto",
   //display: "flex",
   alignSelf: "center",
+
 };
 
 
@@ -18,10 +18,16 @@ const style = {
   alignItems: "start",
   alignContent: "center",
   //justifyContent: "space-between",
-  paddingBottom: 10,
-  borderTop: "2px solid #eee",
-  borderBottom: "2px solid #eee",
-};
+  padding: "5px 20px 15px",
+  marginRight: 20,
+  marginBottom: 10,
+  marginTop: 10,
+  backgroundColor: "#fff"};
+
+const subrulInsideStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+}
 
 export class Subrule extends React.Component {
 
@@ -100,7 +106,7 @@ export class Subrule extends React.Component {
     return (
       this.props.subrule ?
         <div style={style}>
-
+          <div style={subrulInsideStyle}>
           <SelectField
             floatingLabelText="Field"
             value={this.props.subrule.field}
@@ -135,6 +141,7 @@ export class Subrule extends React.Component {
             }
           </SelectField>
           {this.valueControl()}
+          </div>
           <RaisedButton
             label="Delete"
             secondary={true}

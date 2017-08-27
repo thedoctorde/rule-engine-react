@@ -81,7 +81,6 @@ export class Action extends React.Component {
   };
 
 
-
   render() {
     const {eventId, deleteAction} = this.props;
     return (
@@ -97,17 +96,19 @@ export class Action extends React.Component {
             })
           }
         </SelectField>
-
-        <SelectField
-          floatingLabelText="Type"
-          value={this.props.action.type}
-          onChange={this.handleTypeChange}>
-          {
-            this.props.actionTypes.map(a => {
-              return <MenuItem value={a.id} primaryText={a.value} key={a.id}/>
-            })
-          }
-        </SelectField>
+        {this.props.action.action !== "remove"
+          ? <SelectField
+            floatingLabelText="Type"
+            value={this.props.action.type}
+            onChange={this.handleTypeChange}>
+            {
+              this.props.actionTypes.map(a => {
+                return <MenuItem value={a.id} primaryText={a.value} key={a.id}/>
+              })
+            }
+          </SelectField>
+          : false
+        }
 
         <SelectField
           floatingLabelText="Moment"
@@ -119,21 +120,28 @@ export class Action extends React.Component {
             })
           }
         </SelectField>
-        <TextField
-          floatingLabelText="Expire"
-          value={this.props.action.expire}
-          onChange={this.handleExpireChange}
-        />
-        <SelectField
-          floatingLabelText="Expire type"
-          value={this.props.action.expire_type}
-          onChange={this.handleExpireTypeChange}>
-          {
-            this.props.actionExpireTypes.map(a => {
-              return <MenuItem value={a.value} primaryText={a.value} key={a.id}/>
-            })
-          }
-        </SelectField>
+
+        {this.props.action.action !== "remove" ?
+          <SelectField
+            floatingLabelText="Expire type"
+            value={this.props.action.expire_type}
+            onChange={this.handleExpireTypeChange}>
+            {
+              this.props.actionExpireTypes.map(a => {
+                return <MenuItem value={a.value} primaryText={a.value} key={a.id}/>
+              })
+            }
+          </SelectField>
+          : false
+        }
+        {this.props.action.action !== "remove" ?
+          <TextField
+            floatingLabelText="Expire"
+            value={this.props.action.expire}
+            onChange={this.handleExpireChange}
+          />
+          : false
+        }
 
         <RaisedButton
           label="Delete"

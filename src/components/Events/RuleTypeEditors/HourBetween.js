@@ -6,6 +6,7 @@ const wrapperStyle = {
   display: "flex",
   flexWrap: "wrap",
 };
+const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 const HourBetween = ({valueFrom, valueTo, handleChangeFrom, handleChangeTo}) => {
   return(
     <div style={wrapperStyle}>
@@ -13,8 +14,9 @@ const HourBetween = ({valueFrom, valueTo, handleChangeFrom, handleChangeTo}) => 
         floatingLabelText="From"
         value={valueFrom}
         onChange={handleChangeFrom}>
-        {[...Array(23).keys()].map(hour => {
-          return <MenuItem value={hour} primaryText={hour} key={hour}/>
+        {
+          arr.map(hour => {
+          return <MenuItem value={hour} primaryText={hour+""} key={hour+""}/>
         }) }
       </SelectField>
       <SelectField
@@ -22,10 +24,9 @@ const HourBetween = ({valueFrom, valueTo, handleChangeFrom, handleChangeTo}) => 
         value={valueTo}
         onChange={handleChangeTo}>
         {
-          [...Array(23).keys()].map(hour => {
-            return <MenuItem value={hour} primaryText={hour} key={hour}/>
-          })
-        }
+          arr.map(hour => {
+          return <MenuItem value={hour} primaryText={hour+""} key={hour+""}/>
+        }) }
       </SelectField>
     </div>
   )

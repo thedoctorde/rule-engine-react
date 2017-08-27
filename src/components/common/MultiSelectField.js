@@ -2,7 +2,7 @@ import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-const MultiSelectField = ({values, possibleValues, handleChange}) => {
+const MultiSelectField = ({values, possibleValues, handleChange, floatingLabelText}) => {
   function menuItems() {
     if (possibleValues) {
       return possibleValues.map((item) => (
@@ -23,6 +23,7 @@ const MultiSelectField = ({values, possibleValues, handleChange}) => {
       hintText="Select"
       value={values}
       onChange={handleChange}
+      floatingLabelText={floatingLabelText}
     >
       {menuItems(values)}
     </SelectField>

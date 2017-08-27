@@ -43,7 +43,7 @@ class ManageEventPage extends Component {
         paramNames={this.props.paramNames}
         valueTypes={this.props.valueTypes}
         mappingPossibleValues={this.props.mappingPossibleValues}
-
+        boolParams={this.props.boolParams}
         actions={this.props.actions}
         actionList={this.props.actionList}
         actionTypes={this.props.actionTypes}
@@ -105,6 +105,7 @@ function mapStateToProps(state, ownProps) {
     paramNames: state.paramNames.map(item => item),
     valueTypes: state.valueTypes.map(item => item),
     mappingPossibleValues: state.mappingPossibleValues.map(item => item),
+    boolParams: state.boolParams.map(i => i),
     actionList: state.actionList.map(item => item),
     actionTypes: state.actionTypes.map(item => item),
     actionExpireTypes: state.actionExpireTypes.map(item => item),

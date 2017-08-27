@@ -9,8 +9,10 @@ const style = {
   alignItems: "start",
   alignContent: "center",
   //justifyContent: "space-between",
-  paddingBottom: 10,
-  borderBottom: "2px solid #eee"
+  padding: "5px 20px 15px",
+  marginBottom: 10,
+  marginTop: 10,
+  backgroundColor: "#eee"
 };
 
 const deleteButtonStyle = {

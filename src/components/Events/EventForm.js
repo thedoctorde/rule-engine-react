@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Rule from "./Rule";
+import Action from "./Action";
 
 const style = {
   marginLeft: 12,
@@ -30,14 +31,26 @@ class EventForm extends Component {
       mappingNames,
       paramNames,
       valueTypes,
-      mappingPossibleValues
+      mappingPossibleValues,
+      actions,
+      actionList,
+      actionTypes,
+      actionExpireTypes,
+      createAction,
+      updateAction,
+      deleteAction,
     } = this.props;
     return (
       <div style={wrapperStyle}>
-        id: {event.id}
-        name: {event.name}
-
         <h1>Rules</h1>
+        <div >
+          <RaisedButton label="Add new rule"
+                        onClick={() => createRule(event.id)}/>
+          <RaisedButton label="Save" style={style}
+                        onClick={() => {
+                          uploadEvents(event.id, store)
+                        }}/>
+        </div>
         {ruleset.map(item =>
           <Rule
             key={item.id}
@@ -58,12 +71,32 @@ class EventForm extends Component {
             mappingPossibleValues={mappingPossibleValues}
           />)
         }
-        <RaisedButton label="Add new rule"
-                      onClick={() => createRule(event.id)}/>
-        <RaisedButton label="Save" style={style}
-                      onClick={() => {
-                        uploadEvents(event.id, store)
-                      }}/>
+
+
+        <h1>Actions</h1>
+        <div >
+          <RaisedButton label="Add new action"
+                        onClick={() => createAction(event.id)}/>
+          <RaisedButton label="Save" style={style}
+                        onClick={() => {
+                          uploadEvents(event.id, store)
+                        }}/>
+        </div>
+        {actions.map(item => {
+          return <Action
+            key={item.id}
+            action={item}
+            updateAction={updateAction}
+            deleteAction={deleteAction}
+            eventId={event.id}
+            momentNames={momentNames}
+            actionList={actionList}
+            actionTypes={actionTypes}
+            actionExpireTypes={actionExpireTypes}
+          />
+        })}
+
+
       </div>
 
     );

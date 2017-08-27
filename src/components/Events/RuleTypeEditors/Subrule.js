@@ -5,10 +5,25 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as actions from "../../../actions/subruleActions"
 
+const deleteButtonStyle = {
+  marginLeft: 12,
+  marginRight: 12,
+  //display: "flex",
+  alignSelf: "center",
+};
+
+
+const style = {
+  display: "flex",
+  alignItems: "start",
+  alignContent: "center",
+  //justifyContent: "space-between",
+  paddingBottom: 10,
+  borderTop: "2px solid #eee",
+  borderBottom: "2px solid #eee",
+};
 
 export class Subrule extends React.Component {
-
-
 
   handleChangeField = (event, index, value) => {
     let newState = Object.assign(
@@ -45,7 +60,6 @@ export class Subrule extends React.Component {
     );
     this.props.updateSubrule(newState)
   };
-
 
   valueControl() {
     switch (this.props.subrule.value_type) {
@@ -85,15 +99,8 @@ export class Subrule extends React.Component {
 
     return (
       this.props.subrule ?
-        <div>
-          <RaisedButton
-            label="Delete"
-            secondary={true}
-            //style={deleteButtonStyle}
-            onClick={() => {
-              this.props.deleteSubrule(this.props.subrule.id, this.props.ruleId)
-            }
-            }/>
+        <div style={style}>
+
           <SelectField
             floatingLabelText="Field"
             value={this.props.subrule.field}
@@ -128,6 +135,14 @@ export class Subrule extends React.Component {
             }
           </SelectField>
           {this.valueControl()}
+          <RaisedButton
+            label="Delete"
+            secondary={true}
+            style={deleteButtonStyle}
+            onClick={() => {
+              this.props.deleteSubrule(this.props.subrule.id, this.props.ruleId)
+            }
+            }/>
         </div>
         : false
 

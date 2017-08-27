@@ -21,11 +21,9 @@ export default function ruleReducer(state = initialState.rules, action) {
       m[e.id] = e;
       return Object.assign({}, m);
 
-
     case types.DELETE_RULE_SUCCESS:
       let  {[action.id]: deleted, ...newState} = state;
       return newState;
-
 
     case types.DELETE_SUBRULE_FROM_RULE_SUCCESS:
       let ev = Object.assign({}, state[action.ruleId]);

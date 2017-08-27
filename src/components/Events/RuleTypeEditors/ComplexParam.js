@@ -6,8 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 
 const wrapperStyle = {
-  display: "flex",
-  flexWrap: "wrap",
+  //display: "flex",
+  //flexWrap: "wrap",
 };
 const ComplexParam = ({
                         paramName, paramNames, handleChangeParamName,
@@ -28,8 +28,11 @@ const ComplexParam = ({
           )
         }
       </SelectField>
-      <RaisedButton label="Add new rule"
+      <div>
+      <RaisedButton label="Add new subrule"
                     onClick={() => createSubrule(ruleId)}/>
+      </div>
+      {subrules ? <h3>Subrules</h3> : false}
       {subrules
         ? subrules.map(id =>
           <Subrule

@@ -17,14 +17,17 @@ const style = {
   display: "flex",
   alignItems: "start",
   alignContent: "center",
-
+  //justifyContent: "space-between",
+  paddingBottom: 10,
+  borderBottom: "2px solid #eee"
 };
 
 const deleteButtonStyle = {
-  marginLeft: 12,
+  marginLeft: "auto",
   marginRight: 12,
   display: "flex",
   alignSelf: "center",
+
 };
 
 export class Rule extends React.Component {
@@ -272,14 +275,7 @@ export class Rule extends React.Component {
     const {eventId, deleteRule} = this.props;
     return (
       <div style={style}>
-        <RaisedButton
-          label="Delete"
-          secondary={true}
-          style={deleteButtonStyle}
-          onClick={() => {
-            deleteRule(this.props.rule.id, eventId)
-          }
-          }/>
+
         <SelectField
           floatingLabelText="Rule Type"
           value={this.props.rule.type}
@@ -291,6 +287,14 @@ export class Rule extends React.Component {
           }
         </SelectField>
         {this.section(this.props.rule.type)}
+        <RaisedButton
+          label="Delete"
+          secondary={true}
+          style={deleteButtonStyle}
+          onClick={() => {
+            deleteRule(this.props.rule.id, eventId)
+          }
+          }/>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import eventsApi from '../api/mockEventApi';
+import {loadActionsSuccess} from './actionActions'
 
 export function loadEventsSuccess(events) {
   return {type: types.LOAD_EVENTS_SUCCESS, events};
@@ -13,16 +14,8 @@ export function loadSubrulesSuccess(subrules) {
   return {type: types.LOAD_SUBRULES_SUCCESS, subrules};
 }
 
-export function loadRulesetsSuccess(rulesets) {
-  return {type: types.LOAD_RULESETS_SUCCESS, rulesets};
-}
-
 export function createEventSuccess(event) {
   return {type: types.CREATE_EVENT_SUCCESS, event};
-}
-
-export function updateEventSuccess(course) {
-  return {type: types.UPDATE_EVENT_SUCCESS, course};
 }
 
 export function updateRuleSuccess(rule) {
@@ -53,7 +46,7 @@ export function loadEvents() {
       dispatch(loadEventsSuccess(response.entities.events));
       dispatch(loadRulesSuccess(response.entities.rules));
       dispatch(loadSubrulesSuccess(response.entities.subrules));
-      //dispatch(loadRulesetsSuccess(response.entities.rulesets));
+      dispatch(loadActionsSuccess(response.entities.actions));
     }).catch(error => {
       throw(error);
     });
@@ -119,15 +112,4 @@ export function uploadEvents(event, store) {
   }
 }
 
-// export function saveCourse(course) {
-//   return function (dispatch, getState) {
-//     dispatch(beginAjaxCall());
-//     return courseApi.saveCourse(course).then(course => {
-//       course.id ? dispatch(updateCourseSuccess(course)) :
-//         dispatch(createCourseSuccess(course));
-//     }).catch(error => {
-//       dispatch(ajaxCallError(error));
-//       throw(error);
-//     });
-//   };
-// }
+

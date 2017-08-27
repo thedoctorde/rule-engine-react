@@ -3,6 +3,7 @@ export default {
   rules: [],
   rulesets: [],
   subrules: [],
+  actions: [],
   ruleTypes: [
     {id: 1, value:"hour_between"},
     {id: 2, value:"complex_param"},
@@ -208,6 +209,18 @@ export default {
   boolParams:[
     {id:"true", value: true},
     {id:"false", value: false}
-  ]
+  ],
+  actionList:[
+    {id:"create", value:"create"},
+    {id:"remove", value:"remove"},
+  ],
+  actionTypes:[
+    {id:"instant", value:"instant", },
+    {id:"delay", value:"delay"}
+  ],
+  actionExpireTypes:[
+    {id:"elapsed_time", value:"elapsed_time", },
+    {id:"at", value:"at"}
+  ],
 
 };

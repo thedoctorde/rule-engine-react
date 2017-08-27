@@ -3,8 +3,13 @@ import events from './eventReducer';
 import rules from './ruleReducer';
 import subrules from './subruleReducer';
 import rulesets from './rulesetReducer';
+import actions from './actionReducer';
 
-
+import {
+  actionListReducer as actionList,
+  actionExpireTypeReducer as actionExpireTypes,
+  actionTypeReducer as actionTypes,
+} from "./actionReducer";
 
 import ruleTypes from './ruleTypeReducer';
 import momentNames from './momentNameReducer';
@@ -21,6 +26,7 @@ const rootReducer = combineReducers({
   rules,
   subrules,
   rulesets,
+  actions,
   ruleTypes,
   momentNames,
   operators,
@@ -30,6 +36,9 @@ const rootReducer = combineReducers({
   mappingPossibleValues,
   fields,
   boolParams,
+  actionList,
+  actionExpireTypes,
+  actionTypes,
 });
 
 export default rootReducer;

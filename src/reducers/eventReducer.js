@@ -19,20 +19,36 @@ export default function eventReducer(state = initialState.events, action) {
       ];
 
     case types.UPDATE_EVENT_RULESET_SUCCESS:
-      let e = Object.assign({}, state[action.eventId]);
+      var e = Object.assign({}, state[action.eventId]);
       e.ruleset = [
         ...e.ruleset,
         action.ruleId];
-      let m = Object.assign({}, state);
+      var m = Object.assign({}, state);
+      m[e.id] = e;
+      return Object.assign({}, m);
+
+    case types.UPDATE_EVENT_ACTIONS_SUCCESS:
+      var e = Object.assign({}, state[action.eventId]);
+      e.actions = [
+        ...e.actions,
+        action.actionId];
+      var m = Object.assign({}, state);
       m[e.id] = e;
       return Object.assign({}, m);
 
     case types.DELETE_RULE_FROM_EVENT_RULESET_SUCCESS:
-      let ev = Object.assign({}, state[action.eventId]);
-      ev.ruleset = ev.ruleset.filter(item => item !== action.id);
-      let m1 = Object.assign({}, state);
-      m1[ev.id] = ev;
-      return Object.assign({}, m1);
+      var e = Object.assign({}, state[action.eventId]);
+      e.ruleset = e.ruleset.filter(item => item !== action.id);
+      var m = Object.assign({}, state);
+      m[e.id] = e;
+      return Object.assign({}, m);
+
+    case types.DELETE_ACTION_FROM_EVENT_SUCCESS:
+      var e = Object.assign({}, state[action.eventId]);
+      e.actions = e.actions.filter(item => item !== action.id);
+      var m = Object.assign({}, state);
+      m[e.id] = e;
+      return Object.assign({}, m);
 
     default:
       return state;

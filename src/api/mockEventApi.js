@@ -11,9 +11,15 @@ const ruleScheme = new schema.Entity('rules', {
   rules: [subruleScheme]
 });
 
+const actionScheme = new schema.Entity('actions', {
+  idAttribute: 'id'
+});
+
+
 const eventScheme = new schema.Entity('events', {
   idAttribute: 'id',
-  ruleset: [ruleScheme]
+  ruleset: [ruleScheme],
+  actions: [actionScheme]
 });
 
 const eventsSchema = [eventScheme];
@@ -47,6 +53,12 @@ class EventsApi {
                 })
               }
               return rule
+            })
+          }
+          if (event.actions) {
+            event.actions = event.actions.map(item => {
+              if (!item.id) item.id = generateId();
+              return item;
             })
           }
           return event;
@@ -91,7 +103,7 @@ class EventsApi {
   }
 
   static sendEventToServer(eventId, state) {
-    let entities = Object.assign({}, {events: state.events}, {rules: state.rules}, {subrules: state.subrules});
+    let entities = Object.assign({}, {events: state.events}, {rules: state.rules}, {subrules: state.subrules}, {actions: state.actions});
     const denormalizedData = denormalize(Object.keys(state.events), eventsSchema, entities);
     let updated = denormalizedData.filter(x => x.id === eventId)[0];
     return fetch(url+'/events', {
@@ -144,6 +156,39 @@ class EventsApi {
         };
       }
       resolve(subrule);
+    });
+  }
+
+  static createAction(eventId) {
+    return new Promise((resolve, reject) => {
+        let action = {
+          id: generateId()
+        };
+        let event = {
+          id: eventId
+        };
+
+        resolve({action, event});
+      }
+    );
+  }
+
+  static saveAction(obj) {
+    var action = Object.assign({}, obj);
+    return new Promise((resolve, reject) => {
+      if (action) {
+      } else {
+        action = {
+          id: generateId()
+        };
+      }
+      resolve(action);
+    });
+  }
+
+  static deleteAction(id, eventId) {
+    return new Promise((resolve) => {
+      resolve({id, eventId})
     });
   }
 }

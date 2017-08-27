@@ -17,6 +17,7 @@ class EventForm extends Component {
     super(props, context);
     this.handleChangeRunOn = this.handleChangeRunOn.bind(this)
   }
+
   handleChangeRunOn = (event, key, payload) => {
     let newState = Object.assign(
       {},
@@ -60,6 +61,13 @@ class EventForm extends Component {
     return (
 
       <div style={wrapperStyle}>
+        <RaisedButton
+          label="Save"
+          primary={true}
+          style={style}
+          onClick={() => {
+            uploadEvents(event.id, store)
+          }}/>
         <h2>Run on</h2>
         <div>
           <MultiSelectField
@@ -69,13 +77,10 @@ class EventForm extends Component {
           />
         </div>
         <h2>Rules</h2>
-        <div >
+        <div>
           <RaisedButton label="Add new rule"
                         onClick={() => createRule(event.id)}/>
-          <RaisedButton label="Save" style={style}
-                        onClick={() => {
-                          uploadEvents(event.id, store)
-                        }}/>
+
         </div>
         {ruleset.map(item =>
           <Rule
@@ -100,13 +105,9 @@ class EventForm extends Component {
 
 
         <h2>Actions</h2>
-        <div >
+        <div>
           <RaisedButton label="Add new action"
                         onClick={() => createAction(event.id)}/>
-          <RaisedButton label="Save" style={style}
-                        onClick={() => {
-                          uploadEvents(event.id, store)
-                        }}/>
         </div>
         {actions.map(item => {
           return <Action

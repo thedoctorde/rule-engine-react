@@ -1,5 +1,4 @@
 import {normalize, denormalize, schema} from 'normalizr';
-import 'whatwg-fetch';
 import {url} from '../config'
 
 

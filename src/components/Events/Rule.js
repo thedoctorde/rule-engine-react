@@ -120,6 +120,7 @@ export class Rule extends React.Component {
     );
     this.props.updateRule(newState);
   };
+
   handleChangeMappingValues = (event, key, payload) => {
     let newState = Object.assign(
       {},
@@ -198,7 +199,7 @@ export class Rule extends React.Component {
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
             value={this.props.rule.value}
-            handleChangeValue={this.handleChangeValue}
+            handleChangeValue={this.handleChangeTextValue}
           />
         );
       case "old_vs_new":

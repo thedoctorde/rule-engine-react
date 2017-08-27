@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 const style = {
   display: "flex",
@@ -66,6 +67,19 @@ export class Action extends React.Component {
     this.props.updateAction(newState)
   };
 
+  handleExpireChange = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.action,
+      {
+        expire: value,
+      }
+    );
+    this.props.updateAction(newState)
+  };
+
+
+
   render() {
     const {eventId, deleteAction} = this.props;
     return (
@@ -103,7 +117,11 @@ export class Action extends React.Component {
             })
           }
         </SelectField>
-
+        <TextField
+          floatingLabelText="Expire"
+          value={this.props.action.expire}
+          onChange={this.handleExpireChange}
+        />
         <SelectField
           floatingLabelText="Expire type"
           value={this.props.action.expire_type}

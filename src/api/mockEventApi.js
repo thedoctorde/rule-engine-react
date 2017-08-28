@@ -138,7 +138,7 @@ class EventsApi {
           ruleset: [],
           actions: [],
         };
-        resolve({event});
+        resolve(event);
       }
     );
   }

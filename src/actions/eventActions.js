@@ -101,8 +101,9 @@ export function createRule(eventId) {
 
 export function createEvent() {
   return function (dispatch) {
-    return eventsApi.createEvent().then(({event}) => {
+    return eventsApi.createEvent().then((event) => {
       dispatch(createEventSuccess(event));
+      return event;
     }).catch(error => {
       throw(error)
     });

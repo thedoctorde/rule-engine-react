@@ -7,12 +7,13 @@ import {
 } from 'material-ui/Table';
 import EventTableRow from './EventTableRow'
 import RulesTableHeaderRow from "./EventTableHeaderRow";
-import {createEvent} from "../../actions/eventActions"
+import * as eventActions from "../../actions/eventActions";
+import {bindActionCreators} from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const wrapperStyle = {
   padding: "20px"
-}
+};
 
 class EventsTablePage extends Component {
   constructor(props, context) {
@@ -24,21 +25,24 @@ class EventsTablePage extends Component {
     };
 
     this.createEvent = this.createEvent.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
 
   createEvent(event) {
-    this.props.createEvent()
-      // .then((eventId) => {
-      //     this.redirect(eventId)
-      //   }
-      // )
-      // .catch(error => {
-      //   }
-      // )
+    event.preventDefault();
+    this.props.eventActions.createEvent()
+      .then((event) => {
+        console.log("this:", this);
+        this.redirect(event.id)
+      })
+      .catch(err => {
+          console.log("err: ", err)
+        }
+      )
   }
 
   redirect(eventId) {
-    this.context.router.push('/event/' + eventId);
+    this.context.router.history.push('/event/' + eventId);
   }
 
   render() {
@@ -67,7 +71,7 @@ class EventsTablePage extends Component {
 
 EventsTablePage.contextTypes = {
   router: React.PropTypes.func.isRequired
-}
+};
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -79,10 +83,13 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createEvent: () => {
-      dispatch(createEvent())
-    },
-  }
+    eventActions: bindActionCreators(eventActions, dispatch)
+  };
+  // return {
+  //   createEvent: () => {
+  //     dispatch(createEvent())
+  //   },
+  // }
 }
 
 

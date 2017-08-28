@@ -25,7 +25,8 @@ function getActions(event, actions, actionType) {
       if (a !== undefined) return a;
       else return
     });
-    cr = acts.filter(item => item.action === actionType).map(item => item.moment);
+    cr = acts.filter(item => item.action === actionType).map(item => {
+      return {moment: item.moment, id: item.id}});
   }
   return cr;
 }
@@ -38,12 +39,12 @@ const EventTableRow = ({event, actions}) => {
         <div style={momentsStyle}>
         {
           getActions(event, actions, "create").map(item =>
-            <Chip backgroundColor={green300} style={chipStyle} >{item}</Chip>
+            <Chip backgroundColor={green300} style={chipStyle} key={item.id} >{item.moment}</Chip>
           )
         }
         {
           getActions(event, actions, "remove").map(item =>
-            <Chip backgroundColor={red300} style={chipStyle}>{item}</Chip>
+            <Chip backgroundColor={red300} style={chipStyle} key={item.id}>{item.moment}</Chip>
           )
         }
         </div>

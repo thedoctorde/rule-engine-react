@@ -1,5 +1,5 @@
 import {normalize, denormalize, schema} from 'normalizr';
-import {url} from '../config'
+//import {url} from '../config'
 
 
 const subruleScheme = new schema.Entity('subrules', {
@@ -37,7 +37,7 @@ const generateId = () => {
 
 class EventsApi {
   static getAllEvents() {
-    return fetch(url+'/getEvents')
+    return fetch(window.apiUrl+'/getEvents')
       .then(res => res.json())
       .then(data => {
         let newdata = data.map(event => {
@@ -122,7 +122,7 @@ class EventsApi {
       event: updated
     }
     console.log(JSON.stringify(result));
-    return fetch(url+'/event', {
+    return fetch(window.apiUrl+'/event', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

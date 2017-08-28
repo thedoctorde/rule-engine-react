@@ -42,7 +42,7 @@ class EventsTablePage extends Component {
   }
 
   render() {
-    const {events} = this.props;
+    const {events, actions} = this.props;
     return (
       <div style={wrapperStyle}>
         <RaisedButton label="Add new event"
@@ -56,7 +56,7 @@ class EventsTablePage extends Component {
           <TableBody>
             {
               Object.keys(events).map(key => events[key]).map(item =>
-                <EventTableRow event={item} key={item.id}/>)}
+                <EventTableRow event={item} key={item.id} actions={actions}/>)}
           </TableBody>
         </Table>
       </div>
@@ -72,6 +72,7 @@ EventsTablePage.contextTypes = {
 function mapStateToProps(state, ownProps) {
   return {
     events: state.events,
+    actions: state.actions,
     ruleTypes: state.ruleTypes
   };
 }

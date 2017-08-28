@@ -42,16 +42,16 @@ const Param = ({
           )
         }
       </SelectField>
-      <SelectField
-        floatingLabelText="Value Type"
-        value={valueType}
-        onChange={handleChangeValueType}>
-        {
-          valueTypes.map(item =>
-            <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
-          )
-        }
-      </SelectField>
+      {/*<SelectField*/}
+        {/*floatingLabelText="Value Type"*/}
+        {/*value={valueType}*/}
+        {/*onChange={handleChangeValueType}>*/}
+        {/*{*/}
+          {/*valueTypes.map(item =>*/}
+            {/*<MenuItem value={item.value} primaryText={item.value} key={item.id}/>*/}
+          {/*)*/}
+        {/*}*/}
+      {/*</SelectField>*/}
       <TextField
         floatingLabelText="Value"
         value={value}

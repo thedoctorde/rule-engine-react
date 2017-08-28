@@ -10,7 +10,11 @@ import {green300, red300} from 'material-ui/styles/colors';
 const momentsStyle = {
   display: "flex",
   flexWrap: "wrap",
-}
+};
+
+const chipStyle = {
+  marginRight: 5,
+};
 
 function getActions(event, actions, actionType) {
   let acts;
@@ -34,12 +38,12 @@ const EventTableRow = ({event, actions}) => {
         <div style={momentsStyle}>
         {
           getActions(event, actions, "create").map(item =>
-            <Chip backgroundColor={green300} >{item}</Chip>
+            <Chip backgroundColor={green300} style={chipStyle} >{item}</Chip>
           )
         }
         {
           getActions(event, actions, "remove").map(item =>
-            <Chip backgroundColor={red300}>{item}</Chip>
+            <Chip backgroundColor={red300} style={chipStyle}>{item}</Chip>
           )
         }
         </div>

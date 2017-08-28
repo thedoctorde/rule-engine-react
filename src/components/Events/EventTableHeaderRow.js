@@ -9,7 +9,7 @@ class RulesTableHeaderRow extends Component {
     return (
       <TableRow>
         <TableHeaderColumn>ID</TableHeaderColumn>
-        <TableHeaderColumn>Name</TableHeaderColumn>
+        <TableHeaderColumn>Moments</TableHeaderColumn>
         <TableHeaderColumn>Edit</TableHeaderColumn>
       </TableRow>
     );

@@ -69,11 +69,16 @@ class EventForm extends Component {
   };
 
   handleChangePriority = (event, value) => {
+    let x =  Number(value);
+    if ( isNaN(x)) {
+      x = this.props.event.priority
+    }
     let newState = Object.assign(
       {},
       this.props.event,
       {
-        priority: value,
+        //todo make validation
+        priority: x,
       }
     );
     this.props.updateEvent(newState)

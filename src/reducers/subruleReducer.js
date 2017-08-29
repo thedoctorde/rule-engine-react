@@ -4,7 +4,10 @@ import initialState from './initialState';
 export default function ruleReducer(state = initialState.subrules, action) {
   switch (action.type) {
     case types.LOAD_SUBRULES_SUCCESS:
-      return action.subrules;
+      if (action.subrules)
+        return action.subrules;
+      else
+        return []
     case types.CREATE_SUBRULE_SUCCESS:
       return {
         ...state,

@@ -44,14 +44,21 @@ export function updateEventRulesetSuccess(eventId, ruleId) {
 
 export function loadEvents() {
   return function (dispatch) {
-    //dispatch(beginAjaxCall());
     return eventsApi.getAllEvents().then(response => {
-      dispatch(loadEventsSuccess(response.entities.events));
-      dispatch(loadRulesSuccess(response.entities.rules));
-      dispatch(loadSubrulesSuccess(response.entities.subrules));
-      dispatch(loadActionsSuccess(response.entities.actions));
+      if (response.entities.events) {
+        dispatch(loadEventsSuccess(response.entities.events));
+      }
+      if (response.entities.rules) {
+        dispatch(loadRulesSuccess(response.entities.rules));
+      }
+      if (response.entities.subrules) {
+        dispatch(loadSubrulesSuccess(response.entities.subrules));
+      }
+      if (response.entities.actions) {
+        dispatch(loadActionsSuccess(response.entities.actions));
+      }
     }).catch(error => {
-      throw(error);
+      console.log("error: ", error);
     });
   };
 }

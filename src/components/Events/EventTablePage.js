@@ -15,6 +15,14 @@ const wrapperStyle = {
   padding: "20px"
 };
 
+const activeRowStyle = {
+  background: "#fff"
+};
+
+const inactiveRowStyle = {
+  background: "#eee"
+}
+
 class EventsTablePage extends Component {
   constructor(props, context) {
     super(props, context);
@@ -59,8 +67,14 @@ class EventsTablePage extends Component {
           </TableHeader>
           <TableBody>
             {
-              Object.keys(events).map(key => events[key]).map(item =>
-                <EventTableRow event={item} key={item.id} actions={actions}/>)}
+              Object.keys(events).map(key => events[key]).map(item => {
+                let style;
+                item.active ? style = activeRowStyle : style = inactiveRowStyle;
+                return (<EventTableRow event={item} key={item.id} actions={actions} style = {style}/>)
+
+              }
+                )
+            }
           </TableBody>
         </Table>
       </div>

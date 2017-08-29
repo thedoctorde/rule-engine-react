@@ -31,9 +31,9 @@ function getActions(event, actions, actionType) {
   return cr;
 }
 
-const EventTableRow = ({event, actions}) => {
+const EventTableRow = ({event, actions, style}) => {
   return (
-    <TableRow>
+    <TableRow style={style}>
       <TableRowColumn>{event.id}</TableRowColumn>
       <TableRowColumn>
         <div style={momentsStyle}>

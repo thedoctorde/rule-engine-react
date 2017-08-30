@@ -9,9 +9,11 @@ import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import Mapping from "./RuleTypeEditors/Mapping";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
 import {getFilteredMappingValues} from "../../utils/selctors";
+import {typize} from "../../utils/helpers";
 import RaisedButton from 'material-ui/RaisedButton';
 import MomentTiming from "./RuleTypeEditors/MomentTiming";
 import CompareParams from "./RuleTypeEditors/CompareParams";
+
 
 const style = {
   display: "flex",
@@ -117,7 +119,7 @@ export class Rule extends React.Component {
       {},
       this.props.rule,
       {
-        value: value,
+        value: typize(value),
       }
     );
     this.props.updateRule(newState);

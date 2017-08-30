@@ -129,7 +129,7 @@ export class Rule extends React.Component {
       {},
       this.props.rule,
       {
-        value: value.replace(", ", ",").replace(" ,", ",").split(','),
+        value: value.replace(", ", ",").replace(" ,", ",").split(',').map(item => typize(item)),
       }
     );
     this.props.updateRule(newState);

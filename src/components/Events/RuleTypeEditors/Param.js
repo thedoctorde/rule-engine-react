@@ -2,7 +2,6 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
-import MultiSelectField from "../../common/MultiSelectField";
 
 
 const wrapperStyle = {
@@ -45,7 +44,7 @@ const Param = ({
         ?
         <TextField
           floatingLabelText="Array"
-          value={value}
+          value={value.constructor === Array ? value.join(",") : [value]}
           onChange={handleChangeArrayValue}
         />
         :

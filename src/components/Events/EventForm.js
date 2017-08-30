@@ -32,10 +32,15 @@ const idStyle = {
   lineHeight: "36px",
 }
 
+const infoHeaderStyle = {
+  marginBottom: 5,
+}
+
 const BackButton = withRouter(({history}) => (
   <RaisedButton
     label="Back"
     style={backButtonStyle}
+    secondary={true}
     onClick={()=>{
       history.push('/')}}
   />
@@ -126,7 +131,9 @@ class EventForm extends Component {
                 ID: {this.props.event.id}
               </h3>
             </div>
+            <h2 style={infoHeaderStyle}>Info</h2>
             <div style={topRowStyle}>
+
               <div>
                 <MultiSelectField
                   floatingLabelText="Run on"

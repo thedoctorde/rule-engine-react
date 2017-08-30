@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
+import MultiSelectField from "../../common/MultiSelectField";
 
 
 const wrapperStyle = {
@@ -12,10 +13,10 @@ const wrapperStyle = {
 const Param = ({
                  paramName, paramNames, handleChangeParamName,
                  operator, operators, handleChangeOperator,
-                 //valueType, valueTypes, handleChangeValueType,
-                 value, handleChangeValue
+                 value, handleChangeValue, handleChangeArrayValue
 
                }) => {
+
   return (
     <div style={wrapperStyle}>
 
@@ -39,21 +40,22 @@ const Param = ({
           )
         }
       </SelectField>
-      {/*<SelectField*/}
-        {/*floatingLabelText="Value Type"*/}
-        {/*value={valueType}*/}
-        {/*onChange={handleChangeValueType}>*/}
-        {/*{*/}
-          {/*valueTypes.map(item =>*/}
-            {/*<MenuItem value={item.value} primaryText={item.value} key={item.id}/>*/}
-          {/*)*/}
-        {/*}*/}
-      {/*</SelectField>*/}
-      <TextField
-        floatingLabelText="Value"
-        value={value}
-        onChange={handleChangeValue}
-      />
+
+      {(operator === "in" || operator === "not in")
+        ?
+        <TextField
+          floatingLabelText="Array"
+          value={value}
+          onChange={handleChangeArrayValue}
+        />
+        :
+        <TextField
+          floatingLabelText="Value"
+          value={value}
+          onChange={handleChangeValue}
+        />
+      }
+
     </div>
   )
 };

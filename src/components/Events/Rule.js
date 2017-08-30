@@ -124,6 +124,16 @@ export class Rule extends React.Component {
     );
     this.props.updateRule(newState);
   };
+  handleChangeArrayValue = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.rule,
+      {
+        value: value.replace(", ", ",").replace(" ,", ",").split(','),
+      }
+    );
+    this.props.updateRule(newState);
+  };
 
   handleChangeMappingValues = (event, key, payload) => {
     let newState = Object.assign(
@@ -191,6 +201,7 @@ export class Rule extends React.Component {
             // handleChangeValueType={this.handleChangeValueType}
             value={this.props.rule.value}
             handleChangeValue={this.handleChangeValue}
+            handleChangeArrayValue={this.handleChangeArrayValue}
           />
         );
       case "old" :
@@ -203,7 +214,7 @@ export class Rule extends React.Component {
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
             value={this.props.rule.value}
-            handleChangeValue={this.handleChangeTextValue}
+            handleChangeValue={this.handleChangeValue}
           />
         );
       case "old_vs_new":

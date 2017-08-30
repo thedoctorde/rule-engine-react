@@ -13,17 +13,6 @@ const LastMoments = ({
   return (
     <div style={wrapperStyle}>
       <SelectField
-        floatingLabelText="Name"
-        value={name}
-        onChange={handleChangeName}>
-        {
-          momentNames.map(item => {
-              return <MenuItem value={item.id} primaryText={item.value + "(" + item.id + ")"} key={item.id}/>
-            }
-          )
-        }
-      </SelectField>
-      <SelectField
         floatingLabelText="Operator"
         value={operator}
         onChange={handleChangeOperator}>
@@ -34,6 +23,18 @@ const LastMoments = ({
           )
         }
       </SelectField>
+      <SelectField
+        floatingLabelText="Name"
+        value={name}
+        onChange={handleChangeName}>
+        {
+          momentNames.map(item => {
+              return <MenuItem value={item.id} primaryText={item.value + "(" + item.id + ")"} key={item.id}/>
+            }
+          )
+        }
+      </SelectField>
+
     </div>
   )
 };

@@ -285,7 +285,7 @@ export class Rule extends React.Component {
           onChange={this.handleRuleTypeChange}>
           {
             this.props.ruleTypes.map(ruleType => {
-              return <MenuItem value={ruleType.value} primaryText={ruleType.value} key={ruleType.id}/>
+              return <MenuItem value={ruleType.id} primaryText={ruleType.value} key={ruleType.id}/>
             })
           }
         </SelectField>

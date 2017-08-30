@@ -68,6 +68,23 @@ export class Subrule extends React.Component {
     );
     this.props.updateSubrule(newState)
   };
+  handleChangeNumberValue = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.subrule,
+      {value: numberize(value)}
+    );
+    this.props.updateSubrule(newState)
+  };
+
+  handleChangeStringValue = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.subrule,
+      {value: value}
+    );
+    this.props.updateSubrule(newState)
+  };
 
   handleChangeCategory = (event, value) => {
     let newState = Object.assign(
@@ -120,6 +137,22 @@ export class Subrule extends React.Component {
               )
             }
           </SelectField>);
+      case "number":
+        return (
+          <TextField
+            floatingLabelText="Value"
+            value={this.props.subrule.value}
+            onChange={this.handleChangeNumberValue}
+          >
+          </TextField>);
+      case "string":
+        return (
+          <TextField
+            floatingLabelText="Value"
+            value={this.props.subrule.value}
+            onChange={this.handleChangeStringValue}
+          >
+          </TextField>);
       default:
         return false
     }
@@ -137,7 +170,9 @@ export class Subrule extends React.Component {
             onChange={this.handleChangeField}
           >
             {
-              this.props.fields.map(item =>
+              this.props.fields
+                .filter(item => item.name === this.props.parentRuleParamName)
+                .map(item =>
                 <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
               )
             }
@@ -165,22 +200,6 @@ export class Subrule extends React.Component {
             }
           </SelectField>
           {this.valueControl()}
-          {this.props.parentRuleParamName === "reapc"
-            ?
-            <div>
-              <TextField
-                floatingLabelText="Category"
-                value={this.props.subrule.category}
-                onChange={this.handleChangeCategory}
-              />
-              <TextField
-                floatingLabelText="App count"
-                value={this.props.subrule.appcount}
-                onChange={this.handleChangeAppcount}
-              />
-            </div>
-            : false
-          }
           </div>
           <RaisedButton
             label="Delete"

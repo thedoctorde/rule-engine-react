@@ -205,6 +205,8 @@ export default {
   fields:[
     {id: 1, name: "wfcn", value:"connected"},
     {id: 2, name: "wfcn", value:"name"},
+    {id: 3, name: "reapc", value: "category"},
+    {id: 4, name: "reapc", value: "appcount"},
   ],
   boolParams:[
     {id:"true", value: true},

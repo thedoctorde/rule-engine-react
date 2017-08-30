@@ -4,9 +4,6 @@ import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 
 
-const style={
-  marginTop: "0",
-};
 const wrapperStyle = {
   display: "flex",
   flexWrap: "wrap",
@@ -15,7 +12,7 @@ const wrapperStyle = {
 const Param = ({
                  paramName, paramNames, handleChangeParamName,
                  operator, operators, handleChangeOperator,
-                 valueType, valueTypes, handleChangeValueType,
+                 //valueType, valueTypes, handleChangeValueType,
                  value, handleChangeValue
 
                }) => {

@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import {numberize} from "../../../utils/helpers";
 import * as actions from "../../../actions/subruleActions"
 
 const deleteButtonStyle = {
@@ -63,6 +65,28 @@ export class Subrule extends React.Component {
       {},
       this.props.subrule,
       {value: value}
+    );
+    this.props.updateSubrule(newState)
+  };
+
+  handleChangeCategory = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.subrule,
+      {
+        category: numberize(value, this.props.subrule.category),
+      }
+    );
+    this.props.updateSubrule(newState)
+  };
+
+  handleChangeAppcount = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.subrule,
+      {
+        appcount: numberize(value, this.props.subrule.appcount),
+      }
     );
     this.props.updateSubrule(newState)
   };
@@ -141,6 +165,22 @@ export class Subrule extends React.Component {
             }
           </SelectField>
           {this.valueControl()}
+          {this.props.parentRuleParamName === "reapc"
+            ?
+            <div>
+              <TextField
+                floatingLabelText="Category"
+                value={this.props.subrule.category}
+                onChange={this.handleChangeCategory}
+              />
+              <TextField
+                floatingLabelText="App count"
+                value={this.props.subrule.appcount}
+                onChange={this.handleChangeAppcount}
+              />
+            </div>
+            : false
+          }
           </div>
           <RaisedButton
             label="Delete"

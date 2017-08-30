@@ -104,7 +104,6 @@ class EventForm extends Component {
       paramNames,
       valueTypes,
       mappingPossibleValues,
-      boolParams,
       actions,
       actionList,
       actionTypes,

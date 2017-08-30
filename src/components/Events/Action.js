@@ -3,6 +3,7 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import {numberize} from "../../utils/helpers";
 
 const style = {
   display: "flex",
@@ -74,7 +75,18 @@ export class Action extends React.Component {
       {},
       this.props.action,
       {
-        expire: value,
+        expire: numberize(value, this.props.action.expire),
+      }
+    );
+    this.props.updateAction(newState)
+  };
+  handleDelayTimeChange = (event, value) => {
+
+    let newState = Object.assign(
+      {},
+      this.props.action,
+      {
+        delay_time: numberize(value, this.props.action.delay_time),
       }
     );
     this.props.updateAction(newState)
@@ -109,7 +121,14 @@ export class Action extends React.Component {
           </SelectField>
           : false
         }
-
+        {this.props.action.type === "delay"
+          ? <TextField
+            floatingLabelText="Delay time (minutes)"
+            value={this.props.action.delay_time}
+            onChange={this.handleDelayTimeChange}
+          />
+          : false
+        }
         <SelectField
           floatingLabelText="Moment"
           value={this.props.action.moment}
@@ -128,7 +147,7 @@ export class Action extends React.Component {
             onChange={this.handleExpireTypeChange}>
             {
               this.props.actionExpireTypes.map(a => {
-                return <MenuItem value={a.value} primaryText={a.value} key={a.id}/>
+                return <MenuItem value={a.id} primaryText={a.value} key={a.id}/>
               })
             }
           </SelectField>

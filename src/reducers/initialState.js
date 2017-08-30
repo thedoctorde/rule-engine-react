@@ -98,7 +98,7 @@ export default {
     {id:"deflun", value:"deflun", valueType:"StringParam", type:"simple"},
     {id:"earcon", value:"earcon", valueType:"BoolParam", type:"simple"},
     {id:"dchar", value:"dchar", valueType:"BoolParam", type:"simple"},
-    {id:"dmstat", value:"dmstat", valueType:"DmStat", type:"simple"},
+    {id:"dmstat", value:"dmstat", valueType:"DmStat", type:"complex"},
     {id:"caact", value:"caact", valueType:"BoolParam", type:"simple"},
     {id:"phad", value:"phad", valueType:"StringToIntParam", type:"simple"},
     {id:"isfp", value:"isfp", valueType:"IntParam", type:"simple"},
@@ -219,8 +219,8 @@ export default {
     {id:"delay", value:"delay"}
   ],
   actionExpireTypes:[
-    {id:"elapsed_time", value:"elapsed_time", },
-    {id:"at", value:"at"}
+    {id:"expired_in", value:"expired in", },
+    {id:"expired_at", value:"expired at"}
   ],
 
 };

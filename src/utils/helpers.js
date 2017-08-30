@@ -8,4 +8,12 @@ export default function toArray(obj) {
   })
 }
 
+export function numberize(newValue, oldValue) {
+  let x =  Number(newValue);
+  if ( isNaN(x))
+    return oldValue;
+  return x;
+
+}
+
 

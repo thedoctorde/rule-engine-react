@@ -8,11 +8,6 @@ import * as subruleActions from "../../actions/subruleActions"
 
 class ManageEventPage extends Component {
 
-  constructor(props, context) {
-    super(props, context);
-
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.rule) {
       if (this.state.rule !== nextProps.rule) {

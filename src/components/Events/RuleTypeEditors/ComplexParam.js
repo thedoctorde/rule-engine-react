@@ -39,6 +39,7 @@ const ComplexParam = ({
             ruleId={ruleId}
             subrule={allSubrules[id]}
             deleteSubrule = {deleteSubrule}
+            parentRuleParamName = {paramName}
             key={id}
           />)
         : false

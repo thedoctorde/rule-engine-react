@@ -38,7 +38,7 @@ export class Rule extends React.Component {
     let newState = Object.assign(
       {},
       props.rule,
-      {mappingPossibleValues: getFilteredMappingValues(props.mappingPossibleValues, props.rule.mappingName)}
+      {mappingPossibleValues: getFilteredMappingValues(props.mappingPossibleValues, props.rule.mapping_name)}
     );
     this.state = newState;
   }
@@ -103,7 +103,7 @@ export class Rule extends React.Component {
       {},
       this.props.rule,
       {
-        mappingName: value,
+        mapping_name: value,
       }
     );
     this.props.updateRule(newState);
@@ -184,9 +184,9 @@ export class Rule extends React.Component {
             operator={this.props.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
-            valueType={this.props.rule.valueType}
-            valueTypes={this.props.valueTypes}
-            handleChangeValueType={this.handleChangeValueType}
+            // valueType={this.props.rule.valueType}
+            // valueTypes={this.props.valueTypes}
+            // handleChangeValueType={this.handleChangeValueType}
             value={this.props.rule.value}
             handleChangeValue={this.handleChangeValue}
           />
@@ -224,7 +224,7 @@ export class Rule extends React.Component {
             operator={this.props.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
-            mappingName={this.props.rule.mappingName}
+            mappingName={this.props.rule.mapping_name}
             mappingNames={this.props.mappingNames}
             handleChangeMappingName={this.handleChangeMappingName}
             mappingValues={this.props.rule.value}

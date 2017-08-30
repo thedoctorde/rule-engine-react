@@ -21,7 +21,7 @@ const activeRowStyle = {
 
 const inactiveRowStyle = {
   background: "#eee"
-}
+};
 
 class EventsTablePage extends Component {
   constructor(props, context) {

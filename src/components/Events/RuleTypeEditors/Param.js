@@ -17,7 +17,11 @@ const Param = ({
                }) => {
 
   function getParamValue() {
-    return paramNames.filter(item => item.id === paramName)[0].valueType
+    let param = paramNames.filter(item => item.id === paramName)[0];
+    if (param !== undefined) {
+      return paramNames.filter(item => item.id === paramName)[0].valueType
+    }
+    return undefined
   }
   function getOperators(operators) {
     if (getParamValue() === "BoolParam") {

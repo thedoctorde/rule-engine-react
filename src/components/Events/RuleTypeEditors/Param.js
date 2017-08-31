@@ -16,6 +16,16 @@ const Param = ({
 
                }) => {
 
+  function getParamValue() {
+    return paramNames.filter(item => item.id === paramName)[0].valueType
+  }
+  function getOperators(operators) {
+    if (getParamValue() === "BoolParam") {
+      return operators.filter(item => item.id === "=")
+    }
+    return operators
+
+  }
   return (
     <div style={wrapperStyle}>
 
@@ -34,7 +44,7 @@ const Param = ({
         value={operator}
         onChange={handleChangeOperator}>
         {
-          operators.map(item =>
+          getOperators(operators).map(item =>
             <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
           )
         }

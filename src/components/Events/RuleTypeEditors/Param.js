@@ -25,7 +25,11 @@ export class Param extends React.Component {
         return (
           <TextField
             floatingLabelText="Values"
-            value={this.props.value.constructor === Array ? this.props.value.join(",") : [this.props.value]}
+            value={this.props.value
+              ? this.props.value.constructor === Array
+                ? this.props.value.join(",")
+                : [this.props.value]
+              : ""}
             onChange={this.props.handleChangeArrayValue}
           />
         );

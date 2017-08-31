@@ -76,14 +76,6 @@ export class Rule extends React.Component {
     );
     this.props.updateRule(newState)
   };
-  handleChangeValueType = (event, index, value) => {
-    let newState = Object.assign(
-      {},
-      this.props.rule,
-      {valueType: value}
-    );
-    this.props.updateRule(newState)
-  };
   handleChangeName = (event, index, value) => {
     let newState = Object.assign(
       {},
@@ -120,6 +112,16 @@ export class Rule extends React.Component {
       this.props.rule,
       {
         value: typize(value),
+      }
+    );
+    this.props.updateRule(newState);
+  };
+  handleChangeSelectValue = (event, index, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.rule,
+      {
+        value: value,
       }
     );
     this.props.updateRule(newState);
@@ -202,6 +204,8 @@ export class Rule extends React.Component {
             value={this.props.rule.value}
             handleChangeValue={this.handleChangeValue}
             handleChangeArrayValue={this.handleChangeArrayValue}
+            handleChangeSelectValue={this.handleChangeSelectValue}
+            boolParams={this.props.boolParams}
           />
         );
       case "old" :

@@ -9,68 +9,127 @@ const wrapperStyle = {
   flexWrap: "wrap",
 };
 
-const Param = ({
-                 paramName, paramNames, handleChangeParamName,
-                 operator, operators, handleChangeOperator,
-                 value, handleChangeValue, handleChangeArrayValue
+export class Param extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-               }) => {
+    this.getOperators = this.getOperators.bind(this)
+    this.getParamValue = this.getParamValue.bind(this)
+    this.valueControl = this.valueControl.bind(this)
+  }
 
-  function getParamValue() {
-    let param = paramNames.filter(item => item.id === paramName)[0];
+  valueControl() {
+    const {
+      value,
+      handleChangeArrayValue,
+      handleChangeSelectValue,
+      handleChangeValue,
+      boolParams,
+    } = this.props;
+    switch (this.props.operator) {
+      case "in", "not in":
+        return (
+          <TextField
+            floatingLabelText="Array"
+            value={value.constructor === Array ? value.join(",") : [value]}
+            onChange={handleChangeArrayValue}
+          />
+        );
+      default:
+        if (this.getParamValue() === "BoolParam") {
+          return (
+            <SelectField
+              floatingLabelText="Value"
+              value={value}
+              onChange={handleChangeSelectValue}
+            >
+              {
+                boolParams.map(item =>
+                  <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
+                )
+              }
+            </SelectField>
+          )
+        }
+        return (
+          <TextField
+            floatingLabelText="Value"
+            value={value}
+            onChange={handleChangeValue}
+          />
+        )
+    }
+  }
+
+  getParamValue() {
+    let param = this.props.paramNames.filter(item => item.id === this.props.paramName)[0];
     if (param !== undefined) {
-      return paramNames.filter(item => item.id === paramName)[0].valueType
+      return this.props.paramNames.filter(item => item.id === this.props.paramName)[0].valueType
     }
     return undefined
   }
-  function getOperators(operators) {
-    if (getParamValue() === "BoolParam") {
+
+  getOperators(operators) {
+    if (this.getParamValue() === "BoolParam") {
       return operators.filter(item => item.id === "=")
     }
     return operators
 
   }
-  return (
-    <div style={wrapperStyle}>
 
-      <SelectField
-        floatingLabelText="Name"
-        value={paramName}
-        onChange={handleChangeParamName}>
-        {
-          paramNames.map(item =>
-            <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
-          )
-        }
-      </SelectField>
-      <SelectField
-        floatingLabelText="Operator"
-        value={operator}
-        onChange={handleChangeOperator}>
-        {
-          getOperators(operators).map(item =>
-            <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
-          )
-        }
-      </SelectField>
+  render(){
+    const {
+      paramName, paramNames, handleChangeParamName,
+        operator, operators, handleChangeOperator,
+        value, handleChangeValue, handleChangeArrayValue, handleChangeSelectValue,
+        boolParams,
 
-      {(operator === "in" || operator === "not in")
-        ?
-        <TextField
-          floatingLabelText="Array"
-          value={value.constructor === Array ? value.join(",") : [value]}
-          onChange={handleChangeArrayValue}
-        />
-        :
-        <TextField
-          floatingLabelText="Value"
-          value={value}
-          onChange={handleChangeValue}
-        />
-      }
+    } = this.props;
 
-    </div>
-  )
-};
+
+    return (
+      <div style={wrapperStyle}>
+
+        <SelectField
+          floatingLabelText="Name"
+          value={paramName}
+          onChange={handleChangeParamName}>
+          {
+            paramNames.map(item =>
+              <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
+            )
+          }
+        </SelectField>
+        <SelectField
+          floatingLabelText="Operator"
+          value={operator}
+          onChange={handleChangeOperator}>
+          {
+            this.getOperators(operators).map(item =>
+              <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
+            )
+          }
+        </SelectField>
+        {this.valueControl()}
+        {/*{(operator === "in" || operator === "not in")*/}
+        {/*?*/}
+        {/*<TextField*/}
+        {/*floatingLabelText="Array"*/}
+        {/*value={value.constructor === Array ? value.join(",") : [value]}*/}
+        {/*onChange={handleChangeArrayValue}*/}
+        {/*/>*/}
+        {/*:*/}
+        {/*<TextField*/}
+        {/*floatingLabelText="Value"*/}
+        {/*value={value}*/}
+        {/*onChange={handleChangeValue}*/}
+        {/*/>*/}
+        {/*}*/}
+
+      </div>
+    )
+  }
+}
+
 
 export default Param

@@ -52,7 +52,7 @@ class EventForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {};
+    this.state = {open: false, message:""};
 
     this.handleChangeRunOn = this.handleChangeRunOn.bind(this);
 
@@ -138,6 +138,7 @@ class EventForm extends Component {
       createAction,
       updateAction,
       deleteAction,
+      boolParams,
     } = this.props;
     return (
 
@@ -216,6 +217,7 @@ class EventForm extends Component {
             paramNames={paramNames}
             valueTypes={valueTypes}
             mappingPossibleValues={mappingPossibleValues}
+            boolParams={boolParams}
           />)
         }
 

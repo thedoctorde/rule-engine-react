@@ -118,7 +118,7 @@ export function createEvent() {
 }
 
 
-export function uploadEvents(event, store) {
+export function uploadEvent(event, store) {
   return function (dispatch) {
     return eventsApi.sendEventToServer(event, store)
       .then(res => res.json())

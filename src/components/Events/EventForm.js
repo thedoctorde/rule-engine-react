@@ -7,6 +7,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 import { withRouter } from 'react-router-dom'
+import Snackbar from 'material-ui/Snackbar';
 
 const addButtonStyle = {
   marginBottom: 15,
@@ -32,6 +33,7 @@ const idStyle = {
   lineHeight: "36px",
 }
 
+
 const infoHeaderStyle = {
   marginBottom: 5,
 }
@@ -50,9 +52,11 @@ class EventForm extends Component {
   constructor(props, context) {
     super(props, context);
 
+    this.state = {};
+
     this.handleChangeRunOn = this.handleChangeRunOn.bind(this);
 
-    //this.uploadEvents = this.uploadEvents.bind(this);
+    this.uploadEvents = this.uploadEvents.bind(this);
   }
 
   handleChangeRunOn = (event, key, payload) => {
@@ -92,13 +96,22 @@ class EventForm extends Component {
     this.props.updateEvent(newState)
   };
 
-  // uploadEvents() {
-  //   event.preventDefault();
-  //   this.props.uploadEvents(this.props.event.id, this.props.store)
-  //     .then(() => {
-  //
-  //     })
-  // }
+  uploadEvents(event) {
+    event.preventDefault();
+    this.props.uploadEvent(this.props.event.id, this.props.store)
+      .then(() => {
+        this.setState({
+          message: "Event saved successfully",
+          open: true,
+        });
+      })
+  }
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
 
   render() {
     const {
@@ -107,10 +120,8 @@ class EventForm extends Component {
       createRule,
       updateRule,
       deleteRule,
-      uploadEvents,
       createSubrule,
       deleteSubrule,
-      store,
       subrules,
       ruleTypes,
       nameToFields,
@@ -235,9 +246,17 @@ class EventForm extends Component {
           label="Save"
           primary={true}
           style={saveButtonStyle}
-          onClick={() => {
-            uploadEvents(event.id, store)
-          }}/>
+          onClick={this.uploadEvents}
+          // onClick={() => {
+          //   uploadEvents(event.id, store)
+          // }}
+        />
+        <Snackbar
+          open={this.state.open}
+          message={this.state.message}
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </div>
 
     );

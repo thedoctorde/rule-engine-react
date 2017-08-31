@@ -5,7 +5,7 @@ export default {
   subrules: [],
   actions: [],
   ruleTypes: [
-    {id: "hour_between", value:"Hour between"},
+    {id: "hour_between", value:"Between hours"},
     {id: "complex_param", value:"Complex param"},
     {id: "last_moments", value:"Last moments"},
     {id: "param", value:"Param"},
@@ -211,6 +211,8 @@ export default {
     {id: 2, name: "wfcn", value:"name"},
     {id: 3, name: "reapc", value: "category"},
     {id: 4, name: "reapc", value: "appcount"},
+    {id: 5, name: "dmstat", value: "value"},
+    {id: 6, name: "dmstat", value: "accuracy"},
   ],
   boolParams:[
     {id:"true", value: true},

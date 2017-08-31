@@ -49,7 +49,10 @@ const BackButton = withRouter(({history}) => (
 class EventForm extends Component {
   constructor(props, context) {
     super(props, context);
-    this.handleChangeRunOn = this.handleChangeRunOn.bind(this)
+
+    this.handleChangeRunOn = this.handleChangeRunOn.bind(this);
+
+    this.uploadEvents = this.uploadEvents.bind(this);
   }
 
   handleChangeRunOn = (event, key, payload) => {
@@ -88,6 +91,14 @@ class EventForm extends Component {
     );
     this.props.updateEvent(newState)
   };
+
+  // uploadEvents() {
+  //   event.preventDefault();
+  //   this.props.uploadEvents(this.props.event.id, this.props.store)
+  //     .then(() => {
+  //
+  //     })
+  // }
 
   render() {
     const {

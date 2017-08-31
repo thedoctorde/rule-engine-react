@@ -99,11 +99,7 @@ function mapDispatchToProps(dispatch) {
   return {
     eventActions: bindActionCreators(eventActions, dispatch)
   };
-  // return {
-  //   createEvent: () => {
-  //     dispatch(createEvent())
-  //   },
-  // }
+
 }
 
 

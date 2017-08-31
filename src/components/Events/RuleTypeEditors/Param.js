@@ -24,7 +24,7 @@ export class Param extends React.Component {
       case"not in":
         return (
           <TextField
-            floatingLabelText="Array"
+            floatingLabelText="Values"
             value={this.props.value.constructor === Array ? this.props.value.join(",") : [this.props.value]}
             onChange={this.props.handleChangeArrayValue}
           />

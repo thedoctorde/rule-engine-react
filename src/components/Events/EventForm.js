@@ -52,7 +52,7 @@ class EventForm extends Component {
 
     this.handleChangeRunOn = this.handleChangeRunOn.bind(this);
 
-    this.uploadEvents = this.uploadEvents.bind(this);
+    //this.uploadEvents = this.uploadEvents.bind(this);
   }
 
   handleChangeRunOn = (event, key, payload) => {

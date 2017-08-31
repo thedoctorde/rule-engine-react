@@ -19,20 +19,14 @@ export class Param extends React.Component {
   }
 
   valueControl() {
-    const {
-      value,
-      handleChangeArrayValue,
-      handleChangeSelectValue,
-      handleChangeValue,
-      boolParams,
-    } = this.props;
     switch (this.props.operator) {
-      case "in", "not in":
+      case "in":
+      case"not in":
         return (
           <TextField
             floatingLabelText="Array"
-            value={value.constructor === Array ? value.join(",") : [value]}
-            onChange={handleChangeArrayValue}
+            value={this.props.value.constructor === Array ? this.props.value.join(",") : [this.props.value]}
+            onChange={this.props.handleChangeArrayValue}
           />
         );
       default:
@@ -40,11 +34,11 @@ export class Param extends React.Component {
           return (
             <SelectField
               floatingLabelText="Value"
-              value={value}
-              onChange={handleChangeSelectValue}
+              value={this.props.value}
+              onChange={this.props.handleChangeSelectValue}
             >
               {
-                boolParams.map(item =>
+                this.props.boolParams.map(item =>
                   <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
                 )
               }
@@ -54,8 +48,8 @@ export class Param extends React.Component {
         return (
           <TextField
             floatingLabelText="Value"
-            value={value}
-            onChange={handleChangeValue}
+            value={this.props.value}
+            onChange={this.props.handleChangeValue}
           />
         )
     }
@@ -77,12 +71,12 @@ export class Param extends React.Component {
 
   }
 
-  render(){
+  render() {
     const {
       paramName, paramNames, handleChangeParamName,
-        operator, operators, handleChangeOperator,
-        value, handleChangeValue, handleChangeArrayValue, handleChangeSelectValue,
-        boolParams,
+      operator, operators, handleChangeOperator,
+      value, handleChangeValue, handleChangeArrayValue, handleChangeSelectValue,
+      boolParams,
 
     } = this.props;
 

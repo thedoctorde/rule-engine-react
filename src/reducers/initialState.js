@@ -11,6 +11,8 @@ export default {
     {id: "param", value:"Param"},
     {id: "old_vs_new", value:"Old vs new"},
     {id: "mapping", value:"Mapping"},
+    {id: "app_action", value:"App Action"},
+    {id: "app_category", value:"App Category"},
     {id: "moment_timing", value:"Moment timing"},
     {id: "compare_params", value:"Compare params"},
     {id: "old", value:"Old"},

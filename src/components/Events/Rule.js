@@ -6,13 +6,13 @@ import LastMoments from "./RuleTypeEditors/LastMoments";
 import Param from "./RuleTypeEditors/Param";
 import Old from "./RuleTypeEditors/Old";
 import OldVsNew from "./RuleTypeEditors/OldVsNew";
-import Mapping from "./RuleTypeEditors/Mapping";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
 import {getFilteredMappingValues} from "../../utils/selctors";
 import {typize} from "../../utils/helpers";
 import RaisedButton from 'material-ui/RaisedButton';
 import MomentTiming from "./RuleTypeEditors/MomentTiming";
 import CompareParams from "./RuleTypeEditors/CompareParams";
+import AppAction from "./RuleTypeEditors/AppAction";
 
 
 const style = {
@@ -91,20 +91,6 @@ export class Rule extends React.Component {
       {after: value}
     );
     this.props.updateRule(newState)
-  };
-  handleChangeMappingName = (event, index, value) => {
-    let newState = Object.assign(
-      {},
-      this.props.rule,
-      {
-        mapping_name: value,
-      }
-    );
-    this.props.updateRule(newState);
-    this.setState(Object.assign(
-      {},
-      this.state,
-      {mappingPossibleValues: getFilteredMappingValues(this.props.mappingPossibleValues, value)}))
   };
   handleChangeValue = (event, value) => {
     let newState = Object.assign(
@@ -232,20 +218,32 @@ export class Rule extends React.Component {
             handleChangeOperator={this.handleChangeOperator}
           />
         );
-      case "mapping":
-        return (
-          <Mapping
+
+      case "app_action":
+        return(
+          <AppAction
             paramName={this.props.rule.name}
             paramNames={getMappingParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeName}
             operator={this.props.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
-            mappingName={this.props.rule.mapping_name}
-            mappingNames={this.props.mappingNames}
-            handleChangeMappingName={this.handleChangeMappingName}
             mappingValues={this.props.rule.value}
-            mappingPossibleValues={this.state.mappingPossibleValues}
+            mappingPossibleValues={getFilteredMappingValues(this.props.mappingPossibleValues, "appToActions")}
+            handleChangeMappingValues={this.handleChangeMappingValues}
+          />
+        );
+      case "app_category":
+        return(
+          <AppAction
+            paramName={this.props.rule.name}
+            paramNames={getMappingParams(this.props.paramNames)}
+            handleChangeParamName={this.handleChangeName}
+            operator={this.props.rule.operator}
+            operators={this.props.operators}
+            handleChangeOperator={this.handleChangeOperator}
+            mappingValues={this.props.rule.value}
+            mappingPossibleValues={getFilteredMappingValues(this.props.mappingPossibleValues, "appToCategory")}
             handleChangeMappingValues={this.handleChangeMappingValues}
           />
         );

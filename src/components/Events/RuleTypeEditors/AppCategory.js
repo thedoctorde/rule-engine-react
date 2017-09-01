@@ -2,7 +2,6 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import MultiSelectField from "../../common/MultiSelectField";
-import {getFilteredMappingValues} from "../../../utils/selctors";
 
 
 const wrapperStyle = {
@@ -10,12 +9,11 @@ const wrapperStyle = {
   flexWrap: "wrap",
 };
 
-const Mapping = ({
-                   paramName, paramNames, handleChangeParamName,
-                   operator, operators, handleChangeOperator,
-                   mappingName, mappingNames, handleChangeMappingName,
-                   mappingValues, mappingPossibleValues, handleChangeMappingValues
-                 }) => {
+const AppCategory = ({
+                     paramName, paramNames, handleChangeParamName,
+                     operator, operators, handleChangeOperator,
+                     mappingValues, mappingPossibleValues, handleChangeMappingValues
+                   }) => {
   return (
     <div style={wrapperStyle}>
       <SelectField
@@ -34,23 +32,13 @@ const Mapping = ({
         onChange={handleChangeOperator}>
         {
           getOperatorsForMapping(operators).map(operator =>
-            <MenuItem value={operator.value} primaryText={operator.value} key={operator.id}/>
-          )
-        }
-      </SelectField>
-      <SelectField
-        floatingLabelText="Mapping name"
-        value={mappingName}
-        onChange={handleChangeMappingName}>
-        {
-          mappingNames.map(item =>
-            <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
+            <MenuItem value={operator.id} primaryText={operator.value} key={operator.id}/>
           )
         }
       </SelectField>
       <MultiSelectField
         values={mappingValues}
-        possibleValues={getFilteredMappingValues(mappingPossibleValues, mappingName)}
+        possibleValues={mappingPossibleValues}
         handleChange={handleChangeMappingValues}
         floatingLabelText="Values"
       />
@@ -62,4 +50,4 @@ function getOperatorsForMapping(operators) {
   return operators.filter(item => (item.value === "in" || item.value === "not in"))
 }
 
-export default Mapping
+export default AppCategory

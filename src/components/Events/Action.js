@@ -108,7 +108,7 @@ export class Action extends React.Component {
             })
           }
         </SelectField>
-        {this.props.action.action !== "remove"
+        {this.props.action.action === "create"
           ? <SelectField
             floatingLabelText="Type"
             value={this.props.action.type}
@@ -140,7 +140,7 @@ export class Action extends React.Component {
           }
         </SelectField>
 
-        {this.props.action.action !== "remove" ?
+        {this.props.action.action === "create" ?
           <SelectField
             floatingLabelText="Expire type"
             value={this.props.action.expire_type}
@@ -153,7 +153,7 @@ export class Action extends React.Component {
           </SelectField>
           : false
         }
-        {this.props.action.action !== "remove" ?
+        {this.props.action.action === "create" ?
           <TextField
             floatingLabelText={this.props.action.expire_type === "expired_in" ? "Minutes" : "At hour"}
             value={this.props.action.expire}

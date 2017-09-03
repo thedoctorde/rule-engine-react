@@ -5,7 +5,7 @@ import {
 } from 'material-ui/Table';
 import {Link} from 'react-router-dom'
 import Chip from 'material-ui/Chip';
-import {green300, red300} from 'material-ui/styles/colors';
+import {green300, red300, orange300} from 'material-ui/styles/colors';
 
 const momentsStyle = {
   display: "flex",
@@ -26,7 +26,8 @@ function getActions(event, actions, actionType) {
       else return
     });
     cr = acts.filter(item => item.action === actionType).map(item => {
-      return {moment: item.moment, id: item.id}});
+      return {moment: item.moment, id: item.id}
+    });
   }
   return cr;
 }
@@ -37,16 +38,21 @@ const EventTableRow = ({event, actions, style}) => {
       <TableRowColumn>{event.id}</TableRowColumn>
       <TableRowColumn>
         <div style={momentsStyle}>
-        {
-          getActions(event, actions, "create").map(item =>
-            <Chip backgroundColor={green300} style={chipStyle} key={item.id} >{item.moment}</Chip>
-          )
-        }
-        {
-          getActions(event, actions, "remove").map(item =>
-            <Chip backgroundColor={red300} style={chipStyle} key={item.id}>{item.moment}</Chip>
-          )
-        }
+          {
+            getActions(event, actions, "create").map(item =>
+              <Chip backgroundColor={green300} style={chipStyle} key={item.id}>{item.moment}</Chip>
+            )
+          }
+          {
+            getActions(event, actions, "remove").map(item =>
+              <Chip backgroundColor={red300} style={chipStyle} key={item.id}>{item.moment}</Chip>
+            )
+          }
+          {
+            getActions(event, actions, "cancel").map(item =>
+              <Chip backgroundColor={orange300} style={chipStyle} key={item.id}>{item.moment}</Chip>
+            )
+          }
         </div>
       </TableRowColumn>
       <TableRowColumn><Link to={"/ruleset/" + event.id}>Edit</Link></TableRowColumn>

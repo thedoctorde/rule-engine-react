@@ -41,6 +41,7 @@ export default {
   actionList:[
     {id:"create", value:"create"},
     {id:"remove", value:"remove"},
+    {id:"cancel", value:"cancel"},
   ],
 
   actionTypes: window.actionTypes,

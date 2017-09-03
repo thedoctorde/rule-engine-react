@@ -17,7 +17,15 @@ const LastMoments = ({
         value={operator}
         onChange={handleChangeOperator}>
         {
-          operators.map(item => {
+          operators
+            .filter(item => (item.id === "in" || item.id === "not in"))
+            .map(item => {
+              return {
+                id: item.id,
+                value: item.id === "in" ? "contains" : "not contains"
+              }
+            })
+            .map(item => {
               return <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
             }
           )

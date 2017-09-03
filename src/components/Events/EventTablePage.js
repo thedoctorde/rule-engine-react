@@ -50,7 +50,7 @@ class EventsTablePage extends Component {
   }
 
   redirect(eventId) {
-    this.context.router.history.push('/event/' + eventId);
+    this.context.router.history.push('/ruleset/' + eventId);
   }
 
   render() {

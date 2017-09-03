@@ -155,7 +155,7 @@ export class Action extends React.Component {
         }
         {this.props.action.action !== "remove" ?
           <TextField
-            floatingLabelText="Expire"
+            floatingLabelText={this.props.action.expire_type === "expired_in" ? "Minutes" : "At hour"}
             value={this.props.action.expire}
             onChange={this.handleExpireChange}
           />

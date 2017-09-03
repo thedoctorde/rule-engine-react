@@ -101,7 +101,7 @@ class EventForm extends Component {
     this.props.uploadEvent(this.props.event.id, this.props.store)
       .then(() => {
         this.setState({
-          message: "Event saved successfully",
+          message: "Ruleset saved successfully",
           open: true,
         });
       })

@@ -57,7 +57,7 @@ class EventsTablePage extends Component {
     const {events, actions} = this.props;
     return (
       <div style={wrapperStyle}>
-        <RaisedButton label="Add new event"
+        <RaisedButton label="Add new ruleset"
                       onClick={this.createEvent}/>
         <Table
           selectable={true}>

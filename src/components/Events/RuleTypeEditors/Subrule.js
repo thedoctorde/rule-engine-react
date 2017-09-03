@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {numberize} from "../../../utils/helpers";
 import * as actions from "../../../actions/subruleActions"
+import MultiSelectField from "../../common/MultiSelectField";
 
 const deleteButtonStyle = {
   marginLeft: "auto",
@@ -158,20 +159,42 @@ export class Subrule extends React.Component {
       case "value":
         switch (this.props.subrule.field) {
           case "category":
-            return (
-              <SelectField
-                value={this.props.subrule.value}
-                onChange={this.handleChangeValue}
-                floatingLabelText="Value"
-              >
-                {
-                  this.props.mappingPossibleValues
-                    .map(item =>
-                      <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
-                    )
-                }
+            if (this.props.subrule.operator === "in" || this.props.subrule.operator === "not in") {
+              return(
+                <MultiSelectField
+                  values={this.props.subrule.value}
+                  possibleValues={this.props.mappingPossibleValues}
+                  handleChange={this.handleChangeValue}
+                  floatingLabelText="Values"
+                />
+              )
+            } else {
+              return (
+                <SelectField
+                  value={this.props.subrule.value}
+                  onChange={(event, index, value) => {
+                    this.handleChangeValue(event, index, value);
+                  }}
+                  floatingLabelText="Value"
+                >
+                  {
+                    this.props.mappingPossibleValues
+                      .map(item =>
+                        <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
+                      )
+                  }
 
-              </SelectField>
+                </SelectField>
+              );
+            }
+          case "appcount":
+            return(
+              <TextField
+                floatingLabelText="Value"
+                value={this.props.subrule.value}
+                onChange={this.handleChangeNumberValue}
+              >
+              </TextField>
             );
           default:
             return false

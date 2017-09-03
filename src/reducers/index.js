@@ -14,7 +14,7 @@ import {
 import ruleTypes from './ruleTypeReducer';
 import momentNames from './momentNameReducer';
 import operators from './operatorReducer';
-import valueTypes from './valueTypeReducer';
+import {valueTypeReducer as valueTypes, valueTypeForSuberulesReducer as valueTypesForSubrules} from './valueTypeReducer';
 import paramNames from './paramNameReducer';
 import mappingNames from './mappingNameReducer';
 import mappingPossibleValues from './mappingPossibleValuesReducer';
@@ -31,6 +31,7 @@ const rootReducer = combineReducers({
   momentNames,
   operators,
   valueTypes,
+  valueTypesForSubrules,
   paramNames,
   mappingNames,
   mappingPossibleValues,

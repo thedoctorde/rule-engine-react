@@ -24,7 +24,8 @@ const style = {
   marginRight: 20,
   marginBottom: 10,
   marginTop: 10,
-  backgroundColor: "#fff"};
+  backgroundColor: "#fff"
+};
 
 const subrulInsideStyle = {
   display: "flex",
@@ -68,6 +69,7 @@ export class Subrule extends React.Component {
     );
     this.props.updateSubrule(newState)
   };
+
   handleChangeNumberValue = (event, value) => {
     let newState = Object.assign(
       {},
@@ -153,6 +155,27 @@ export class Subrule extends React.Component {
             onChange={this.handleChangeStringValue}
           >
           </TextField>);
+      case "value":
+        switch (this.props.subrule.field) {
+          case "category":
+            return (
+              <SelectField
+                value={this.props.subrule.value}
+                onChange={this.handleChangeValue}
+                floatingLabelText="Value"
+              >
+                {
+                  this.props.mappingPossibleValues
+                    .map(item =>
+                      <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
+                    )
+                }
+
+              </SelectField>
+            );
+          default:
+            return false
+        }
       default:
         return false
     }
@@ -164,42 +187,42 @@ export class Subrule extends React.Component {
       this.props.subrule ?
         <div style={style}>
           <div style={subrulInsideStyle}>
-          <SelectField
-            floatingLabelText="Field"
-            value={this.props.subrule.field}
-            onChange={this.handleChangeField}
-          >
-            {
-              this.props.fields
-                .filter(item => item.name === this.props.parentRuleParamName)
-                .map(item =>
-                <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
-              )
-            }
-          </SelectField>
-          <SelectField
-            floatingLabelText="Operator"
-            value={this.props.subrule.operator}
-            onChange={this.handleChangeOperator}
-          >
-            {
-              this.props.operators.map(item =>
-                <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
-              )
-            }
-          </SelectField>
-          <SelectField
-            floatingLabelText="Value Type"
-            value={this.props.subrule.value_type}
-            onChange={this.handleChangeValueType}
-          >
-            {
-              this.props.valueTypes.map(item =>
-                <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
-              )
-            }
-          </SelectField>
-          {this.valueControl()}
+            <SelectField
+              floatingLabelText="Field"
+              value={this.props.subrule.field}
+              onChange={this.handleChangeField}
+            >
+              {
+                this.props.fields
+                  .filter(item => item.name === this.props.parentRuleParamName)
+                  .map(item =>
+                    <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
+                  )
+              }
+            </SelectField>
+            <SelectField
+              floatingLabelText="Operator"
+              value={this.props.subrule.operator}
+              onChange={this.handleChangeOperator}
+            >
+              {
+                this.props.operators.map(item =>
+                  <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
+                )
+              }
+            </SelectField>
+            <SelectField
+              floatingLabelText="Value Type"
+              value={this.props.subrule.value_type}
+              onChange={this.handleChangeValueType}
+            >
+              {
+                this.props.valueTypesForSubrules.map(item =>
+                  <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
+                )
+              }
+            </SelectField>
+            {this.valueControl()}
           </div>
           <RaisedButton
             label="Delete"
@@ -235,6 +258,8 @@ function mapStateToProps(state) {
     valueTypes: state.valueTypes.map(item => item),
     paramNames: state.paramNames.map(item => item),
     boolParams: state.boolParams.map(item => item),
+    valueTypesForSubrules: state.valueTypesForSubrules.map(item => item),
+    mappingPossibleValues: state.mappingPossibleValues.filter(item => item.type === "appToCategory").map(item => item)
   }
 }
 

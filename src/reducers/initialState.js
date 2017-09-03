@@ -58,11 +58,16 @@ export default {
     {id: "not intersects", value:"not intersects"},
   ],
   valueTypes:[
-    {id:1, value:"string"},
-    {id:2, value:"boolean"},
-    {id:3, value:"number"},
-    {id:4, value:"field"},
+    {id:"string", value:"string"},
+    {id:"boolean", value:"boolean"},
+    {id:"number", value:"number"},
+    {id:"field", value:"field"},
   ],
+  valueTypesForSubrules:[
+    {id:"value", value:"value"},
+    {id:"field", value:"field"},
+  ],
+
   paramNames:[
     {id:"inapc", value:"inapc", valueType:"Instapcat", type:"complex"},
     {id:"reap", value:"reap", valueType:"Resactap", type:"complex"},

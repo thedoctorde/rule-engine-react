@@ -10,7 +10,7 @@ class Layout extends Component {
     return (
       <div>
         <Route exact path="/" component={RulesTablePage}/>
-        <Route path="/event/:id" component={ManageEventPage}/>
+        <Route path="/ruleset/:id" component={ManageEventPage}/>
       </div>
     );
   }

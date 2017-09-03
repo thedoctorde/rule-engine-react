@@ -49,7 +49,7 @@ const EventTableRow = ({event, actions, style}) => {
         }
         </div>
       </TableRowColumn>
-      <TableRowColumn><Link to={"/event/" + event.id}>Edit</Link></TableRowColumn>
+      <TableRowColumn><Link to={"/ruleset/" + event.id}>Edit</Link></TableRowColumn>
     </TableRow>
   );
 }

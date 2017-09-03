@@ -70,7 +70,7 @@ function getItemsByIds(allItems, ids) {
 }
 
 function mapStateToProps(state, ownProps) {
-  const eventId = ownProps.match.params.id; // from the path `/course/:id`
+  const eventId = ownProps.match.params.id;
 
   let event = {id: '', name: ''};
   let ruleset = [];

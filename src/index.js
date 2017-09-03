@@ -9,6 +9,7 @@ import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import initialState from './reducers/initialState'
 
+
 const store = configureStore(initialState);
 store.dispatch(loadEvents());
 

@@ -40,13 +40,9 @@ class EventsTablePage extends Component {
     event.preventDefault();
     this.props.eventActions.createEvent()
       .then((event) => {
-        console.log("this:", this);
         this.redirect(event.id)
       })
-      .catch(err => {
-          console.log("err: ", err)
-        }
-      )
+      .catch()
   }
 
   redirect(eventId) {
@@ -67,11 +63,10 @@ class EventsTablePage extends Component {
           </TableHeader>
           <TableBody>
             {
-              Object.keys(events).map(key => events[key]).map(item => {
+              Object.keys(events).map(key => events[key]).filter(item => item.isFetched).map(item => {
                 let style;
                 item.active ? style = activeRowStyle : style = inactiveRowStyle;
                 return (<EventTableRow event={item} key={item.id} actions={actions} style = {style}/>)
-
               }
                 )
             }

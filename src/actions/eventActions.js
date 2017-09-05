@@ -13,6 +13,7 @@ export function loadRulesSuccess(rules) {
 export function loadSubrulesSuccess(subrules) {
   return {type: types.LOAD_SUBRULES_SUCCESS, subrules};
 }
+
 export function updateEventSuccess(event) {
   return {type: types.UPDATE_EVENT_SUCCESS, event};
 }
@@ -58,7 +59,6 @@ export function loadEvents() {
         dispatch(loadActionsSuccess(response.entities.actions));
       }
     }).catch(error => {
-      console.log("error: ", error);
     });
   };
 }
@@ -120,16 +120,14 @@ export function createEvent() {
 
 export function uploadEvent(event, store) {
   return function (dispatch) {
+    var zevent = store.events[event];
     return eventsApi.sendEventToServer(event, store)
       .then(res => res.json())
       .then(
         data => {
-          console.log("suc: ", data)
-          //dispatch({ type: 'LOAD_DATA_SUCCESS', data })
+          dispatch(updateEventSuccess(Object.assign({}, zevent, {isFetched: true})));
         },
         err => {
-          console.log("err: ", err)
-          //dispatch({type: 'LOAD_DATA_FAILURE', err})
         }
       )
   }

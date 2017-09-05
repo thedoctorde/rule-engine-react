@@ -60,6 +60,7 @@ class EventsApi {
               return item;
             })
           }
+          event.isFetched = true
           return event;
         });
         let normalizedData = normalize(newdata, eventsSchema);

@@ -133,7 +133,6 @@ export class Rule extends React.Component {
     );
 
     this.props.updateRule(newState);
-    //console.log("key: ", key, ", payload: ", payload)
   };
   handleChangeParam1 = (event, index, value) => {
     let newState = Object.assign(

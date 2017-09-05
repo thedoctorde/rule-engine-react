@@ -4,7 +4,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {numberize} from "../../../utils/helpers";
+import {numberize, typize} from "../../../utils/helpers";
 import * as actions from "../../../actions/subruleActions"
 import MultiSelectField from "../../common/MultiSelectField";
 
@@ -84,7 +84,7 @@ export class Subrule extends React.Component {
     let newState = Object.assign(
       {},
       this.props.subrule,
-      {value: value}
+      {value: typize(value)}
     );
     this.props.updateSubrule(newState)
   };
@@ -197,7 +197,13 @@ export class Subrule extends React.Component {
               </TextField>
             );
           default:
-            return false
+            return (
+              <TextField
+                floatingLabelText="Value"
+                value={this.props.subrule.value}
+                onChange={this.handleChangeStringValue}
+              >
+              </TextField>);
         }
       default:
         return false

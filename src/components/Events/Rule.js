@@ -13,6 +13,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MomentTiming from "./RuleTypeEditors/MomentTiming";
 import CompareParams from "./RuleTypeEditors/CompareParams";
 import AppAction from "./RuleTypeEditors/AppAction";
+import AppCategory from "./RuleTypeEditors/AppCategory";
 
 
 const style = {
@@ -234,7 +235,7 @@ export class Rule extends React.Component {
         );
       case "app_category":
         return(
-          <AppAction
+          <AppCategory
             paramName={this.props.rule.name}
             paramNames={getMappingParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeName}

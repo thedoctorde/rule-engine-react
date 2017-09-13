@@ -79,9 +79,6 @@ export class Param extends React.Component {
     const {
       paramName, paramNames, handleChangeParamName,
       operator, operators, handleChangeOperator,
-      value, handleChangeValue, handleChangeArrayValue, handleChangeSelectValue,
-      boolParams,
-
     } = this.props;
 
 
@@ -109,20 +106,6 @@ export class Param extends React.Component {
           }
         </SelectField>
         {this.valueControl()}
-        {/*{(operator === "in" || operator === "not in")*/}
-        {/*?*/}
-        {/*<TextField*/}
-        {/*floatingLabelText="Array"*/}
-        {/*value={value.constructor === Array ? value.join(",") : [value]}*/}
-        {/*onChange={handleChangeArrayValue}*/}
-        {/*/>*/}
-        {/*:*/}
-        {/*<TextField*/}
-        {/*floatingLabelText="Value"*/}
-        {/*value={value}*/}
-        {/*onChange={handleChangeValue}*/}
-        {/*/>*/}
-        {/*}*/}
 
       </div>
     )

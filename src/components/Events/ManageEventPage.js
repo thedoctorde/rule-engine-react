@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import EventForm from "./EventForm";
 import toArray from "../../utils/helpers"
-import {uploadEvent, updateEvent, createRule, updateRule, deleteRule} from "../../actions/eventActions"
+import {updateEvent, createRule, updateRule, deleteRule} from "../../actions/eventActions"
 import {createAction, updateAction, deleteAction} from "../../actions/actionActions"
 import * as subruleActions from "../../actions/subruleActions"
 import * as eventActions from "../../actions/eventActions"

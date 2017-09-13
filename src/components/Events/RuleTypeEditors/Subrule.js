@@ -89,27 +89,6 @@ export class Subrule extends React.Component {
     this.props.updateSubrule(newState)
   };
 
-  handleChangeCategory = (event, value) => {
-    let newState = Object.assign(
-      {},
-      this.props.subrule,
-      {
-        category: numberize(value, this.props.subrule.category),
-      }
-    );
-    this.props.updateSubrule(newState)
-  };
-
-  handleChangeAppcount = (event, value) => {
-    let newState = Object.assign(
-      {},
-      this.props.subrule,
-      {
-        appcount: numberize(value, this.props.subrule.appcount),
-      }
-    );
-    this.props.updateSubrule(newState)
-  };
 
   valueControl() {
     switch (this.props.subrule.value_type) {

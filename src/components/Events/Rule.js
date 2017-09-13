@@ -319,15 +319,27 @@ export class Rule extends React.Component {
 }
 
 function getSimpleParams(params) {
-  return params.filter(item => item.type === "simple")
+  return params.filter(item => item.type === "simple").sort((a,b) => {
+    if (a.id > b.id) return 1;
+    if (a.id < b.id) return -1;
+    return 0
+  })
 }
 
 function getMappingParams(params) {
-  return params.filter(item => (item.id === "foreapp") || (item.id=== "acap"))
+  return params.filter(item => (item.id === "foreapp") || (item.id=== "acap")).sort((a,b) => {
+    if (a.id > b.id) return 1;
+    if (a.id < b.id) return -1;
+    return 0
+  })
 }
 
 function getComplexParams(params) {
-  return params.filter(item => item.type === "complex")
+  return params.filter(item => item.type === "complex").sort((a,b) => {
+    if (a.id > b.id) return 1;
+    if (a.id < b.id) return -1;
+    return 0
+  })
 }
 
 export default Rule;

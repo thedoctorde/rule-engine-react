@@ -89,6 +89,15 @@ export class Subrule extends React.Component {
     this.props.updateSubrule(newState)
   };
 
+  handleChangeArrayValue = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.subrule,
+      {value: value.replace(", ", ",").replace(" ,", ",").split(',').map(item => typize(item))}
+    );
+    this.props.updateSubrule(newState);
+  };
+
 
   valueControl() {
     switch (this.props.subrule.value_type) {
@@ -105,7 +114,7 @@ export class Subrule extends React.Component {
               )
             }
           </SelectField>
-        )
+        );
       case "boolean":
         return (
           <SelectField
@@ -136,6 +145,15 @@ export class Subrule extends React.Component {
           >
           </TextField>);
       case "value":
+        let multipleValues = false;
+        switch (this.props.subrule.operator) {
+          case "in":
+          case"not in":
+            multipleValues = true;
+            break;
+          default:
+            break;
+        }
         switch (this.props.subrule.field) {
           case "category":
             if (this.props.subrule.operator === "in" || this.props.subrule.operator === "not in") {
@@ -171,7 +189,7 @@ export class Subrule extends React.Component {
               <TextField
                 floatingLabelText="Value"
                 value={this.props.subrule.value}
-                onChange={this.handleChangeNumberValue}
+                onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
               >
               </TextField>
             );
@@ -180,7 +198,7 @@ export class Subrule extends React.Component {
               <TextField
                 floatingLabelText="Value"
                 value={this.props.subrule.value}
-                onChange={this.handleChangeStringValue}
+                onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
               >
               </TextField>);
         }
@@ -242,9 +260,6 @@ export class Subrule extends React.Component {
             }/>
         </div>
         : false
-
-
-
     )
   }
 }
@@ -254,7 +269,6 @@ function mapDispatchToProps(dispatch) {
 
     updateSubrule: (rule) => {
       dispatch(actions.updateSubrule(rule))
-
     },
   }
 }

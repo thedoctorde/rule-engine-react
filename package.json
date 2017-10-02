@@ -23,6 +23,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "enzyme-adapter-react-15": "^1.0.0",
+    "jest": "^21.2.1",
     "redux-immutable-state-invariant": "^2.0.0"
   }
 }

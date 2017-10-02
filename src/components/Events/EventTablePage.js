@@ -48,6 +48,16 @@ class EventsTablePage extends Component {
     super(props, context);
     let events = Object.keys(this.props.events).map(key => this.props.events[key])
       .filter(item => item.isFetched);
+    let propsActions = toArray(props.actions);
+    events = events.map(e => {
+      if (propsActions.length > 0) {
+        let actions = props.events[e.id].actions.map(id => props.actions[id]);
+        let actionMoments = actions.map(item => item.moment);
+        let res = Object.assign({}, props.events[e.id], {actionMoments: actionMoments});
+        return res
+      }
+      return props.events[e.id]
+    });
     this.state = {
       allEvents: events,
       events: events,
@@ -90,7 +100,6 @@ class EventsTablePage extends Component {
   }
 
   handleFilterChange = (event, index, value) => {
-
     let events = this.state.allEvents;
     if (value) {
       events = events.filter(item => item.actionMoments && item.actionMoments.includes(value))

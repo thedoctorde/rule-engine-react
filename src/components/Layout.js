@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RulesTablePage from "./Events/EventTablePage";
+import EventTablePage from "./Events/EventTablePage";
 import ManageEventPage from "./Events/ManageEventPage";
 import {
   Route,
@@ -9,7 +9,7 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/" component={RulesTablePage}/>
+        <Route exact path="/" component={EventTablePage}/>
         <Route path="/ruleset/:id" component={ManageEventPage}/>
       </div>
     );

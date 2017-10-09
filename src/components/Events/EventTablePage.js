@@ -14,39 +14,12 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import toArray from "../../utils/helpers";
 
-const topRowStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
+export class EventTablePage extends Component {
 
-};
 
-const wrapperStyle = {
-  padding: "20px",
-};
-
-const activeRowStyle = {
-  background: "#fff",
-};
-
-const inactiveRowStyle = {
-  background: "#eee",
-};
-
-const filterControlStyle = {
-  display: "flex",
-  alignItems: "center",
-};
-
-const showAllBtnStyle = {
-  marginTop: 20,
-  marginLeft: 20,
-};
-
-class EventsTablePage extends Component {
   constructor(props, context) {
     super(props, context);
-    let events = Object.keys(this.props.events).map(key => this.props.events[key])
+    let events = Object.keys(props.events).map(key => props.events[key])
       .filter(item => item.isFetched);
     let propsActions = toArray(props.actions);
     events = events.map(e => {
@@ -71,6 +44,35 @@ class EventsTablePage extends Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.showAll = this.showAll.bind(this);
   }
+
+  topRowStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+
+  };
+
+  wrapperStyle = {
+    padding: "20px",
+  };
+
+  activeRowStyle = {
+    background: "#fff",
+  };
+
+  inactiveRowStyle = {
+    background: "#eee",
+  };
+
+  filterControlStyle = {
+    display: "flex",
+    alignItems: "center",
+  };
+
+  showAllBtnStyle = {
+    marginTop: 20,
+    marginLeft: 20,
+  };
 
   componentWillReceiveProps(nextProps) {
     let propsActions = toArray(nextProps.actions);
@@ -108,7 +110,7 @@ class EventsTablePage extends Component {
       {},
       this.state,
       {
-        filterByMoment: value,
+        filterByMoment: value ,
         events: events
       });
     this.setState(newState)
@@ -124,7 +126,10 @@ class EventsTablePage extends Component {
   }
 
   showAll(event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
+
     let newState = Object.assign({},
       this.state,
       {
@@ -142,26 +147,28 @@ class EventsTablePage extends Component {
     const {actions} = this.props;
     const {events} = this.state;
     return (
-      <div style={wrapperStyle}>
-        <div style={topRowStyle}>
+      <div style={this.wrapperStyle}>
+        <div style={this.topRowStyle}>
           <RaisedButton label="Add new ruleset"
                         onClick={this.createEvent}/>
-          <div style={filterControlStyle}>
+          <div style={this.filterControlStyle}>
             <SelectField
+              id="FilterSelectField"
               floatingLabelText="Filter rulesets"
               value={this.state.filterByMoment}
               onChange={this.handleFilterChange}>
               <MenuItem value={null} primaryText=""/>
               {
                 this.props.momentNames.map(item => {
-                  return <MenuItem value={item.id} primaryText={item.value + " (" + item.id + ")"} key={item.id}/>
+                  return <MenuItem className="menuitem" value={item.id} primaryText={item.value + " (" + item.id + ")"} key={item.id}/>
                 })
               }
             </SelectField>
             <RaisedButton
-              style={showAllBtnStyle}
+              id = "activeSwitcher"
+              style={this.showAllBtnStyle}
               label={this.state.showActiveOnlyBtnLabel}
-              primary="true"
+              primary={true}
               onClick={this.showAll}/>
           </div>
         </div>
@@ -175,7 +182,7 @@ class EventsTablePage extends Component {
             {
               events.filter(item => item.active || (!item.active && !this.state.showActiveOnly)).map(item => {
                   let style;
-                  item.active ? style = activeRowStyle : style = inactiveRowStyle;
+                  item.active ? style = this.activeRowStyle : style = this.inactiveRowStyle;
                   return (<EventTableRow event={item} key={item.id} actions={actions} style={style}/>)
                 }
               )
@@ -183,13 +190,12 @@ class EventsTablePage extends Component {
           </TableBody>
         </Table>
       </div>
-
     );
   }
 }
 
-EventsTablePage.contextTypes = {
-  router: React.PropTypes.func.isRequired
+EventTablePage.contextTypes = {
+ // router: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -209,4 +215,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventsTablePage);
+export default connect(mapStateToProps, mapDispatchToProps)(EventTablePage);

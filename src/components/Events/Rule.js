@@ -3,7 +3,7 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import HourBetween from "./RuleTypeEditors/HourBetween"
 import LastMoments from "./RuleTypeEditors/LastMoments";
-import Param from "./RuleTypeEditors/Param";
+import Param from "./RuleTypeEditors/SimpleParam";
 import Old from "./RuleTypeEditors/Old";
 import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";

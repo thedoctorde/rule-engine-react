@@ -712,40 +712,6 @@ let state = {
   ],
 };
 
-let state2 = {
-  events: {
-    "a8c1a9ec7bf14d68aaabd788223a40fd": {
-      "run_on": ["earcon"],
-      "ruleset": ["c0b244d5-10b5-4211-863c-0a2e16f033d3"],
-      "actions": ["7e825fe4-183f-42b2-b365-fb0aed3581e0"],
-      "priority": 1000,
-      "active": true,
-      "id": "a8c1a9ec7bf14d68aaabd788223a40fd",
-      "rev": 1,
-      "isFetched": true
-    },
-    "6755acab081e47b191bfc27c7d51e310": {
-      "run_on": ["scron"],
-      "ruleset": ["eccb0bf8-facd-4a47-8ab8-0bf0c6367b20", "a171f8aa-c6b4-486e-8a38-1562d01952de"],
-      "actions": ["23888717-85a9-473c-b9ce-89f66fdda99a"],
-      "priority": 1000,
-      "active": true,
-      "id": "6755acab081e47b191bfc27c7d51e310",
-      "rev": 1,
-      "isFetched": true
-    },
-    "2a3f29c31c1a49cfa7ee2f46dd61c2bc": {
-      "run_on": ["wpul"],
-      "ruleset": ["75b3f3f6-a0ea-4e2d-a58f-9f7c2750c2bc", "39d6217e-6c27-4e78-9812-f7b78296ff5c"],
-      "actions": ["8ac2fb59-03e2-466e-a05a-6aae45569443", "b3cd14a5-a827-452c-a091-0685592aa95b", "a67ed620-deff-476d-9517-7565b401bca3"],
-      "priority": 1000,
-      "active": false,
-      "id": "2a3f29c31c1a49cfa7ee2f46dd61c2bc",
-      "rev": 1,
-      "isFetched": true
-    },
-  },
-};
 
 const store = configureStoreForTest(state);
 
@@ -755,10 +721,6 @@ const mountWithContext = (node) => mount(node, {
   childContextTypes: {muiTheme: PropTypes.object},
 });
 
-const shallowWithContext = (node) => shallow(node, {
-  context: {muiTheme, Router},
-  childContextTypes: {muiTheme: PropTypes.object},
-}).dive.dive;
 
 
 describe('Dashboard', () => {

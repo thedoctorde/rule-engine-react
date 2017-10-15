@@ -9,12 +9,12 @@ const wrapperStyle = {
   flexWrap: "wrap",
 };
 
-export class Param extends React.Component {
+export class SimpleParam extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.getOperators = this.getOperators.bind(this)
-    this.getParamValue = this.getParamValue.bind(this)
+    this.getParamType = this.getParamType.bind(this)
     this.valueControl = this.valueControl.bind(this)
   }
 
@@ -34,7 +34,7 @@ export class Param extends React.Component {
           />
         );
       default:
-        if (this.getParamValue() === "BoolParam") {
+        if (this.getParamType() === "BoolParam") {
           return (
             <SelectField
               floatingLabelText="Value"
@@ -53,13 +53,15 @@ export class Param extends React.Component {
           <TextField
             floatingLabelText="Value"
             value={this.props.value}
-            onChange={this.props.handleChangeValue}
+            onChange={(event,value) => {
+              return this.props.handleChangeValue(event,value, this.getParamType())
+            }}
           />
         )
     }
   }
 
-  getParamValue() {
+  getParamType() {
     let param = this.props.paramNames.filter(item => item.id === this.props.paramName)[0];
     if (param !== undefined) {
       return this.props.paramNames.filter(item => item.id === this.props.paramName)[0].valueType
@@ -68,8 +70,13 @@ export class Param extends React.Component {
   }
 
   getOperators(operators) {
-    if (this.getParamValue() === "BoolParam") {
+    let paramValue = this.getParamType()
+    if ( paramValue === "BoolParam") {
       return operators.filter(item => item.id === "=")
+    } else if ( paramValue === "IntParam") {
+      return operators.filter(item => ["=", "!=", ">", ">=", "<", "<="].includes(item.id))
+    } else if (paramValue === "StringParam") {
+      return operators.filter(item => ["=", "!=", "in", "not in"].includes(item.id))
     }
     return operators
 
@@ -98,7 +105,9 @@ export class Param extends React.Component {
         <SelectField
           floatingLabelText="Operator"
           value={operator}
-          onChange={handleChangeOperator}>
+          onChange={handleChangeOperator}
+          disabled={paramName == "" || paramName === null }
+        >
           {
             this.getOperators(operators).map(item =>
               <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
@@ -113,4 +122,4 @@ export class Param extends React.Component {
 }
 
 
-export default Param
+export default SimpleParam

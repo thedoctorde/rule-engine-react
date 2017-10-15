@@ -15,12 +15,27 @@ export function numberize(newValue, oldValue) {
   return x;
 }
 
-export function typize(value) {
-  if (value === "true") return true;
-  if (value === "false") return false;
-  if (value === "") return value;
-  let num = Number(value);
-  if (!isNaN(num)) return num;
+export function typize(value, type) {
+  if (type) {
+    if (type === "BoolParam") {
+      if (value === "true") return true;
+      if (value === "false") return false;
+    }
+    if (type === "IntParam") {
+      let num = Number(value);
+      if (!isNaN(num)) return num;
+      return null;
+    }
+    if (type === "StringParam") {
+      return value
+    }
+  } else {
+    if (value === "true") return true;
+    if (value === "false") return false;
+    if (value === "") return value;
+    let num = Number(value);
+    if (!isNaN(num)) return num;
+  }
   return value;
 }
 

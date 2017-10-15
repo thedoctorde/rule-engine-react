@@ -195,7 +195,7 @@ export class EventTablePage extends Component {
 }
 
 EventTablePage.contextTypes = {
- // router: React.PropTypes.func.isRequired
+  //router: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

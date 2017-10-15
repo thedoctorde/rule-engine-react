@@ -3,7 +3,7 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import HourBetween from "./RuleTypeEditors/HourBetween"
 import LastMoments from "./RuleTypeEditors/LastMoments";
-import Param from "./RuleTypeEditors/SimpleParam";
+import SimpleParam from "./RuleTypeEditors/SimpleParam";
 import Old from "./RuleTypeEditors/Old";
 import OldVsNew from "./RuleTypeEditors/OldVsNew";
 import ComplexParam from "./RuleTypeEditors/ComplexParam";
@@ -93,12 +93,13 @@ export class Rule extends React.Component {
     );
     this.props.updateRule(newState)
   };
-  handleChangeValue = (event, value) => {
+  handleChangeValue = (event, value, type) => {
+    let newValue = typize(value, type);
     let newState = Object.assign(
       {},
       this.props.rule,
       {
-        value: typize(value),
+        value: newValue !== null ? newValue : this.props.rule.value,
       }
     );
     this.props.updateRule(newState);
@@ -177,7 +178,7 @@ export class Rule extends React.Component {
         );
       case "param" :
         return (
-          <Param
+          <SimpleParam
             paramName={this.props.rule.name}
             paramNames={getSimpleParams(this.props.paramNames)}
             handleChangeParamName={this.handleChangeName}

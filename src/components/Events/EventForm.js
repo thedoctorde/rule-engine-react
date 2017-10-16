@@ -32,8 +32,6 @@ const idStyle = {
   alignSelf: "center",
   lineHeight: "36px",
 }
-
-
 const infoHeaderStyle = {
   marginBottom: 5,
 }
@@ -52,11 +50,13 @@ class EventForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {open: false, message:""};
+    this.state = {open: false, message:"", errors:[]};
 
     this.handleChangeRunOn = this.handleChangeRunOn.bind(this);
 
     this.uploadEvents = this.uploadEvents.bind(this);
+
+    this.validate = this.validate.bind(this);
   }
 
   handleChangeRunOn = (event, key, payload) => {
@@ -96,15 +96,55 @@ class EventForm extends Component {
     this.props.updateEvent(newState)
   };
 
+  validate = () => {
+    this.state.errors = [];
+    //run_on
+    if (this.props.event.run_on === undefined || (this.props.event.run_on && this.props.event.run_on.length === 0)) {
+      this.state.errors[this.state.errors.length] = "'Run_on' should be selected"
+    }
+
+    if (this.props.event.active === undefined) {
+      this.state.errors[this.state.errors.length] = "'Active' should be selected"
+    }
+
+    if (this.props.event.priority === undefined) {
+      this.state.errors[this.state.errors.length] = "'Priority' should be selected"
+    }
+
+
+    if (this.props.event.ruleset && this.props.event.ruleset.length === 0) {
+      this.state.errors[this.state.errors.length] = "Add 1 or more rules"
+    }
+
+    if (this.props.event.actions && this.props.event.actions.length === 0) {
+      this.state.errors[this.state.errors.length] = "Add 1 or more rules"
+    }
+
+    if (this.state.errors && this.state.errors.length > 0) {
+      return false;
+    }
+
+    return true;
+  };
+
   uploadEvents(event) {
     event.preventDefault();
-    this.props.uploadEvent(this.props.event.id, this.props.store)
-      .then(() => {
-        this.setState({
-          message: "Ruleset saved successfully",
-          open: true,
-        });
+    if (this.validate()) {
+      this.uploadEvent(this.props.event.id, this.props.store)
+        .then(() => {
+          this.setState({
+            message: "Ruleset saved successfully",
+            open: true,
+            errors:[],
+          });
+        })
+    } else {
+      this.setState({
+        errors: this.state.errors,
+        message: this.state.errors.join("\n"),
+        open:true,
       })
+    }
   }
 
   handleRequestClose = () => {

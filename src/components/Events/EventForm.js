@@ -47,6 +47,7 @@ const BackButton = withRouter(({history}) => (
 ))
 
 class EventForm extends Component {
+
   constructor(props, context) {
     super(props, context);
 
@@ -117,7 +118,7 @@ class EventForm extends Component {
     }
 
     if (this.props.event.actions && this.props.event.actions.length === 0) {
-      this.state.errors[this.state.errors.length] = "Add 1 or more rules"
+      this.state.errors[this.state.errors.length] = "Add 1 or more actions"
     }
 
     if (this.state.errors && this.state.errors.length > 0) {
@@ -130,7 +131,7 @@ class EventForm extends Component {
   uploadEvents(event) {
     event.preventDefault();
     if (this.validate()) {
-      this.uploadEvent(this.props.event.id, this.props.store)
+      this.props.uploadEvent(this.props.event.id, this.props.store)
         .then(() => {
           this.setState({
             message: "Ruleset saved successfully",
@@ -298,6 +299,8 @@ class EventForm extends Component {
           message={this.state.message}
           autoHideDuration={4000}
           onRequestClose={this.handleRequestClose}
+          //contentstyle={this.alertBodyStyle}
+          bodyStyle={{ height: 'auto', lineHeight: '28px', padding: 24, whiteSpace: 'pre-line' }}
         />
       </div>
 

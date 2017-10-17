@@ -98,7 +98,7 @@ class EventForm extends Component {
   };
 
   validate = () => {
-    debugger;
+    //debugger;
     this.state.errors = [];
     //run_on
     if (this.props.event.run_on === undefined || (this.props.event.run_on && this.props.event.run_on.length === 0)) {
@@ -127,6 +127,42 @@ class EventForm extends Component {
             if (rule.name === undefined) ruleErrors.push("Simple param rule: name is empty");
             if (rule.operator === undefined) ruleErrors.push("Simple param rule: operator is empty");
             if (rule.value === undefined) ruleErrors.push("Simple param rule: value is empty");
+          }
+          if (rule.type === "app_action") {
+            if (rule.name === undefined) ruleErrors.push("App action rule: name is empty");
+            if (rule.operator === undefined) ruleErrors.push("App action rule: operator is empty");
+            if (rule.value === undefined || rule.value.length === 0) ruleErrors.push("App action rule: values is empty");
+          }
+          if (rule.type === "app_category") {
+            if (rule.name === undefined) ruleErrors.push("App category rule: name is empty");
+            if (rule.operator === undefined) ruleErrors.push("App category rule: operator is empty");
+            if (rule.value === undefined || rule.value.length === 0) ruleErrors.push("App category rule: values is empty");
+          }
+          if (rule.type === "old_vs_new") {
+            if (rule.name === undefined) ruleErrors.push("Old vs new rule: name is empty");
+            if (rule.operator === undefined) ruleErrors.push("Old vs new rule: operator is empty");
+          }
+          if (rule.type === "old") {
+            if (rule.name === undefined) ruleErrors.push("Old rule: name is empty");
+            if (rule.operator === undefined) ruleErrors.push("Old rule: operator is empty");
+            if (rule.value === undefined || rule.value.length === 0) ruleErrors.push("Old rule: value is empty");
+          }
+          if (rule.type === "hour_between") {
+            if (rule.min === undefined) ruleErrors.push("Between hours rule: FROM is empty");
+            if (rule.max === undefined) ruleErrors.push("Between hours rule: TO is empty");
+          }
+          if (rule.type === "last_moments") {
+            if (rule.name === undefined) ruleErrors.push("Last moments rule: name is empty");
+            if (rule.operator === undefined) ruleErrors.push("Last moments rule: operator is empty");
+          }
+          if (rule.type === "moment_timing") {
+            if (rule.name === undefined) ruleErrors.push("Moment timing rule: name is empty");
+            if (rule.after === undefined) ruleErrors.push("Moment timing rule: after is empty");
+          }
+          if (rule.type === "compare_params") {
+            if (rule.param1 === undefined) ruleErrors.push("Compare params rule: param1 is empty");
+            if (rule.operator === undefined) ruleErrors.push("Compare params rule: operator is empty");
+            if (rule.param2 === undefined) ruleErrors.push("Compare params rule: param2 is empty");
           }
         }
       }

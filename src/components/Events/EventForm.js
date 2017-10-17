@@ -99,6 +99,7 @@ class EventForm extends Component {
 
   validate = () => {
     this.state.errors = [];
+
     if (this.props.event.run_on === undefined || (this.props.event.run_on && this.props.event.run_on.length === 0)) {
       this.state.errors[this.state.errors.length] = "'Run_on' should be selected"
     }
@@ -111,10 +112,10 @@ class EventForm extends Component {
       this.state.errors[this.state.errors.length] = "'Priority' should be selected"
     }
 
-
     if (this.props.event.ruleset && this.props.event.ruleset.length === 0) {
       this.state.errors[this.state.errors.length] = "Add 1 or more rules"
     }
+
     if (this.props.ruleset.length > 0) {
       let ruleErrors = [];
       for (let rule of this.props.ruleset) {
@@ -124,7 +125,7 @@ class EventForm extends Component {
           if (rule.type === "param") {
             if (rule.name === undefined) ruleErrors.push("Simple param rule: name is empty");
             if (rule.operator === undefined) ruleErrors.push("Simple param rule: operator is empty");
-            if (rule.value === undefined) ruleErrors.push("Simple param rule: value is empty");
+            if (rule.value === undefined || rule.value.length ===  0) ruleErrors.push("Simple param rule: value is empty");
           }
           if (rule.type === "complex_param") {
             if (rule.name === undefined) ruleErrors.push("Complex param rule: name is empty");
@@ -136,7 +137,7 @@ class EventForm extends Component {
                   if (subrule.field === undefined) ruleErrors.push("Complex param rule: subrule's field is empty");
                   if (subrule.operator === undefined) ruleErrors.push("Complex param rule: subrule's operator is empty");
                   if (subrule.value_type === undefined) ruleErrors.push("Complex param rule: subrule's value type is empty");
-                  if (subrule.value === undefined) ruleErrors.push("Complex param rule: subrule's value is empty");
+                  if (subrule.value === undefined || subrule.value.length === 0) ruleErrors.push("Complex param rule: subrule's value is empty");
                 }
               }
             }

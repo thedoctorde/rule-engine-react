@@ -98,6 +98,7 @@ class EventForm extends Component {
   };
 
   validate = () => {
+    debugger;
     this.state.errors = [];
     //run_on
     if (this.props.event.run_on === undefined || (this.props.event.run_on && this.props.event.run_on.length === 0)) {
@@ -115,6 +116,25 @@ class EventForm extends Component {
 
     if (this.props.event.ruleset && this.props.event.ruleset.length === 0) {
       this.state.errors[this.state.errors.length] = "Add 1 or more rules"
+    }
+    if (this.props.ruleset.length > 0) {
+      let ruleErrors = [];
+      for (var rule of this.props.ruleset) {
+        if (rule.type === undefined) {
+          ruleErrors.push("You have to choose type of rule")
+        } else {
+          if (rule.type === "param") {
+            if (rule.name === undefined) ruleErrors.push("Simple param rule: name is empty");
+            if (rule.operator === undefined) ruleErrors.push("Simple param rule: operator is empty");
+            if (rule.value === undefined) ruleErrors.push("Simple param rule: value is empty");
+          }
+        }
+      }
+      if (ruleErrors.length > 0) {
+        for (var err of ruleErrors) {
+          this.state.errors[this.state.errors.length] = err
+        }
+      }
     }
 
     if (this.props.event.actions && this.props.event.actions.length === 0) {

@@ -14,6 +14,26 @@ const Old = ({
                  value, handleChangeValue
 
                }) => {
+  function getParamType(paramName, paramNames) {
+    let param = paramNames && paramNames.filter(item => item.id === paramName)[0];
+    if (param !== undefined) {
+      return param.valueType
+    }
+    return undefined
+  }
+
+  function getOperators(operators, paramName, paramNames) {
+    let paramValue = getParamType(paramName, paramNames);
+    if ( paramValue === "BoolParam") {
+      return operators.filter(item => ["=", "!="].includes(item.id))
+    } else if ( paramValue === "IntParam") {
+      return operators.filter(item => ["=", "!=", ">", ">=", "<", "<="].includes(item.id))
+    } else if (paramValue === "StringParam") {
+      return operators.filter(item => ["=", "!=", "in", "not in"].includes(item.id))
+    }
+    return operators
+  }
+
   return (
     <div style={wrapperStyle}>
       <SelectField
@@ -31,7 +51,7 @@ const Old = ({
         value={operator}
         onChange={handleChangeOperator}>
         {
-          operators.map(item =>
+          getOperators(operators, paramName, paramNames).map(item =>
             <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
           )
         }

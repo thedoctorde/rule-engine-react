@@ -185,9 +185,6 @@ export class Rule extends React.Component {
             operator={this.props.rule.operator}
             operators={this.props.operators}
             handleChangeOperator={this.handleChangeOperator}
-            // valueType={this.props.rule.valueType}
-            // valueTypes={this.props.valueTypes}
-            // handleChangeValueType={this.handleChangeValueType}
             value={this.props.rule.value}
             handleChangeValue={this.handleChangeValue}
             handleChangeArrayValue={this.handleChangeArrayValue}

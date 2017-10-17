@@ -79,7 +79,6 @@ export class SimpleParam extends React.Component {
       return operators.filter(item => ["=", "!=", "in", "not in"].includes(item.id))
     }
     return operators
-
   }
 
   render() {
@@ -106,7 +105,7 @@ export class SimpleParam extends React.Component {
           floatingLabelText="Operator"
           value={operator}
           onChange={handleChangeOperator}
-          disabled={paramName == "" || paramName === null }
+          disabled={paramName === "" || paramName === null }
         >
           {
             this.getOperators(operators).map(item =>

@@ -35,6 +35,14 @@ const subrulInsideStyle = {
 
 export class Subrule extends React.Component {
 
+  constructor(props, context) {
+    super(props, context);
+
+    this.getOperators = this.getOperators.bind(this);
+    this.getParamType = this.getParamType.bind(this);
+    this.valueControl = this.valueControl.bind(this);
+  }
+
   handleChangeField = (event, index, value) => {
     let newState = Object.assign(
       {},
@@ -207,6 +215,26 @@ export class Subrule extends React.Component {
     }
   }
 
+  getParamType() {
+    let param = this.props.subrule && this.props.subrule.field;
+    if (param !== undefined) {
+      return this.props.fields.filter(item => item.value === param && item.name == this.props.parentRuleParamName)[0].valueType
+    }
+    return undefined
+  }
+
+  getOperators(operators) {
+    let paramValue = this.getParamType()
+    if ( paramValue === "BoolParam") {
+      return operators.filter(item => item.id === "=")
+    } else if ( paramValue === "IntParam") {
+      return operators.filter(item => ["=", "!=", ">", ">=", "<", "<="].includes(item.id))
+    } else if (paramValue === "StringParam") {
+      return operators.filter(item => ["=", "!=", "in", "not in"].includes(item.id))
+    }
+    return operators
+  }
+
   render() {
 
     return (
@@ -232,7 +260,7 @@ export class Subrule extends React.Component {
               onChange={this.handleChangeOperator}
             >
               {
-                this.props.operators.map(item =>
+                this.getOperators(this.props.operators).map(item =>
                   <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
                 )
               }

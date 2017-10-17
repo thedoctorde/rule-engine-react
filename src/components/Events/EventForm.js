@@ -98,7 +98,6 @@ class EventForm extends Component {
   };
 
   validate = () => {
-    //debugger;
     this.state.errors = [];
     //run_on
     if (this.props.event.run_on === undefined || (this.props.event.run_on && this.props.event.run_on.length === 0)) {
@@ -175,6 +174,36 @@ class EventForm extends Component {
 
     if (this.props.event.actions && this.props.event.actions.length === 0) {
       this.state.errors[this.state.errors.length] = "Add 1 or more actions"
+    }
+
+    if (this.props.actions.length > 0) {
+      let actionErrors = [];
+      for (let action of this.props.actions) {
+        if (action.action === undefined) {
+          actionErrors.push("Action is missing")
+        } else {
+          if (action.action === "create") {
+            if (action.type === undefined) actionErrors.push("Create action: type is empty");
+            if (action.type === "delay") {
+              if (action.delay_time === undefined) actionErrors.push("Create action: delay time is empty")
+            }
+            if (action.moment === undefined) actionErrors.push("Create action: moment is empty");
+            if (action.expire_type === undefined) actionErrors.push("Create action: expire time is empty");
+            if (action.expire === undefined) actionErrors.push("Create action: last field is empty");
+          }
+          if (action.action === "remove") {
+            if (action.moment === undefined) actionErrors.push("Remove action: moment is empty");
+          }
+          if (action.action === "cancel") {
+            if (action.moment === undefined) actionErrors.push("Cancel action: moment is empty");
+          }
+        }
+      }
+      if (actionErrors.length > 0) {
+        for (var err of actionErrors) {
+          this.state.errors[this.state.errors.length] = err
+        }
+      }
     }
 
     if (this.state.errors && this.state.errors.length > 0) {

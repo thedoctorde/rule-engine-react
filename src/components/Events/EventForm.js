@@ -99,7 +99,6 @@ class EventForm extends Component {
 
   validate = () => {
     this.state.errors = [];
-    //run_on
     if (this.props.event.run_on === undefined || (this.props.event.run_on && this.props.event.run_on.length === 0)) {
       this.state.errors[this.state.errors.length] = "'Run_on' should be selected"
     }
@@ -118,7 +117,7 @@ class EventForm extends Component {
     }
     if (this.props.ruleset.length > 0) {
       let ruleErrors = [];
-      for (var rule of this.props.ruleset) {
+      for (let rule of this.props.ruleset) {
         if (rule.type === undefined) {
           ruleErrors.push("You have to choose type of rule")
         } else {
@@ -126,6 +125,21 @@ class EventForm extends Component {
             if (rule.name === undefined) ruleErrors.push("Simple param rule: name is empty");
             if (rule.operator === undefined) ruleErrors.push("Simple param rule: operator is empty");
             if (rule.value === undefined) ruleErrors.push("Simple param rule: value is empty");
+          }
+          if (rule.type === "complex_param") {
+            if (rule.name === undefined) ruleErrors.push("Complex param rule: name is empty");
+            if (rule.rules === undefined || rule.rules.length === 0 ) ruleErrors.push("Complex param rule: subrules should contains items");
+            if (rule.rules && rule.rules.length > 0 && this.props.subrules) {
+              for (let subruleId of rule.rules) {
+                let subrule = this.props.subrules[subruleId];
+                if (subrule) {
+                  if (subrule.field === undefined) ruleErrors.push("Complex param rule: subrule's field is empty");
+                  if (subrule.operator === undefined) ruleErrors.push("Complex param rule: subrule's operator is empty");
+                  if (subrule.value_type === undefined) ruleErrors.push("Complex param rule: subrule's value type is empty");
+                  if (subrule.value === undefined) ruleErrors.push("Complex param rule: subrule's value is empty");
+                }
+              }
+            }
           }
           if (rule.type === "app_action") {
             if (rule.name === undefined) ruleErrors.push("App action rule: name is empty");
@@ -166,7 +180,7 @@ class EventForm extends Component {
         }
       }
       if (ruleErrors.length > 0) {
-        for (var err of ruleErrors) {
+        for (let err of ruleErrors) {
           this.state.errors[this.state.errors.length] = err
         }
       }

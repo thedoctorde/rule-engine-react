@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-} from 'material-ui/Table';
+import { Table, TableBody, TableHeader,} from 'material-ui/Table';
 import EventTableRow from './EventTableRow'
 import RulesTableHeaderRow from "./EventTableHeaderRow";
 import * as eventActions from "../../actions/eventActions";
@@ -13,12 +9,16 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import toArray from "../../utils/helpers";
+import { parse, stringify as stringifyQuery } from 'qs'
+
+import {withRouter} from "react-router-dom";
 
 export class EventTablePage extends Component {
 
 
   constructor(props, context) {
     super(props, context);
+    const query = parse(this.props.location.search.substr(1));
     let events = Object.keys(props.events).map(key => props.events[key])
       .filter(item => item.isFetched);
     let propsActions = toArray(props.actions);
@@ -34,7 +34,7 @@ export class EventTablePage extends Component {
     this.state = {
       allEvents: events,
       events: events,
-      filterByMoment: "",
+      filterByMoment: query.filter ? query.filter : "",
       showActiveOnly: true,
       showActiveOnlyBtnLabel: "Show all"
     };
@@ -43,6 +43,7 @@ export class EventTablePage extends Component {
     this.redirect = this.redirect.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.showAll = this.showAll.bind(this);
+
   }
 
   topRowStyle = {
@@ -89,7 +90,7 @@ export class EventTablePage extends Component {
 
     if (this.state.filterByMoment) {
       newEvents = newEvents.filter(item => {
-        return item.actionMoments && item.actionMoments.includes(this.props.filterByMoment)
+        return item.actionMoments && item.actionMoments.includes(this.state.filterByMoment)
       })
     }
     let newState = Object.assign(
@@ -114,7 +115,20 @@ export class EventTablePage extends Component {
         filterByMoment: value ,
         events: events
       });
-    this.setState(newState)
+    this.setState(newState);
+
+    const query = parse(this.props.location.search.substr(1));
+    let newQuery;
+    if (value && value !== "") {
+      newQuery = stringifyQuery(Object.assign({}, query, {filter: value}));
+    } else {
+      newQuery = stringifyQuery(Object.assign({}, query, {filter: undefined}));
+    }
+
+    let newLocation = Object.assign({}, this.props.location, {search: "?" + newQuery});
+    this.props.history.push(newLocation);
+    this.props.history.go()
+
   };
 
   createEvent(event) {
@@ -216,4 +230,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventTablePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventTablePage));

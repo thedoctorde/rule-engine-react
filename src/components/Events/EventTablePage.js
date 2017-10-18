@@ -53,7 +53,8 @@ export class EventTablePage extends Component {
   };
 
   wrapperStyle = {
-    padding: "20px",
+    padding: "0px 20px",
+
   };
 
   activeRowStyle = {

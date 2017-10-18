@@ -98,22 +98,21 @@ class EventForm extends Component {
   };
 
   validate = () => {
-    this.state.errors = [];
-
+    let errors = [];
     if (this.props.event.run_on === undefined || (this.props.event.run_on && this.props.event.run_on.length === 0)) {
-      this.state.errors[this.state.errors.length] = "'Run_on' should be selected"
+      errors[errors.length] = "'Run_on' should be selected"
     }
 
     if (this.props.event.active === undefined) {
-      this.state.errors[this.state.errors.length] = "'Active' should be selected"
+      errors[errors.length] = "'Active' should be selected"
     }
 
     if (this.props.event.priority === undefined) {
-      this.state.errors[this.state.errors.length] = "'Priority' should be selected"
+      errors[errors.length] = "'Priority' should be selected"
     }
 
     if (this.props.event.ruleset && this.props.event.ruleset.length === 0) {
-      this.state.errors[this.state.errors.length] = "Add 1 or more rules"
+      errors[errors.length] = "Add 1 or more rules"
     }
 
     if (this.props.ruleset.length > 0) {
@@ -182,13 +181,13 @@ class EventForm extends Component {
       }
       if (ruleErrors.length > 0) {
         for (let err of ruleErrors) {
-          this.state.errors[this.state.errors.length] = err
+          errors[errors.length] = err
         }
       }
     }
 
     if (this.props.event.actions && this.props.event.actions.length === 0) {
-      this.state.errors[this.state.errors.length] = "Add 1 or more actions"
+      errors[errors.length] = "Add 1 or more actions"
     }
 
     if (this.props.actions.length > 0) {
@@ -216,21 +215,22 @@ class EventForm extends Component {
       }
       if (actionErrors.length > 0) {
         for (var err of actionErrors) {
-          this.state.errors[this.state.errors.length] = err
+          errors[errors.length] = err
         }
       }
     }
 
-    if (this.state.errors && this.state.errors.length > 0) {
-      return false;
+    if (errors && errors.length > 0) {
+      return errors;
     }
 
-    return true;
+    return undefined;
   };
 
   uploadEvents(event) {
     event.preventDefault();
-    if (this.validate()) {
+    let errors = this.validate();
+    if (!errors) {
       this.props.uploadEvent(this.props.event.id, this.props.store)
         .then(() => {
           this.setState({
@@ -240,11 +240,13 @@ class EventForm extends Component {
           });
         })
     } else {
-      this.setState({
-        errors: this.state.errors,
-        message: this.state.errors.join("\n"),
-        open:true,
-      })
+      this.setState(
+        Object.assign({}, this.state,
+          {
+            message: errors.join("\n"),
+            open:true,
+          })
+      )
     }
   }
 

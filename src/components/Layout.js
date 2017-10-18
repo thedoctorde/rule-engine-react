@@ -13,8 +13,8 @@ class Layout extends Component {
             {window.app_version}
           </ToolbarGroup>
           <ToolbarGroup >
-            <a href="https://www.google.com" style={{marginRight: "22px"}}>Link 1</a>
-            <a href="https://www.my.com">Link 2</a>
+            {window.headerLinks.map(item =>
+              <a href={item.url} style={{marginLeft: "22px"}}>{item.name}</a>)}
           </ToolbarGroup>
         </Toolbar>
         <Route exact path="/" component={EventTablePage}/>

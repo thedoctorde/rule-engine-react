@@ -19,6 +19,7 @@ import paramNames from './paramNameReducer';
 import mappingNames from './mappingNameReducer';
 import mappingPossibleValues from './mappingPossibleValuesReducer';
 import {fieldsReducer as fields, boolParamsReducer as boolParams} from './fieldsReducer';
+import {variableReducer as filterByMoment} from "./variableReducer";
 
 
 const rootReducer = combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   actionList,
   actionExpireTypes,
   actionTypes,
+  filterByMoment,
 });
 
 export default rootReducer;

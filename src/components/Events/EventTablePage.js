@@ -4,6 +4,7 @@ import { Table, TableBody, TableHeader,} from 'material-ui/Table';
 import EventTableRow from './EventTableRow'
 import RulesTableHeaderRow from "./EventTableHeaderRow";
 import * as eventActions from "../../actions/eventActions";
+import * as filterActions from "../../actions/variableActions";
 import {bindActionCreators} from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
@@ -34,7 +35,7 @@ export class EventTablePage extends Component {
     this.state = {
       allEvents: events,
       events: events,
-      filterByMoment: query.filter ? query.filter : "",
+      //filterByMoment: query.filter ? query.filter : "",
       showActiveOnly: true,
       showActiveOnlyBtnLabel: "Show all"
     };
@@ -43,7 +44,9 @@ export class EventTablePage extends Component {
     this.redirect = this.redirect.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.showAll = this.showAll.bind(this);
-
+    if (query.filter) {
+      this.props.filterActions.updateFilterByMoment(query.filter);
+    }
   }
 
   topRowStyle = {
@@ -88,9 +91,9 @@ export class EventTablePage extends Component {
       return nextProps.events[key]
     });
 
-    if (this.state.filterByMoment) {
+    if (nextProps.filterByMoment) {
       newEvents = newEvents.filter(item => {
-        return item.actionMoments && item.actionMoments.includes(this.state.filterByMoment)
+        return item.actionMoments && item.actionMoments.includes(nextProps.filterByMoment)
       })
     }
     let newState = Object.assign(
@@ -112,7 +115,7 @@ export class EventTablePage extends Component {
       {},
       this.state,
       {
-        filterByMoment: value ,
+        filterByMoment: value,
         events: events
       });
     this.setState(newState);
@@ -126,8 +129,8 @@ export class EventTablePage extends Component {
     }
 
     let newLocation = Object.assign({}, this.props.location, {search: "?" + newQuery});
+    this.props.filterActions.updateFilterByMoment(value);
     this.props.history.push(newLocation);
-    this.props.history.go()
 
   };
 
@@ -170,7 +173,7 @@ export class EventTablePage extends Component {
             <SelectField
               id="FilterSelectField"
               floatingLabelText="Filter rulesets"
-              value={this.state.filterByMoment}
+              value={this.props.filterByMoment}
               onChange={this.handleFilterChange}>
               <MenuItem value={null} primaryText=""/>
               {
@@ -219,12 +222,14 @@ function mapStateToProps(state, ownProps) {
     actions: state.actions,
     ruleTypes: state.ruleTypes,
     momentNames: state.momentNames,
+    filterByMoment: state.filterByMoment,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    eventActions: bindActionCreators(eventActions, dispatch)
+    eventActions: bindActionCreators(eventActions, dispatch),
+    filterActions: bindActionCreators(filterActions, dispatch),
   };
 
 }

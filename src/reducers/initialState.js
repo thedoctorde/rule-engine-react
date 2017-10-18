@@ -51,4 +51,6 @@ export default {
     {id:"expired_at", value:"expired at"}
   ],
 
+  filterByMoment: "",
+
 };

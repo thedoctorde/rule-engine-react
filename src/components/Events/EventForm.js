@@ -9,6 +9,8 @@ import TextField from 'material-ui/TextField';
 import { withRouter } from 'react-router-dom'
 import Snackbar from 'material-ui/Snackbar';
 
+
+
 const addButtonStyle = {
   marginBottom: 15,
 };
@@ -42,7 +44,7 @@ const BackButton = withRouter(({history}) => (
     style={backButtonStyle}
     secondary={true}
     onClick={()=>{
-      history.push('/')}}
+      history.go(-1)}}
   />
 ))
 

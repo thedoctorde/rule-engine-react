@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Table, TableBody, TableHeader,} from 'material-ui/Table';
+import {Table, TableBody, TableHeader,} from 'material-ui/Table';
 import EventTableRow from './EventTableRow'
 import RulesTableHeaderRow from "./EventTableHeaderRow";
 import * as eventActions from "../../actions/eventActions";
@@ -10,7 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import toArray from "../../utils/helpers";
-import { parse, stringify as stringifyQuery } from 'qs'
+import {parse, stringify as stringifyQuery} from 'qs'
 
 import {withRouter} from "react-router-dom";
 
@@ -32,10 +32,16 @@ export class EventTablePage extends Component {
       }
       return props.events[e.id]
     });
+    let allEvents = events;
+    let visibleEvents = events;
+    if (this.props.filterByMoment) {
+      visibleEvents = visibleEvents.filter(item => {
+        return item.actionMoments && item.actionMoments.includes(this.props.filterByMoment)
+      })
+    }
     this.state = {
-      allEvents: events,
-      events: events,
-      //filterByMoment: query.filter ? query.filter : "",
+      allEvents: allEvents,
+      events: visibleEvents,
       showActiveOnly: true,
       showActiveOnlyBtnLabel: "Show all"
     };
@@ -178,12 +184,13 @@ export class EventTablePage extends Component {
               <MenuItem value={null} primaryText=""/>
               {
                 this.props.momentNames.map(item => {
-                  return <MenuItem className="menuitem" value={item.id} primaryText={item.value + " (" + item.id + ")"} key={item.id}/>
+                  return <MenuItem className="menuitem" value={item.id} primaryText={item.value + " (" + item.id + ")"}
+                                   key={item.id}/>
                 })
               }
             </SelectField>
             <RaisedButton
-              id = "activeSwitcher"
+              id="activeSwitcher"
               style={this.showAllBtnStyle}
               label={this.state.showActiveOnlyBtnLabel}
               primary={true}

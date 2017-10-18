@@ -12,6 +12,10 @@ class Layout extends Component {
           <ToolbarGroup firstChild={true} style={{paddingLeft: "22px"}}>
             {window.app_version}
           </ToolbarGroup>
+          <ToolbarGroup >
+            <a href="https://www.google.com" style={{marginRight: "22px"}}>Link 1</a>
+            <a href="https://www.my.com">Link 2</a>
+          </ToolbarGroup>
         </Toolbar>
         <Route exact path="/" component={EventTablePage}/>
         <Route path="/ruleset/:id" component={ManageEventPage}/>

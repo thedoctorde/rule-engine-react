@@ -3,6 +3,7 @@ import EventTablePage from "./Events/EventTablePage";
 import ManageEventPage from "./Events/ManageEventPage";
 import { Route } from 'react-router-dom';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import HelpPage from "./Help/HelpPage";
 
 class Layout extends Component {
   render() {
@@ -19,6 +20,7 @@ class Layout extends Component {
         </Toolbar>
         <Route exact path="/" component={EventTablePage}/>
         <Route path="/ruleset/:id" component={ManageEventPage}/>
+        <Route path="/help" component={HelpPage}></Route>
       </div>
     );
   }

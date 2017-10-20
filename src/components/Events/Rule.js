@@ -35,7 +35,7 @@ const deleteButtonStyle = {
 };
 
 const helpButtonStyle = {
-  marginRight: "5px",
+  marginRight: "15px",
   display: "flex",
   alignSelf: "center",
 }

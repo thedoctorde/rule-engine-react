@@ -3,7 +3,6 @@ import {mount, shallow, configure} from 'enzyme'
 import {EventTablePage} from "./EventTablePage";
 import Adapter from 'enzyme-adapter-react-15';
 import {configureStoreForTest} from '../../store/configureStore';
-import {Provider} from 'react-redux';
 import {MemoryRouter as Router} from 'react-router-dom'
 import EventTableRow from './EventTableRow';
 import RaisedButton from 'material-ui/RaisedButton';

@@ -32,8 +32,14 @@ const deleteButtonStyle = {
   marginRight: 12,
   display: "flex",
   alignSelf: "center",
-
 };
+
+const helpButtonStyle = {
+  marginRight: "5px",
+  display: "flex",
+  alignSelf: "center",
+}
+
 
 export class Rule extends React.Component {
   constructor(props, context) {
@@ -218,7 +224,7 @@ export class Rule extends React.Component {
         );
 
       case "app_action":
-        return(
+        return (
           <AppAction
             paramName={this.props.rule.name}
             paramNames={getMappingParams(this.props.paramNames)}
@@ -232,7 +238,7 @@ export class Rule extends React.Component {
           />
         );
       case "app_category":
-        return(
+        return (
           <AppCategory
             paramName={this.props.rule.name}
             paramNames={getMappingParams(this.props.paramNames)}
@@ -259,7 +265,7 @@ export class Rule extends React.Component {
           />
         );
       case "moment_timing":
-        return(
+        return (
           <MomentTiming
             name={this.props.rule.name}
             moments={this.props.momentNames}
@@ -269,7 +275,7 @@ export class Rule extends React.Component {
           />
         );
       case "compare_params":
-        return(
+        return (
           <CompareParams
             param1={this.props.rule.param1}
             param2={this.props.rule.param2}
@@ -291,7 +297,11 @@ export class Rule extends React.Component {
     const {eventId, deleteRule} = this.props;
     return (
       <div style={style}>
-
+        {this.props.rule.type ?
+          <a
+            style={helpButtonStyle}
+            href={window.helpLinks[this.props.rule.type].link}>?</a>
+          : false}
         <SelectField
           floatingLabelText="Rule Type"
           value={this.props.rule.type}
@@ -317,7 +327,7 @@ export class Rule extends React.Component {
 }
 
 function getSimpleParams(params) {
-  return params.filter(item => item.type === "simple").sort((a,b) => {
+  return params.filter(item => item.type === "simple").sort((a, b) => {
     if (a.id > b.id) return 1;
     if (a.id < b.id) return -1;
     return 0
@@ -325,7 +335,7 @@ function getSimpleParams(params) {
 }
 
 function getMappingParams(params) {
-  return params.filter(item => (item.id === "foreapp") || (item.id=== "acap")).sort((a,b) => {
+  return params.filter(item => (item.id === "foreapp") || (item.id === "acap")).sort((a, b) => {
     if (a.id > b.id) return 1;
     if (a.id < b.id) return -1;
     return 0
@@ -333,7 +343,7 @@ function getMappingParams(params) {
 }
 
 function getComplexParams(params) {
-  return params.filter(item => item.type === "complex").sort((a,b) => {
+  return params.filter(item => item.type === "complex").sort((a, b) => {
     if (a.id > b.id) return 1;
     if (a.id < b.id) return -1;
     return 0

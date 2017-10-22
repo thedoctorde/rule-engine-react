@@ -14,22 +14,22 @@ const MomentTiming = ({
   return (
     <div style={wrapperStyle}>
       <SelectField
-        floatingLabelText="Name"
+        floatingLabelText="Moment"
         value={name}
         onChange={handleChangeName}>
         {
           moments.map(item =>
-            <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
+            <MenuItem value={item.id} primaryText={item.value + " (" + item.id + ")"} key={item.id}/>
           )
         }
       </SelectField>
       <SelectField
-        floatingLabelText="After"
+        floatingLabelText="Happened not before"
         value={after}
         onChange={handleChangeAfter}>
         {
           moments.map(item =>
-            <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
+            <MenuItem value={item.id} primaryText={item.value + " (" + item.id + ")"} key={item.id}/>
           )
         }
       </SelectField>

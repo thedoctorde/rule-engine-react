@@ -171,8 +171,8 @@ class EventForm extends Component {
             if (rule.operator === undefined) ruleErrors.push("Last moments rule: operator is empty");
           }
           if (rule.type === "moment_timing") {
-            if (rule.name === undefined) ruleErrors.push("Moment timing rule: name is empty");
-            if (rule.after === undefined) ruleErrors.push("Moment timing rule: after is empty");
+            if (rule.name === undefined) ruleErrors.push("Moment timing rule: moment is empty");
+            if (rule.after === undefined) ruleErrors.push("Moment timing rule: field 'Happened not before' is empty");
           }
           if (rule.type === "compare_params") {
             if (rule.param1 === undefined) ruleErrors.push("Compare params rule: param1 is empty");

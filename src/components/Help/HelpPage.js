@@ -6,11 +6,24 @@ class HelpPage extends Component {
       <div style={{marginLeft: "20px"}}>
         <section>
           <h2>Rule Types</h2>
-          <a href={window.urlForRules}>Link for rule types</a>
+          {window.ruleTypes.map(item => {
+            return(
+              <div>
+                <a href={window.helpPage["rules"]["links"][item.id].link}>{window.helpPage["rules"]["links"][item.id].name}</a>
+              </div>
+            )
+          })}
+
         </section>
         <section>
           <h2>Params</h2>
-          <a href={window.urlForParams}>Link for params</a>
+          {/*{window.ruleTypes.map(item => {*/}
+            {/*return(*/}
+              {/*<div>*/}
+                {/*<a href={window.helpPage["rules"]["links"][item.id].link}>{window.helpPage["rules"]["links"][item.id].name}</a>*/}
+              {/*</div>*/}
+            {/*)*/}
+          {/*})}*/}
         </section>
 
       </div>

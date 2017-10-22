@@ -302,7 +302,7 @@ export class Rule extends React.Component {
         {this.props.rule.type ?
           <a
             style={helpButtonStyle}
-            href={window.helpPage["rules"]["links"][this.props.rule.type].link}>?</a>
+            href={window.helpLinks[this.props.rule.type].link}>?</a>
           : false}
         <SelectField
           floatingLabelText="Rule Type"

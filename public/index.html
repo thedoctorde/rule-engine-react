@@ -262,27 +262,24 @@
         "moment_timing": { link: "/help/moment_timing", name:"Moment timing"},
         "compare_params": { link: "/help/compare_params", name:"Compare params"},
       };
-      window.helpPage = {
-        "rules": {
-          "links": {
-            "param": { link: "/help/param", name:"Simple param"},
-            "complex_param": { link: "/help/complex-param", name:"Complex param"},
-            "app_action": { link: "/help/app_action", name:"App Action"},
-            "app_category": { link: "/help/app_category", name:"App Category"},
-            "old_vs_new": { link: "/help/old_vs_new", name:"Old vs new"},
-            "old": { link: "/help/old", name:"Old value"},
-            "hour_between": { link: "/help/hour_between", name:"Between hours"},
-            "last_moments": { link: "/help/last_moments", name:"Last moments"},
-            "moment_timing": { link: "/help/moment_timing", name:"Moment timing"},
-            "compare_params": { link: "/help/compare_params", name:"Compare params"},
-          }
-        },
-        "actions": {
-          "links": {
+      window.helpPage = [
+        {
+          category: "rules",
+          links: [
+            { link: "/help/param", name:"Simple param"},
+            { link: "/help/complex-param", name:"Complex param"},
+            { link: "/help/app_action", name:"App Action"},
+            { link: "/help/app_category", name:"App Category"},
+            { link: "/help/old_vs_new", name:"Old vs new"},
+            { link: "/help/old", name:"Old value"},
+            { link: "/help/hour_between", name:"Between hours"},
+            { link: "/help/last_moments", name:"Last moments"},
+            { link: "/help/moment_timing", name:"Moment timing"},
+            { link: "/help/compare_params", name:"Compare params"},
+          ]
+        }
+      ];
 
-          }
-        },
-      }
     </script>
     <div id="root"></div>
     <!--

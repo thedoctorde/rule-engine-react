@@ -37,6 +37,7 @@ const AppCategory = ({
         }
       </SelectField>
       <MultiSelectField
+
         values={mappingValues}
         possibleValues={mappingPossibleValues}
         handleChange={handleChangeMappingValues}

@@ -19,6 +19,7 @@ const MultiSelectField = ({values, possibleValues, handleChange, floatingLabelTe
 
   return(
     <SelectField
+      autoWidth={true}
       multiple={true}
       hintText="Select"
       value={values}

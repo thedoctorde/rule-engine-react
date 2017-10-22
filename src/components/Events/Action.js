@@ -132,10 +132,11 @@ export class Action extends React.Component {
         <SelectField
           floatingLabelText="Moment"
           value={this.props.action.moment}
+          autoWidth={true}
           onChange={this.handleMomentChange}>
           {
             this.props.momentNames.map(a => {
-              return <MenuItem value={a.id} primaryText={a.value} key={a.id}/>
+              return <MenuItem value={a.id} primaryText={a.value + " (" + a.id + ")"} key={a.id}/>
             })
           }
         </SelectField>

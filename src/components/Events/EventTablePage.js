@@ -177,6 +177,7 @@ export class EventTablePage extends Component {
                         onClick={this.createEvent}/>
           <div style={this.filterControlStyle}>
             <SelectField
+              autoWidth={true}
               id="FilterSelectField"
               floatingLabelText="Filter rulesets"
               value={this.props.filterByMoment}

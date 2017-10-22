@@ -14,6 +14,7 @@ const MomentTiming = ({
   return (
     <div style={wrapperStyle}>
       <SelectField
+        autoWidth={true}
         floatingLabelText="Moment"
         value={name}
         onChange={handleChangeName}>
@@ -24,6 +25,7 @@ const MomentTiming = ({
         }
       </SelectField>
       <SelectField
+        autoWidth={true}
         floatingLabelText="Happened not before"
         value={after}
         onChange={handleChangeAfter}>

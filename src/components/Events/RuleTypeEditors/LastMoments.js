@@ -32,12 +32,13 @@ const LastMoments = ({
         }
       </SelectField>
       <SelectField
+        autoWidth={true}
         floatingLabelText="Name"
         value={name}
         onChange={handleChangeName}>
         {
           momentNames.map(item => {
-              return <MenuItem value={item.id} primaryText={item.value + "(" + item.id + ")"} key={item.id}/>
+              return <MenuItem value={item.id} primaryText={item.value + " (" + item.id + ")"} key={item.id}/>
             }
           )
         }

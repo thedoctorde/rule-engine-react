@@ -101,6 +101,16 @@ class EventForm extends Component {
     );
     this.props.updateEvent(newState)
   };
+  handleChangeDescription = (event, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.event,
+      {
+        description: value,
+      }
+    );
+    this.props.updateEvent(newState)
+  };
 
   validate = () => {
     let errors = [];
@@ -337,13 +347,13 @@ class EventForm extends Component {
               <div style={{marginLeft:"auto", }}>
                 <TextField
                   floatingLabelText="description"
-                  value={window.ruleDescription}
+                  value={this.props.event.description}
                   multiLine={true}
                   textareaStyle={descriptionStyle}
                   rowsMax={3}
                   fullWidth={true}
-                  disabled={true}
                   underlineDisabledStyle = {{border:"none"}}
+                  onChange={this.handleChangeDescription}
                 />
               </div>
             </div>
@@ -409,16 +419,12 @@ class EventForm extends Component {
           primary={true}
           style={saveButtonStyle}
           onClick={this.uploadEvents}
-          // onClick={() => {
-          //   uploadEvents(event.id, store)
-          // }}
         />
         <Snackbar
           open={this.state.open}
           message={this.state.message}
           autoHideDuration={4000}
           onRequestClose={this.handleRequestClose}
-          //contentstyle={this.alertBodyStyle}
           bodyStyle={{ height: 'auto', lineHeight: '28px', padding: 24, whiteSpace: 'pre-line' }}
         />
       </div>

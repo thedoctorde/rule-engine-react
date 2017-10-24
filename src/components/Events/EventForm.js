@@ -303,59 +303,63 @@ class EventForm extends Component {
       <div style={wrapperStyle}>
 
         {this.props.event ?
-          <div>
-            <div style={topRowStyle}>
+          <div style={{display:"flex"}}>
+            <div>
+              <div style={topRowStyle}>
 
-              <BackButton/>
+                <BackButton/>
 
-              <h3 style={idStyle}>
-                ID: {this.props.event.id}
-              </h3>
+                <h3 style={idStyle}>
+                  ID: {this.props.event.id}
+                </h3>
+              </div>
+              <h2 style={infoHeaderStyle}>Info</h2>
+              <div style={topRowStyle}>
+
+                <div>
+                  <MultiSelectField
+                    floatingLabelText="Run on"
+                    values={event.run_on}
+                    possibleValues={paramNames}
+                    handleChange={this.handleChangeRunOn}
+                  />
+
+                </div>
+                <div>
+                  <SelectField
+                    floatingLabelText="Active"
+                    value={event.active}
+                    onChange={this.handleChangeActive}
+                  >
+                    {
+                      this.props.boolParams.map(item =>
+                        <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
+                      )
+                    }
+                  </SelectField>
+                </div>
+                <div>
+                  <TextField
+                    floatingLabelText="priority"
+                    value={this.props.event.priority}
+                    onChange={this.handleChangePriority}
+                  />
+                </div>
+
+              </div>
             </div>
-            <h2 style={infoHeaderStyle}>Info</h2>
-            <div style={topRowStyle}>
-
-              <div>
-                <MultiSelectField
-                  floatingLabelText="Run on"
-                  values={event.run_on}
-                  possibleValues={paramNames}
-                  handleChange={this.handleChangeRunOn}
-                />
-
-              </div>
-              <div>
-                <SelectField
-                  floatingLabelText="Active"
-                  value={event.active}
-                  onChange={this.handleChangeActive}
-                >
-                  {
-                    this.props.boolParams.map(item =>
-                      <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
-                    )
-                  }
-                </SelectField>
-              </div>
-              <div>
-                <TextField
-                  floatingLabelText="priority"
-                  value={this.props.event.priority}
-                  onChange={this.handleChangePriority}
-                />
-              </div>
-              <div style={{marginLeft:"auto", }}>
-                <TextField
-                  floatingLabelText="description"
-                  value={this.props.event.description}
-                  multiLine={true}
-                  textareaStyle={descriptionStyle}
-                  rowsMax={3}
-                  fullWidth={true}
-                  underlineDisabledStyle = {{border:"none"}}
-                  onChange={this.handleChangeDescription}
-                />
-              </div>
+            <div style={{marginLeft:"auto", marginRight: "auto", marginTop:"41px" }}>
+              <TextField
+                floatingLabelText="description"
+                value={this.props.event.description}
+                multiLine={true}
+                textareaStyle={descriptionStyle}
+                rowsMax={3}
+                rows={3}
+                fullWidth={true}
+                underlineDisabledStyle = {{border:"none"}}
+                onChange={this.handleChangeDescription}
+              />
             </div>
           </div>
           : false

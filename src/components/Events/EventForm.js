@@ -37,6 +37,9 @@ const idStyle = {
 const infoHeaderStyle = {
   marginBottom: 5,
 }
+const descriptionStyle = {
+  width: "500px"
+}
 
 const BackButton = withRouter(({history}) => (
   <RaisedButton
@@ -329,6 +332,18 @@ class EventForm extends Component {
                   floatingLabelText="priority"
                   value={this.props.event.priority}
                   onChange={this.handleChangePriority}
+                />
+              </div>
+              <div style={{marginLeft:"auto", }}>
+                <TextField
+                  floatingLabelText="description"
+                  value={window.ruleDescription}
+                  multiLine={true}
+                  textareaStyle={descriptionStyle}
+                  rowsMax={3}
+                  fullWidth={true}
+                  disabled={true}
+                  underlineDisabledStyle = {{border:"none"}}
                 />
               </div>
             </div>

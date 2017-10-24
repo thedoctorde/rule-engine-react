@@ -348,14 +348,14 @@ class EventForm extends Component {
 
               </div>
             </div>
-            <div style={{marginLeft:"auto", marginRight: "auto", marginTop:"41px" }}>
+            <div style={{marginLeft:"auto", marginRight: "auto", marginTop:"17px" }}>
               <TextField
                 floatingLabelText="description"
                 value={this.props.event.description}
                 multiLine={true}
                 textareaStyle={descriptionStyle}
-                rowsMax={3}
-                rows={3}
+                rowsMax={4}
+                rows={4}
                 fullWidth={true}
                 underlineDisabledStyle = {{border:"none"}}
                 onChange={this.handleChangeDescription}

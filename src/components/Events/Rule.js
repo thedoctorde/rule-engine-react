@@ -211,6 +211,9 @@ export class Rule extends React.Component {
             handleChangeOperator={this.handleChangeOperator}
             value={this.props.rule.value}
             handleChangeValue={this.handleChangeValue}
+            handleChangeArrayValue={this.handleChangeArrayValue}
+            handleChangeSelectValue={this.handleChangeSelectValue}
+            boolParams={this.props.boolParams}
           />
         );
       case "old_vs_new":

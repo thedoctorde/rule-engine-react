@@ -47,7 +47,13 @@ export class Subrule extends React.Component {
     let newState = Object.assign(
       {},
       this.props.subrule,
-      {field: value}
+      {
+        field: value,
+        operator: "",
+        value_type: "",
+        value: "",
+      }
+
     );
     this.props.updateSubrule(newState)
   };
@@ -106,6 +112,39 @@ export class Subrule extends React.Component {
     this.props.updateSubrule(newState);
   };
 
+  handleChangeTypedValue = (event, value, type) => {
+    let oldValue = typize(this.props.subrule.value, type);
+    let newValue = typize(value, type);
+    let newState = Object.assign(
+      {},
+      this.props.subrule,
+      {
+        value: newValue !== null ? newValue :
+          oldValue !== null ? oldValue : "",
+      }
+    );
+    this.props.updateSubrule(newState);
+  };
+
+  handleChangeSelectValue = (event, index, value) => {
+    let newState = Object.assign(
+      {},
+      this.props.subrule,
+      {
+        value: value,
+      }
+    );
+    this.props.updateSubrule(newState);
+  };
+
+  getParamType() {
+    let param = this.props.fields.filter(item => item.value === this.props.subrule.field)[0];
+    if (param !== undefined) {
+      return this.props.fields.filter(item => item.value === this.props.subrule.field)[0].valueType
+    }
+    return undefined
+  }
+
 
   valueControl() {
     switch (this.props.subrule.value_type) {
@@ -123,7 +162,7 @@ export class Subrule extends React.Component {
             }
           </SelectField>
         );
-      case "boolean":
+      case "bool":
         return (
           <SelectField
             floatingLabelText="Value"
@@ -136,7 +175,7 @@ export class Subrule extends React.Component {
               )
             }
           </SelectField>);
-      case "number":
+      case "int":
         return (
           <TextField
             floatingLabelText="Value"
@@ -154,6 +193,7 @@ export class Subrule extends React.Component {
           </TextField>);
       case "value":
         let multipleValues = false;
+        let type = this.getParamType()
         switch (this.props.subrule.operator) {
           case "in":
           case"not in":
@@ -162,65 +202,81 @@ export class Subrule extends React.Component {
           default:
             break;
         }
-        switch (this.props.subrule.field) {
-          case "category":
-            if (this.props.subrule.operator === "in" || this.props.subrule.operator === "not in") {
-              return(
-                <MultiSelectField
-                  values={this.props.subrule.value}
-                  possibleValues={this.props.mappingPossibleValues}
-                  handleChange={this.handleChangeValue}
-                  floatingLabelText="Values"
-                />
-              )
-            } else {
-              return (
-                <SelectField
-                  value={this.props.subrule.value}
-                  onChange={(event, index, value) => {
-                    this.handleChangeValue(event, index, value);
-                  }}
-                  floatingLabelText="Value"
-                >
-                  {
-                    this.props.mappingPossibleValues
-                      .map(item =>
-                        <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
-                      )
-                  }
-
-                </SelectField>
-              );
-            }
-          case "appcount":
-            return(
-              <TextField
-                floatingLabelText="Value"
-                value={this.props.subrule.value}
-                onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
-              >
-              </TextField>
-            );
-          default:
-            return (
-              <TextField
-                floatingLabelText="Value"
-                value={this.props.subrule.value}
-                onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
-              >
-              </TextField>);
+        if (type === "BoolParam") {
+          return (
+            <SelectField
+              floatingLabelText="Value"
+              value={this.props.subrule.value}
+              onChange={this.handleChangeSelectValue}
+            >
+              {
+                this.props.boolParams.map(item =>
+                  <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
+                )
+              }
+            </SelectField>
+          )
         }
+        return (
+          <TextField
+            floatingLabelText="Value"
+            value={this.props.subrule.value}
+            onChange={(event,value) => {
+              return this.handleChangeTypedValue(event,value, type)
+            }}
+          />
+        )
+        // switch (this.props.subrule.field) {
+        //   case "category":
+        //     if (this.props.subrule.operator === "in" || this.props.subrule.operator === "not in") {
+        //       return(
+        //         <MultiSelectField
+        //           values={this.props.subrule.value}
+        //           possibleValues={this.props.mappingPossibleValues}
+        //           handleChange={this.handleChangeValue}
+        //           floatingLabelText="Values"
+        //         />
+        //       )
+        //     } else {
+        //       return (
+        //         <SelectField
+        //           value={this.props.subrule.value}
+        //           onChange={(event, index, value) => {
+        //             this.handleChangeValue(event, index, value);
+        //           }}
+        //           floatingLabelText="Value"
+        //         >
+        //           {
+        //             this.props.mappingPossibleValues
+        //               .map(item =>
+        //                 <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
+        //               )
+        //           }
+        //
+        //         </SelectField>
+        //       );
+        //     }
+        //   case "appcount":
+        //     return(
+        //       <TextField
+        //         floatingLabelText="Value"
+        //         value={this.props.subrule.value}
+        //         onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
+        //       >
+        //       </TextField>
+        //     );
+        //   default:
+        //     return (
+        //       <TextField
+        //         floatingLabelText="Value"
+        //         value={this.props.subrule.value}
+        //         onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
+        //       >
+        //       </TextField>);
+        // }
       default:
         return false
     }
-  }
-
-  getParamType() {
-    let param = this.props.subrule && this.props.subrule.field;
-    if (param !== undefined) {
-      return this.props.fields.filter(item => item.value === param && item.name == this.props.parentRuleParamName)[0].valueType
-    }
-    return undefined
   }
 
   getOperators(operators) {
@@ -261,8 +317,7 @@ export class Subrule extends React.Component {
             >
               {
                 this.getOperators(this.props.operators).map(item =>
-                  <MenuItem value={item.value} primaryText={item.value} key={item.id}/>
-                )
+                  <MenuItem value={item.value} primaryText={item.value} key={item.id}/>)
               }
             </SelectField>
             <SelectField

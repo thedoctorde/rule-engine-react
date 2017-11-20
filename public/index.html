@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -20,277 +20,283 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <script>
-      window.apiUrl = "http://demo4891626.mockable.io";
-      window.paramNames =
-        [
-          {id:"inapc", value:"inapc", valueType:"Instapcat", type:"complex"},
-          {id:"reap", value:"reap", valueType:"Resactap", type:"complex"},
-          {id:"reapc", value:"reapc", valueType:"Resactapcat", type:"complex"},
-          {id:"acapc", value:"acapc", valueType:"Acapc", type:"complex"},
-          {id:"savloc", value:"savloc", valueType:"Savloc", type:"complex"},
-          {id:"wpul", value:"wpul", valueType:"Wpul", type:"complex"},
-          {id:"wfng", value:"wfng", valueType:"Wfng", type:"complex"},
-          {id:"wfmo", value:"wfmo", valueType:"Wfmo", type:"complex"},
-          {id:"bcon", value:"bcon", valueType:"Btconn", type:"complex"},
-          {id:"wfcn", value:"wfcn", valueType:"WifiCon", type:"complex"},
-          {id:"wfpx", value:"wfpx", valueType:"WifiProxy", type:"complex"},
-          {id:"glod", value:"glod", valueType:"IntParam", type:"simple"},
-          {id:"inslun", value:"inslun", valueType:"IntParam", type:"simple"},
-          {id:"foreapp", value:"foreapp", valueType:"StringParam", type:"simple"},
-          {id:"scron", value:"scron", valueType:"BoolParam", type:"simple"},
-          {id:"ulve", value:"ulve", valueType:"StringParam", type:"simple"},
-          {id:"usloc", value:"usloc", valueType:"IntParam", type:"simple"},
-          {id:"dos", value:"dos", valueType:"StringParam", type:"simple"},
-          {id:"dmod", value:"dmod", valueType:"StringParam", type:"simple"},
-          {id:"slang", value:"slang", valueType:"StringParam", type:"simple"},
-          {id:"ctype", value:"ctype", valueType:"StringParam", type:"simple"},
-          {id:"mctype", value:"mctype", valueType:"StringParam", type:"simple"},
-          {id:"mop", value:"mop", valueType:"StringParam", type:"simple"},
-          {id:"dname", value:"dname", valueType:"StringParam", type:"simple"},
-          {id:"acap", value:"acap", valueType:"StringParam", type:"simple"},
-          {id:"geoco", value:"geoco", valueType:"StringParam", type:"simple"},
-          {id:"geoci", value:"geoci", valueType:"StringParam", type:"simple"},
-          {id:"esfs", value:"esfs", valueType:"IntParam", type:"simple"},
-          {id:"ess", value:"ess", valueType:"IntParam", type:"simple"},
-          {id:"isfs", value:"isfs", valueType:"IntParam", type:"simple"},
-          {id:"iss", value:"iss", valueType:"IntParam", type:"simple"},
-          {id:"dvolr", value:"dvolr", valueType:"IntParam", type:"simple"},
-          {id:"dvolm", value:"dvolm", valueType:"IntParam", type:"simple"},
-          {id:"dvola", value:"dvola", valueType:"IntParam", type:"simple"},
-          {id:"dvoln", value:"dvoln", valueType:"IntParam", type:"simple"},
-          {id:"dvolc", value:"dvolc", valueType:"IntParam", type:"simple"},
-          {id:"duse", value:"duse", valueType:"BoolParam", type:"simple"},
-          {id:"deflun", value:"deflun", valueType:"StringParam", type:"simple"},
-          {id:"earcon", value:"earcon", valueType:"BoolParam", type:"simple"},
-          {id:"dchar", value:"dchar", valueType:"BoolParam", type:"simple"},
-          {id:"dmstat", value:"dmstat", valueType:"DmStat", type:"complex"},
-          {id:"caact", value:"caact", valueType:"BoolParam", type:"simple"},
-          {id:"phad", value:"phad", valueType:"IntParam", type:"simple"},
-          {id:"isfp", value:"isfp", valueType:"IntParam", type:"simple"},
-          {id:"esfp", value:"esfp", valueType:"IntParam", type:"simple"},
-          {id:"bact", value:"bact", valueType:"BoolParam", type:"simple"},
-          {id:"wfct", value:"wfct", valueType:"BoolParam", type:"simple"},
-          {id:"scror", value:"scror", valueType:"StringParam", type:"simple"},
-          {id:"tzone", value:"tzone", valueType:"StringParam", type:"simple"},
-        ];
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<script>
+  window.apiUrl = "http://demo4891626.mockable.io";
+  window.paramNames =
+    [
+      {id: "inapc", value: "inapc", valueType: "Instapcat", type: "complex"},
+      {id: "reap", value: "reap", valueType: "Resactap", type: "complex"},
+      {id: "reapc", value: "reapc", valueType: "Resactapcat", type: "complex"},
+      {id: "acapc", value: "acapc", valueType: "Acapc", type: "complex"},
+      {id: "savloc", value: "savloc", valueType: "Savloc", type: "complex"},
+      {id: "wpul", value: "wpul", valueType: "Wpul", type: "complex"},
+      {id: "wfng", value: "wfng", valueType: "Wfng", type: "complex"},
+      {id: "wfmo", value: "wfmo", valueType: "Wfmo", type: "complex"},
+      {id: "bcon", value: "bcon", valueType: "Btconn", type: "complex"},
+      {id: "wfcn", value: "wfcn", valueType: "WifiCon", type: "complex"},
+      {id: "wfpx", value: "wfpx", valueType: "WifiProxy", type: "complex"},
+      {id: "glod", value: "glod", valueType: "IntParam", type: "simple"},
+      {id: "inslun", value: "inslun", valueType: "IntParam", type: "simple"},
+      {id: "foreapp", value: "foreapp", valueType: "StringParam", type: "simple"},
+      {id: "scron", value: "scron", valueType: "BoolParam", type: "simple"},
+      {id: "ulve", value: "ulve", valueType: "StringParam", type: "simple"},
+      {id: "usloc", value: "usloc", valueType: "IntParam", type: "simple"},
+      {id: "dos", value: "dos", valueType: "StringParam", type: "simple"},
+      {id: "dmod", value: "dmod", valueType: "StringParam", type: "simple"},
+      {id: "slang", value: "slang", valueType: "StringParam", type: "simple"},
+      {id: "ctype", value: "ctype", valueType: "StringParam", type: "simple"},
+      {id: "mctype", value: "mctype", valueType: "StringParam", type: "simple"},
+      {id: "mop", value: "mop", valueType: "StringParam", type: "simple"},
+      {id: "dname", value: "dname", valueType: "StringParam", type: "simple"},
+      {id: "acap", value: "acap", valueType: "StringParam", type: "simple"},
+      {id: "geoco", value: "geoco", valueType: "StringParam", type: "simple"},
+      {id: "geoci", value: "geoci", valueType: "StringParam", type: "simple"},
+      {id: "esfs", value: "esfs", valueType: "IntParam", type: "simple"},
+      {id: "ess", value: "ess", valueType: "IntParam", type: "simple"},
+      {id: "isfs", value: "isfs", valueType: "IntParam", type: "simple"},
+      {id: "iss", value: "iss", valueType: "IntParam", type: "simple"},
+      {id: "dvolr", value: "dvolr", valueType: "IntParam", type: "simple"},
+      {id: "dvolm", value: "dvolm", valueType: "IntParam", type: "simple"},
+      {id: "dvola", value: "dvola", valueType: "IntParam", type: "simple"},
+      {id: "dvoln", value: "dvoln", valueType: "IntParam", type: "simple"},
+      {id: "dvolc", value: "dvolc", valueType: "IntParam", type: "simple"},
+      {id: "duse", value: "duse", valueType: "BoolParam", type: "simple"},
+      {id: "deflun", value: "deflun", valueType: "StringParam", type: "simple"},
+      {id: "earcon", value: "earcon", valueType: "BoolParam", type: "simple"},
+      {id: "dchar", value: "dchar", valueType: "BoolParam", type: "simple"},
+      {id: "dmstat", value: "dmstat", valueType: "DmStat", type: "complex"},
+      {id: "caact", value: "caact", valueType: "BoolParam", type: "simple"},
+      {id: "phad", value: "phad", valueType: "IntParam", type: "simple"},
+      {id: "isfp", value: "isfp", valueType: "IntParam", type: "simple"},
+      {id: "esfp", value: "esfp", valueType: "IntParam", type: "simple"},
+      {id: "bact", value: "bact", valueType: "BoolParam", type: "simple"},
+      {id: "wfct", value: "wfct", valueType: "BoolParam", type: "simple"},
+      {id: "scror", value: "scror", valueType: "StringParam", type: "simple"},
+      {id: "tzone", value: "tzone", valueType: "StringParam", type: "simple"},
+    ];
 
-      window.ruleTypes = [
-        {id: "param", value:"Simple param"},
-        {id: "complex_param", value:"Complex param"},
-        {id: "app_action", value:"App Action"},
-        {id: "app_category", value:"App Category"},
-        {id: "old_vs_new", value:"Old vs new"},
-        {id: "old", value:"Old value"},
-        {id: "hour_between", value:"Between hours"},
-        {id: "last_moments", value:"Last moments"},
-        {id: "moment_timing", value:"Moments order"},
-        {id: "compare_params", value:"Compare params"},
-      ];
+  window.ruleTypes = [
+    {id: "param", value: "Simple param"},
+    {id: "complex_param", value: "Complex param"},
+    {id: "app_action", value: "App Action"},
+    {id: "app_category", value: "App Category"},
+    {id: "old_vs_new", value: "Old vs new"},
+    {id: "old", value: "Old value"},
+    {id: "hour_between", value: "Between hours"},
+    {id: "last_moments", value: "Last moments"},
+    {id: "moment_timing", value: "Moments order"},
+    {id: "compare_params", value: "Compare params"},
+  ];
 
-      window.momentNames = [
-        {id:"uahm", value: "Arriving home"},
-        {id:"uawk", value: "Arriving work"},
-        {id:"ubft", value:"Breakfast time"},
-        {id:"ubrd", value:"User is abroad"},
-        {id:"udlp", value:"Experiencing slow performance"},
-        {id:"udtm", value:"Dinner time"},
-        {id:"ueis", value:"Exercising"},
-        {id:"ugts", value:"Going to sleep"},
-        {id:"uhme", value:"User in his Home"},
-        {id:"uiiv", value:"Book a vacation"},
-        {id:"ulfd", value:"Meet new people"},
-        {id:"ulhm", value:"Leaving home"},
-        {id:"ullt", value:"Lunch time"},
-        {id:"ultm", value:"Listen to music"},
-        {id:"ulwk", value:"Leaving work"},
-        {id:"unat", value:"Order taxi"},
-        {id:"undv", value:"Driving"},
-        {id:"untr", value:"Using public transportation"},
-        {id:"upag", value:"Playing a game"},
-        {id:"usol", value:"Shopping"},
-        {id:"utap", value:"Taking a photo"},
-        {id:"utpb", value:"Wants to play Board games"},
-        {id:"uwam", value:"Watching a movie"},
-        {id:"uwrk", value:"User in his Work place"},
-        {id:"uwte", value:"Ordering food"},
-        {id:"uwup", value:"Waking Up"},
-      ];
+  window.momentNames = [
+    {id: "uahm", value: "Arriving home"},
+    {id: "uawk", value: "Arriving work"},
+    {id: "ubft", value: "Breakfast time"},
+    {id: "ubrd", value: "User is abroad"},
+    {id: "udlp", value: "Experiencing slow performance"},
+    {id: "udtm", value: "Dinner time"},
+    {id: "ueis", value: "Exercising"},
+    {id: "ugts", value: "Going to sleep"},
+    {id: "uhme", value: "User in his Home"},
+    {id: "uiiv", value: "Book a vacation"},
+    {id: "ulfd", value: "Meet new people"},
+    {id: "ulhm", value: "Leaving home"},
+    {id: "ullt", value: "Lunch time"},
+    {id: "ultm", value: "Listen to music"},
+    {id: "ulwk", value: "Leaving work"},
+    {id: "unat", value: "Order taxi"},
+    {id: "undv", value: "Driving"},
+    {id: "untr", value: "Using public transportation"},
+    {id: "upag", value: "Playing a game"},
+    {id: "usol", value: "Shopping"},
+    {id: "utap", value: "Taking a photo"},
+    {id: "utpb", value: "Wants to play Board games"},
+    {id: "uwam", value: "Watching a movie"},
+    {id: "uwrk", value: "User in his Work place"},
+    {id: "uwte", value: "Ordering food"},
+    {id: "uwup", value: "Waking Up"},
+  ];
 
-      window.operators = [
-        {id: "=", value:"="},
-        {id: "!=", value:"!="},
-        {id: ">", value: ">"},
-        {id: ">=", value: ">="},
-        {id: "<", value: "<"},
-        {id: "<=", value: "<="},
-        {id: "in", value:"in"},
-        {id: "not in", value:"not in"},
-        {id: "intersects", value:"intersects"},
-        {id: "not intersects", value:"not intersects"},
-      ];
+  window.operators = [
+    {id: "=", value: "="},
+    {id: "!=", value: "!="},
+    {id: ">", value: ">"},
+    {id: ">=", value: ">="},
+    {id: "<", value: "<"},
+    {id: "<=", value: "<="},
+    {id: "in", value: "in"},
+    {id: "not in", value: "not in"},
+    {id: "intersects", value: "intersects"},
+    {id: "not intersects", value: "not intersects"},
+  ];
 
-      window.mappingPossibleValues = [
-        {id:10001, value: "Books & Reference", type:"appToCategory"},
-        {id:10002 , value:"Game Puzzle", type:"appToCategory"},
-        {id:10003, value:"Tools", type:"appToCategory"},
-        {id:10004, value:"Entertainment", type:"appToCategory"},
-        {id:10005, value:"Personalization", type:"appToCategory"},
-        {id:10006, value:"Business", type:"appToCategory"},
-        {id:10007, value:"Education", type:"appToCategory"},
-        {id:10008, value:"Productivity", type:"appToCategory"},
-        {id:10009, value:"Game Strategy", type:"appToCategory"},
-        {id:10010, value:"Music & Audio", type:"appToCategory"},
-        {id:10011, value:"Maps & Navigation", type:"appToCategory"},
-        {id:10012, value:"Lifestyle", type:"appToCategory"},
-        {id:10013, value:"Finance", type:"appToCategory"},
-        {id:10014, value:"Sports", type:"appToCategory"},
-        {id:10015, value:"Game Adventure", type:"appToCategory"},
-        {id:10016, value:"Game Educational", type:"appToCategory"},
-        {id:10017, value:"Game Racing", type:"appToCategory"},
-        {id:10018, value:"Game Casual", type:"appToCategory"},
-        {id:10019, value:"Game Board", type:"appToCategory"},
-        {id:10020, value:"Game Arcade", type:"appToCategory"},
-        {id:10021, value:"Video Players", type:"appToCategory"},
-        {id:10022, value:"Communication", type:"appToCategory"},
-        {id:10023, value:"Game Card", type:"appToCategory"},
-        {id:10024, value:"Social", type:"appToCategory"},
-        {id:10025, value:"Travel & Local", type:"appToCategory"},
-        {id:10026, value:"Health & Fitness", type:"appToCategory"},
-        {id:10027, value:"Family Education", type:"appToCategory"},
-        {id:10028, value:"Photography", type:"appToCategory"},
-        {id:10029, value:"Medical", type:"appToCategory"},
-        {id:10030, value:"Dating", type:"appToCategory"},
-        {id:10031, value:"Food & Drink", type:"appToCategory"},
-        {id:10032, value:"Game Trivia", type:"appToCategory"},
-        {id:10033, value:"News & Magazines", type:"appToCategory"},
-        {id:10034, value:"Shopping", type:"appToCategory"},
-        {id:10035, value:"Game Casino", type:"appToCategory"},
-        {id:10036, value:"House & Home", type:"appToCategory"},
-        {id:10037, value:"Libraries & Demo", type:"appToCategory"},
-        {id:10038, value:"Weather", type:"appToCategory"},
-        {id:10039, value:"Family Braingames", type:"appToCategory"},
-        {id:10040, value:"Game Word", type:"appToCategory"},
-        {id:10041, value:"Events", type:"appToCategory"},
-        {id:10042, value:"Art & Design", type:"appToCategory"},
-        {id:10043, value:"Game Simulation", type:"appToCategory"},
-        {id:10044, value:"Parenting", type:"appToCategory"},
-        {id:10045, value:"Auto & Vehicles", type:"appToCategory"},
-        {id:10046, value:"Game Action", type:"appToCategory"},
-        {id:10047, value:"Game Sports", type:"appToCategory"},
-        {id:10048, value:"Family Pretend", type:"appToCategory"},
-        {id:10049, value:"Family Action", type:"appToCategory"},
-        {id:10050, value:"Comics", type:"appToCategory"},
-        {id:10051, value:"Beauty", type:"appToCategory"},
-        {id:10052, value:"Game Music", type:"appToCategory"},
-        {id:10053, value:"Game Role Playing", type:"appToCategory"},
-        {id:10054, value:"Family Create", type:"appToCategory"},
-        {id:10055, value:"Family Musicvideo", type:"appToCategory"},
-        {id:10056, value:"Video Players & Editors", type:"appToCategory"},
-        {id:"sabh", value:"Book Hotels", type:"appToActions"},
-        {id:"sabv", value:"Book Flights", type:"appToActions"},
-        {id:"saei", value:"Edit an Image", type:"appToActions"},
-        {id:"safpe", value:"Restaurants", type:"appToActions"},
-        {id:"salmu", value:"Listen to Music", type:"appToActions"},
-        {id:"samnp", value:"Meet people", type:"appToActions"},
-        {id:"sand", value:"Navigate", type:"appToActions"},
-        {id:"saof", value:"Order Food", type:"appToActions"},
-        {id:"saop", value:"Optimize Phone", type:"appToActions"},
-        {id:"saot", value:"Order a Taxi", type:"appToActions"},
-        {id:"sapad", value:"Adventure games", type:"appToActions"},
-        {id:"sapag", value:"Arcade games", type:"appToActions"},
-        {id:"sapat", value:"Action games", type:"appToActions"},
-        {id:"sapbg", value:"Board Games", type:"appToActions"},
-        {id:"sapca", value:"Casual games", type:"appToActions"},
-        {id:"sapcg", value:"Casino games", type:"appToActions"},
-        {id:"sapcr", value:"Card games", type:"appToActions"},
-        {id:"sapeg", value:"Educational games", type:"appToActions"},
-        {id:"sapmg", value:"Music games", type:"appToActions"},
-        {id:"sappg", value:"Puzzle games", type:"appToActions"},
-        {id:"saprg", value:"Racing games", type:"appToActions"},
-        {id:"saprp", value:"RPG games", type:"appToActions"},
-        {id:"sapsg", value:"Sports games", type:"appToActions"},
-        {id:"sapsp", value:"Simulation games", type:"appToActions"},
-        {id:"sapst", value:"Strategy games", type:"appToActions"},
-        {id:"sapt", value:"Transportation", type:"appToActions"},
-        {id:"saptg", value:"Trivia games", type:"appToActions"},
-        {id:"sapwg", value:"Words games", type:"appToActions"},
-        {id:"saso", value:"Shopping", type:"appToActions"},
-        {id:"sastr", value:"Exercise", type:"appToActions"},
-        {id:"sawmo", value:"Watch a Movie", type:"appToActions"},
-        {id:"spag", value:"Play a game", type:"appToActions"},
-      ];
+  window.mappingPossibleValues = [
+    {id: 10001, value: "Books & Reference", type: "appToCategory"},
+    {id: 10002, value: "Game Puzzle", type: "appToCategory"},
+    {id: 10003, value: "Tools", type: "appToCategory"},
+    {id: 10004, value: "Entertainment", type: "appToCategory"},
+    {id: 10005, value: "Personalization", type: "appToCategory"},
+    {id: 10006, value: "Business", type: "appToCategory"},
+    {id: 10007, value: "Education", type: "appToCategory"},
+    {id: 10008, value: "Productivity", type: "appToCategory"},
+    {id: 10009, value: "Game Strategy", type: "appToCategory"},
+    {id: 10010, value: "Music & Audio", type: "appToCategory"},
+    {id: 10011, value: "Maps & Navigation", type: "appToCategory"},
+    {id: 10012, value: "Lifestyle", type: "appToCategory"},
+    {id: 10013, value: "Finance", type: "appToCategory"},
+    {id: 10014, value: "Sports", type: "appToCategory"},
+    {id: 10015, value: "Game Adventure", type: "appToCategory"},
+    {id: 10016, value: "Game Educational", type: "appToCategory"},
+    {id: 10017, value: "Game Racing", type: "appToCategory"},
+    {id: 10018, value: "Game Casual", type: "appToCategory"},
+    {id: 10019, value: "Game Board", type: "appToCategory"},
+    {id: 10020, value: "Game Arcade", type: "appToCategory"},
+    {id: 10021, value: "Video Players", type: "appToCategory"},
+    {id: 10022, value: "Communication", type: "appToCategory"},
+    {id: 10023, value: "Game Card", type: "appToCategory"},
+    {id: 10024, value: "Social", type: "appToCategory"},
+    {id: 10025, value: "Travel & Local", type: "appToCategory"},
+    {id: 10026, value: "Health & Fitness", type: "appToCategory"},
+    {id: 10027, value: "Family Education", type: "appToCategory"},
+    {id: 10028, value: "Photography", type: "appToCategory"},
+    {id: 10029, value: "Medical", type: "appToCategory"},
+    {id: 10030, value: "Dating", type: "appToCategory"},
+    {id: 10031, value: "Food & Drink", type: "appToCategory"},
+    {id: 10032, value: "Game Trivia", type: "appToCategory"},
+    {id: 10033, value: "News & Magazines", type: "appToCategory"},
+    {id: 10034, value: "Shopping", type: "appToCategory"},
+    {id: 10035, value: "Game Casino", type: "appToCategory"},
+    {id: 10036, value: "House & Home", type: "appToCategory"},
+    {id: 10037, value: "Libraries & Demo", type: "appToCategory"},
+    {id: 10038, value: "Weather", type: "appToCategory"},
+    {id: 10039, value: "Family Braingames", type: "appToCategory"},
+    {id: 10040, value: "Game Word", type: "appToCategory"},
+    {id: 10041, value: "Events", type: "appToCategory"},
+    {id: 10042, value: "Art & Design", type: "appToCategory"},
+    {id: 10043, value: "Game Simulation", type: "appToCategory"},
+    {id: 10044, value: "Parenting", type: "appToCategory"},
+    {id: 10045, value: "Auto & Vehicles", type: "appToCategory"},
+    {id: 10046, value: "Game Action", type: "appToCategory"},
+    {id: 10047, value: "Game Sports", type: "appToCategory"},
+    {id: 10048, value: "Family Pretend", type: "appToCategory"},
+    {id: 10049, value: "Family Action", type: "appToCategory"},
+    {id: 10050, value: "Comics", type: "appToCategory"},
+    {id: 10051, value: "Beauty", type: "appToCategory"},
+    {id: 10052, value: "Game Music", type: "appToCategory"},
+    {id: 10053, value: "Game Role Playing", type: "appToCategory"},
+    {id: 10054, value: "Family Create", type: "appToCategory"},
+    {id: 10055, value: "Family Musicvideo", type: "appToCategory"},
+    {id: 10056, value: "Video Players & Editors", type: "appToCategory"},
+    {id: "sabh", value: "Book Hotels", type: "appToActions"},
+    {id: "sabv", value: "Book Flights", type: "appToActions"},
+    {id: "saei", value: "Edit an Image", type: "appToActions"},
+    {id: "safpe", value: "Restaurants", type: "appToActions"},
+    {id: "salmu", value: "Listen to Music", type: "appToActions"},
+    {id: "samnp", value: "Meet people", type: "appToActions"},
+    {id: "sand", value: "Navigate", type: "appToActions"},
+    {id: "saof", value: "Order Food", type: "appToActions"},
+    {id: "saop", value: "Optimize Phone", type: "appToActions"},
+    {id: "saot", value: "Order a Taxi", type: "appToActions"},
+    {id: "sapad", value: "Adventure games", type: "appToActions"},
+    {id: "sapag", value: "Arcade games", type: "appToActions"},
+    {id: "sapat", value: "Action games", type: "appToActions"},
+    {id: "sapbg", value: "Board Games", type: "appToActions"},
+    {id: "sapca", value: "Casual games", type: "appToActions"},
+    {id: "sapcg", value: "Casino games", type: "appToActions"},
+    {id: "sapcr", value: "Card games", type: "appToActions"},
+    {id: "sapeg", value: "Educational games", type: "appToActions"},
+    {id: "sapmg", value: "Music games", type: "appToActions"},
+    {id: "sappg", value: "Puzzle games", type: "appToActions"},
+    {id: "saprg", value: "Racing games", type: "appToActions"},
+    {id: "saprp", value: "RPG games", type: "appToActions"},
+    {id: "sapsg", value: "Sports games", type: "appToActions"},
+    {id: "sapsp", value: "Simulation games", type: "appToActions"},
+    {id: "sapst", value: "Strategy games", type: "appToActions"},
+    {id: "sapt", value: "Transportation", type: "appToActions"},
+    {id: "saptg", value: "Trivia games", type: "appToActions"},
+    {id: "sapwg", value: "Words games", type: "appToActions"},
+    {id: "saso", value: "Shopping", type: "appToActions"},
+    {id: "sastr", value: "Exercise", type: "appToActions"},
+    {id: "sawmo", value: "Watch a Movie", type: "appToActions"},
+    {id: "spag", value: "Play a game", type: "appToActions"},
+  ];
 
-      window.fields = [
-        {id: 1, name: "wfcn", value:"connected", },
-        {id: 2, name: "wfcn", value:"name"},
-        {id: 3, name: "reapc", value: "category"},
-        {id: 4, name: "reapc", value: "appcount"},
-        {id: 5, name: "dmstat", value: "value", valueType:"IntParam"},
-        {id: 6, name: "dmstat", value: "accuracy", valueType:"IntParam"},
-        {id: 7, name: "wpul", value: "wpxt"},
-      ];
+  window.fields = [
+    {id: 1, name: "wfcn", value: "connected", valueType: "BoolParam"},
+    {id: 2, name: "wfcn", value: "name", valueType: "StringParam" },
+    {id: 3, name: "reapc", value: "category", valueType: "IntParam"},
+    {id: 4, name: "reapc", value: "appcount", valueType: "IntParam" },
+    {id: 5, name: "dmstat", value: "value", valueType: "IntParam"},
+    {id: 6, name: "dmstat", value: "accuracy", valueType: "IntParam" },
+    {id: 7, name: "savloc", value: "data", valueType: "StringParam"},
+    {id: 8, name: "wpul", value: "wpxt", valueType: "IntParam"},
+    {id: 11, name: "wpul", value: "acc", valueType: "IntParam" },
+    {id: 12, name: "bcon", value: "connected", valueType: "BoolParam"},
+    {id: 13, name: "bcon", value: "name", valueType: "StringParam"},
+    {id: 14, name: "acapc", value: "category", valueType: "IntParam"},
+    {id: 15, name: "acapc", value: "appcount", valueType: "IntParam"},
+  ];
 
-      window.actionTypes = [
-        {id:"instant", value:"instant", },
-        {id:"delay", value:"delay"}
-      ];
+  window.actionTypes = [
+    {id: "instant", value: "instant",},
+    {id: "delay", value: "delay"}
+  ];
 
-      window.app_version = "version 1";
+  window.app_version = "version 1";
 
-      window.headerLinks = [
-        {"name": "Link 1", "url": "http://www.google.com"},
-        {"name": "Link 2", "url": "http://www.my.com"},
-      ];
+  window.headerLinks = [
+    {"name": "Link 1", "url": "http://www.google.com"},
+    {"name": "Link 2", "url": "http://www.my.com"},
+  ];
 
-      window.urlForRules = "http://google.com";
-      window.urlForParams = "http://my.com";
-      window.helpLinks = {
-        "param": { link: "/help/param", name:"Simple param"},
-        "complex_param": { link: "/help/complex-param", name:"Complex param"},
-        "app_action": { link: "/help/app_action", name:"App Action"},
-        "app_category": { link: "/help/app_category", name:"App Category"},
-        "old_vs_new": { link: "/help/old_vs_new", name:"Old vs new"},
-        "old": { link: "/help/old", name:"Old value"},
-        "hour_between": { link: "/help/hour_between", name:"Between hours"},
-        "last_moments": { link: "/help/last_moments", name:"Last moments"},
-        "moment_timing": { link: "/help/moment_timing", name:"Moment timing"},
-        "compare_params": { link: "/help/compare_params", name:"Compare params"},
-      };
-      window.helpPage = [
-        {
-          category: "rules",
-          links: [
-            { link: "/help/param", name:"Simple param"},
-            { link: "/help/complex-param", name:"Complex param"},
-            { link: "/help/app_action", name:"App Action"},
-            { link: "/help/app_category", name:"App Category"},
-            { link: "/help/old_vs_new", name:"Old vs new"},
-            { link: "/help/old", name:"Old value"},
-            { link: "/help/hour_between", name:"Between hours"},
-            { link: "/help/last_moments", name:"Last moments"},
-            { link: "/help/moment_timing", name:"Moment timing"},
-            { link: "/help/compare_params", name:"Compare params"},
-          ]
-        }
-      ];
+  window.urlForRules = "http://google.com";
+  window.urlForParams = "http://my.com";
+  window.helpLinks = {
+    "param": {link: "/help/param", name: "Simple param"},
+    "complex_param": {link: "/help/complex-param", name: "Complex param"},
+    "app_action": {link: "/help/app_action", name: "App Action"},
+    "app_category": {link: "/help/app_category", name: "App Category"},
+    "old_vs_new": {link: "/help/old_vs_new", name: "Old vs new"},
+    "old": {link: "/help/old", name: "Old value"},
+    "hour_between": {link: "/help/hour_between", name: "Between hours"},
+    "last_moments": {link: "/help/last_moments", name: "Last moments"},
+    "moment_timing": {link: "/help/moment_timing", name: "Moment timing"},
+    "compare_params": {link: "/help/compare_params", name: "Compare params"},
+  };
+  window.helpPage = [
+    {
+      category: "rules",
+      links: [
+        {link: "/help/param", name: "Simple param"},
+        {link: "/help/complex-param", name: "Complex param"},
+        {link: "/help/app_action", name: "App Action"},
+        {link: "/help/app_category", name: "App Category"},
+        {link: "/help/old_vs_new", name: "Old vs new"},
+        {link: "/help/old", name: "Old value"},
+        {link: "/help/hour_between", name: "Between hours"},
+        {link: "/help/last_moments", name: "Last moments"},
+        {link: "/help/moment_timing", name: "Moment timing"},
+        {link: "/help/compare_params", name: "Compare params"},
+      ]
+    }
+  ];
 
-    </script>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+</script>
+<div id="root"></div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  To begin the development, run `npm start` or `yarn start`.
+  To create a production bundle, use `npm run build` or `yarn build`.
+-->
+</body>
 </html>

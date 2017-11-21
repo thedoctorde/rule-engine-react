@@ -23,7 +23,9 @@ const ComplexParam = ({
         value={paramName}
         onChange={handleChangeParamName}>
         {
-          paramNames.map(item =>
+          paramNames
+            .filter(item => item.ruleTypes.includes('complex_param'))
+            .map(item =>
             <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
           )
         }

@@ -86,12 +86,24 @@ export class Rule extends React.Component {
     this.props.updateRule(newState)
   };
   handleChangeName = (event, index, value) => {
+    let newObj;
+    if (this.props.rule.rules !== undefined) {
+      newObj = {
+        name: value,
+        rules: null,
+      }
+    } else {
+      newObj = {
+        name: value,
+      }
+    }
     let newState = Object.assign(
       {},
       this.props.rule,
-      {name: value}
+      newObj
     );
     this.props.updateRule(newState)
+    console.log(this)
   };
   handleChangeAfter = (event, index, value) => {
     let newState = Object.assign(

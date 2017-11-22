@@ -145,138 +145,140 @@ export class Subrule extends React.Component {
     return undefined
   }
 
-
   valueControl() {
-    switch (this.props.subrule.value_type) {
-      case "field":
-        return (
-          <SelectField
-            floatingLabelText="Value"
-            value={this.props.subrule.value}
-            onChange={this.handleChangeValue}
-          >
-            {
-              this.props.paramNames.map(item =>
-                <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
-              )
-            }
-          </SelectField>
-        );
-      case "bool":
-        return (
-          <SelectField
-            floatingLabelText="Value"
-            value={this.props.subrule.value}
-            onChange={this.handleChangeValue}
-          >
-            {
-              this.props.boolParams.map(item =>
-                <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
-              )
-            }
-          </SelectField>);
-      case "int":
-        return (
-          <TextField
-            floatingLabelText="Value"
-            value={this.props.subrule.value}
-            onChange={this.handleChangeNumberValue}
-          >
-          </TextField>);
-      case "string":
-        return (
-          <TextField
-            floatingLabelText="Value"
-            value={this.props.subrule.value}
-            onChange={this.handleChangeStringValue}
-          >
-          </TextField>);
-      case "value":
-        let multipleValues = false;
-        let type = this.getParamType()
-        switch (this.props.subrule.operator) {
-          case "in":
-          case"not in":
-            multipleValues = true;
-            break;
-          default:
-            break;
-        }
-        if (type === "BoolParam") {
-          return (
-            <SelectField
-              floatingLabelText="Value"
-              value={this.props.subrule.value}
-              onChange={this.handleChangeSelectValue}
-            >
-              {
-                this.props.boolParams.map(item =>
-                  <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
-                )
-              }
-            </SelectField>
-          )
-        }
-        return (
-          <TextField
-            floatingLabelText="Value"
-            value={this.props.subrule.value}
-            onChange={(event,value) => {
-              return this.handleChangeTypedValue(event,value, type)
-            }}
-          />
-        )
-        // switch (this.props.subrule.field) {
-        //   case "category":
-        //     if (this.props.subrule.operator === "in" || this.props.subrule.operator === "not in") {
-        //       return(
-        //         <MultiSelectField
-        //           values={this.props.subrule.value}
-        //           possibleValues={this.props.mappingPossibleValues}
-        //           handleChange={this.handleChangeValue}
-        //           floatingLabelText="Values"
-        //         />
-        //       )
-        //     } else {
-        //       return (
-        //         <SelectField
-        //           value={this.props.subrule.value}
-        //           onChange={(event, index, value) => {
-        //             this.handleChangeValue(event, index, value);
-        //           }}
-        //           floatingLabelText="Value"
-        //         >
-        //           {
-        //             this.props.mappingPossibleValues
-        //               .map(item =>
-        //                 <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
-        //               )
-        //           }
-        //
-        //         </SelectField>
-        //       );
-        //     }
-        //   case "appcount":
-        //     return(
-        //       <TextField
-        //         floatingLabelText="Value"
-        //         value={this.props.subrule.value}
-        //         onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
-        //       >
-        //       </TextField>
-        //     );
-        //   default:
-        //     return (
-        //       <TextField
-        //         floatingLabelText="Value"
-        //         value={this.props.subrule.value}
-        //         onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
-        //       >
-        //       </TextField>);
-        // }
+    // switch (this.props.subrule.value_type) {
+    //   case "field":
+    //     return (
+    //       <SelectField
+    //         floatingLabelText="Value"
+    //         value={this.props.subrule.value}
+    //         onChange={this.handleChangeValue}
+    //       >
+    //         {
+    //           this.props.paramNames.map(item =>
+    //             <MenuItem value={item.id} primaryText={item.id} key={item.id}/>
+    //           )
+    //         }
+    //       </SelectField>
+    //     );
+    //   case "bool":
+    //     return (
+    //       <SelectField
+    //         floatingLabelText="Value"
+    //         value={this.props.subrule.value}
+    //         onChange={this.handleChangeValue}
+    //       >
+    //         {
+    //           this.props.boolParams.map(item =>
+    //             <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
+    //           )
+    //         }
+    //       </SelectField>);
+    //   case "int":
+    //     return (
+    //       <TextField
+    //         floatingLabelText="Value"
+    //         value={this.props.subrule.value}
+    //         onChange={this.handleChangeNumberValue}
+    //       >
+    //       </TextField>);
+    //   case "string":
+    //     return (
+    //       <TextField
+    //         floatingLabelText="Value"
+    //         value={this.props.subrule.value}
+    //         onChange={this.handleChangeStringValue}
+    //       >
+    //       </TextField>);
+    //   case "value":
+    //
+    //     // switch (this.props.subrule.field) {
+    //     //   case "category":
+    //     //     if (this.props.subrule.operator === "in" || this.props.subrule.operator === "not in") {
+    //     //       return(
+    //     //         <MultiSelectField
+    //     //           values={this.props.subrule.value}
+    //     //           possibleValues={this.props.mappingPossibleValues}
+    //     //           handleChange={this.handleChangeValue}
+    //     //           floatingLabelText="Values"
+    //     //         />
+    //     //       )
+    //     //     } else {
+    //     //       return (
+    //     //         <SelectField
+    //     //           value={this.props.subrule.value}
+    //     //           onChange={(event, index, value) => {
+    //     //             this.handleChangeValue(event, index, value);
+    //     //           }}
+    //     //           floatingLabelText="Value"
+    //     //         >
+    //     //           {
+    //     //             this.props.mappingPossibleValues
+    //     //               .map(item =>
+    //     //                 <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
+    //     //               )
+    //     //           }
+    //     //
+    //     //         </SelectField>
+    //     //       );
+    //     //     }
+    //     //   case "appcount":
+    //     //     return(
+    //     //       <TextField
+    //     //         floatingLabelText="Value"
+    //     //         value={this.props.subrule.value}
+    //     //         onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
+    //     //       >
+    //     //       </TextField>
+    //     //     );
+    //     //   default:
+    //     //     return (
+    //     //       <TextField
+    //     //         floatingLabelText="Value"
+    //     //         value={this.props.subrule.value}
+    //     //         onChange={multipleValues ? this.handleChangeArrayValue : this.handleChangeStringValue}
+    //     //       >
+    //     //       </TextField>);
+    //     // }
+    //   default:
+    //     return false
+    // }
+
+    let multipleValues = false;
+    let type = this.getParamType()
+    switch (this.props.subrule.operator) {
+      case "in":
+      case"not in":
+        multipleValues = true;
+        break;
       default:
-        return false
+        break;
     }
+    if (type === "BoolParam") {
+      return (
+        <SelectField
+          floatingLabelText="Value"
+          value={this.props.subrule.value}
+          onChange={this.handleChangeSelectValue}
+        >
+          {
+            this.props.boolParams.map(item =>
+              <MenuItem value={item.value} primaryText={item.id} key={item.id}/>
+            )
+          }
+        </SelectField>
+      )
+    }
+    return (
+      <TextField
+        floatingLabelText="Value"
+        value={this.props.subrule.value}
+        onChange={(event,value) => {
+          return this.handleChangeTypedValue(event,value, type)
+        }}
+      />
+    )
+
   }
 
   getOperators(operators) {
@@ -292,7 +294,6 @@ export class Subrule extends React.Component {
   }
 
   render() {
-
     return (
       this.props.subrule ?
         <div style={style}>
@@ -320,17 +321,17 @@ export class Subrule extends React.Component {
                   <MenuItem value={item.value} primaryText={item.value} key={item.id}/>)
               }
             </SelectField>
-            <SelectField
-              floatingLabelText="Value Type"
-              value={this.props.subrule.value_type}
-              onChange={this.handleChangeValueType}
-            >
-              {
-                this.props.valueTypesForSubrules.map(item =>
-                  <MenuItem value={item.id} primaryText={item.value} key={item.id}/>
-                )
-              }
-            </SelectField>
+            {/*<SelectField*/}
+              {/*floatingLabelText="Value Type"*/}
+              {/*value={this.props.subrule.value_type}*/}
+              {/*onChange={this.handleChangeValueType}*/}
+            {/*>*/}
+              {/*{*/}
+                {/*this.props.valueTypesForSubrules.map(item =>*/}
+                  {/*<MenuItem value={item.id} primaryText={item.value} key={item.id}/>*/}
+                {/*)*/}
+              {/*}*/}
+            {/*</SelectField>*/}
             {this.valueControl()}
           </div>
           <RaisedButton

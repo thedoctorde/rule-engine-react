@@ -8,6 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 import { withRouter } from 'react-router-dom'
 import Snackbar from 'material-ui/Snackbar';
+import {Link} from 'react-router-dom'
 
 
 
@@ -42,13 +43,17 @@ const descriptionStyle = {
 }
 
 const BackButton = withRouter(({history}) => (
-  <RaisedButton
+  <Link to={"/"} style={{textDecoration: "none"}}><RaisedButton
     label="Back"
     style={backButtonStyle}
     secondary={true}
-    onClick={()=>{
-      history.go(-1)}}
-  />
+
+    // onClick={()=>{
+    //   history.go(-1)}}
+  >
+
+  </RaisedButton>
+  </Link>
 ))
 
 class EventForm extends Component {
@@ -150,7 +155,7 @@ class EventForm extends Component {
                 if (subrule) {
                   if (subrule.field === undefined || subrule.field === "") ruleErrors.push("Complex param rule: subrule's field is empty");
                   if (subrule.operator === undefined || subrule.operator === "") ruleErrors.push("Complex param rule: subrule's operator is empty");
-                  // if (subrule.value_type === undefined) ruleErrors.push("Complex param rule: subrule's value type is empty");
+                  if (subrule.value_type === undefined || subrule.value_type === "") ruleErrors.push("Complex param rule: subrule's value type is empty");
                   if (subrule.value === undefined || subrule.value.length === 0) ruleErrors.push("Complex param rule: subrule's value is empty");
                 }
               }

@@ -148,9 +148,9 @@ class EventForm extends Component {
               for (let subruleId of rule.rules) {
                 let subrule = this.props.subrules[subruleId];
                 if (subrule) {
-                  if (subrule.field === undefined) ruleErrors.push("Complex param rule: subrule's field is empty");
-                  if (subrule.operator === undefined) ruleErrors.push("Complex param rule: subrule's operator is empty");
-                  if (subrule.value_type === undefined) ruleErrors.push("Complex param rule: subrule's value type is empty");
+                  if (subrule.field === undefined || subrule.field === "") ruleErrors.push("Complex param rule: subrule's field is empty");
+                  if (subrule.operator === undefined || subrule.operator === "") ruleErrors.push("Complex param rule: subrule's operator is empty");
+                  // if (subrule.value_type === undefined) ruleErrors.push("Complex param rule: subrule's value type is empty");
                   if (subrule.value === undefined || subrule.value.length === 0) ruleErrors.push("Complex param rule: subrule's value is empty");
                 }
               }

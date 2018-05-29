@@ -578,6 +578,8 @@ let state = {
     {id: "not in", value: "not in"},
     {id: "intersects", value: "intersects"},
     {id: "not intersects", value: "not intersects"},
+    {id: "contains", value: "contains"},
+    {id: "not contains", value: "not contains"},
   ],
   mappingPossibleValues: [
     {id: 10001, value: "Books & Reference", type: "appToCategory"},

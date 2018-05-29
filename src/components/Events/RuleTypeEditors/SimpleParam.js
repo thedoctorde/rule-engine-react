@@ -70,13 +70,13 @@ export class SimpleParam extends React.Component {
   }
 
   getOperators(operators) {
-    let paramValue = this.getParamType()
+    let paramValue = this.getParamType();
     if ( paramValue === "BoolParam") {
       return operators.filter(item => item.id === "=")
     } else if ( paramValue === "IntParam") {
       return operators.filter(item => ["=", "!=", ">", ">=", "<", "<="].includes(item.id))
     } else if (paramValue === "StringParam") {
-      return operators.filter(item => ["=", "!=", "in", "not in"].includes(item.id))
+      return operators.filter(item => ["=", "!=", "in", "not in", "contains", "not contains"].includes(item.id))
     }
     return operators
   }
